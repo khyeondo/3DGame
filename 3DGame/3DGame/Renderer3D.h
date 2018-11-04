@@ -4,6 +4,8 @@
 #include "Vec3.h"
 #include "Polygon.h"
 #include "Color.h"
+#include "Painter.h"
+#include "Shader.h"
 #include <SDL.h>
 #include<vector>
 
@@ -54,6 +56,12 @@ private:
 	Color m_background;
 
 public:
+	ColorPainter m_colorPainter;
+	TexturePainter m_texturePainter;
+	FlatShader m_flatShader;
+	PixelShader m_plxelShader;
+
+public:
 	~Renderer3D();
 
 	bool Init(SDL_Renderer* pRenderer, Camera* pCamera, Vec3 light,Color background, int screenW, int screenH);
@@ -77,6 +85,7 @@ private:
 	void DrawPolygons(vector<reference_wrapper<Polygon>>& polys);
 	void Texturing(GameObject3D* pGameObject, vector<reference_wrapper<Polygon>>& polys);
 
+private:
 	void Swap(int& a, int& b)
 	{
 		int temp = a;
@@ -92,5 +101,12 @@ private:
 
 	Uint32 GetPixel(SDL_Surface *surface, int x, int y);
 	void DrawPolygon(Vec3 * p, Color color, float b);
+
+public:
+	friend class TexturePainter;
+	friend class ColorPainter;
+	friend class FlatShader;
+	friend class PixelShader;
+	friend class EyeTracingShader;
 
 };

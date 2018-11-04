@@ -64,9 +64,11 @@ void Game::start()
 
 	m_pGameObject = new GameObject3D(m_pSurface2, m_pNormal2, &mesh);
 	m_pGameObject2 = new GameObject3D(m_pSurface, m_pNormal, &mesh);
+	m_pGameObject3 = new GameObject3D(NULL, NULL, &mesh);
 	((GameObject3D*)m_pGameObject)->RefPos().x = 10.f;
 	((GameObject3D*)m_pGameObject)->RefPos().y = 0.f;
 	((GameObject3D*)m_pGameObject)->RefPos().z = 0.f;
+	((GameObject3D*)m_pGameObject3)->RefPos().x = 20.f;
 }
 
 void Game::handleEvents()
@@ -105,8 +107,6 @@ void Game::update()
 	Renderer3D::Instance()->RefLight() *= rotateY;
 	//Renderer3D::Instance()->RefLight() *= rotateX;
 	//Renderer3D::Instance()->RefLight() *= rotateZ;
-
-	//((GameObject3D*)m_pGameObject)->RefAngle() += Vec3(0.01f,0.01f, 0.01f);
 
 	if (isKeyHolding[SDLK_a])
 	{
@@ -163,6 +163,7 @@ void Game::render()
 
 	m_pGameObject->Render();
 	m_pGameObject2->Render();
+	m_pGameObject3->Render();
 
 	Renderer3D::Instance()->Present();
 

@@ -55,6 +55,12 @@
     <Filter Include="SDL2_gfxPrimitives">
       <UniqueIdentifier>{015eba4f-a858-4367-884b-d7b91df3ecaf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.Render3D\01.Renderer3D\Painter">
+      <UniqueIdentifier>{582a5bc0-a4a3-4b13-9840-1c08547d9e07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Render3D\01.Renderer3D\Shader">
+      <UniqueIdentifier>{a5996a49-0291-4f6d-8e1a-6554c35cfca7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera1.cpp">
@@ -68,9 +74,6 @@
     </ClCompile>
     <ClCompile Include="Game.cpp">
       <Filter>01.Game</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject3D.cpp">
-      <Filter>04.GameObject\02.GameObject2D</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
@@ -86,6 +89,15 @@
     </ClCompile>
     <ClCompile Include="SDL2_gfxPrimitives.c">
       <Filter>SDL2_gfxPrimitives</Filter>
+    </ClCompile>
+    <ClCompile Include="Painter.cpp">
+      <Filter>02.Render3D\01.Renderer3D\Painter</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>02.Render3D\01.Renderer3D\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject3D.cpp">
+      <Filter>04.GameObject\03.GameObject3D</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -113,9 +125,6 @@
     <ClInclude Include="GameObject.h">
       <Filter>04.GameObject\01.GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="GameObject3D.h">
-      <Filter>04.GameObject\02.GameObject2D</Filter>
-    </ClInclude>
     <ClInclude Include="Matrix4X4.h">
       <Filter>02.Render3D\02.Matrix4x4</Filter>
     </ClInclude>
@@ -142,6 +151,15 @@
     </ClInclude>
     <ClInclude Include="SDL2_rotozoom.h">
       <Filter>SDL2_gfxPrimitives</Filter>
+    </ClInclude>
+    <ClInclude Include="Painter.h">
+      <Filter>02.Render3D\01.Renderer3D\Painter</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>02.Render3D\01.Renderer3D\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject3D.h">
+      <Filter>04.GameObject\03.GameObject3D</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

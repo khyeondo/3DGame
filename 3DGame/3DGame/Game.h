@@ -46,6 +46,7 @@ private:
 	Camera* m_pCamera;
 	GameObject* m_pGameObject;
 	GameObject* m_pGameObject2;
+	GameObject* m_pGameObject3;
 private:
 	Game() {}
 

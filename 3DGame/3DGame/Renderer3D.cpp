@@ -3,7 +3,8 @@
 #include "Camera.h"
 #include "GameObject3D.h"
 #include "Mesh.h"
-
+#include "Painter.h"
+#include "Shader.h"
 #include "SDL2_gfxPrimitives.h"
 
 Renderer3D* Renderer3D::inst = 0;
@@ -47,7 +48,6 @@ bool Renderer3D::Init(SDL_Renderer * pRenderer, Camera * pCamera, Vec3 light, Co
 			m_pDepthBuffer[j*m_screenW + i] = 0.f;
 		}
 
-	
 	for (int i = 0; i < screenH*screenW; i++)
 		m_pDepthBuffer[i] = 0;
 
@@ -241,10 +241,30 @@ void Renderer3D::DrawPolygons(vector<reference_wrapper<Polygon>>& culledPolys)
 
 void Renderer3D::Texturing(GameObject3D * pGameObject, vector<reference_wrapper<Polygon>>& culledPolys)
 {
-	
+	int surfaceW, surfaceH;
+	if (pGameObject->GetSurface() == 0)
+	{
+		surfaceW = surfaceH = 1;
+	}
+	else 
+	{
+		surfaceW = pGameObject->GetSurface()->clip_rect.w;
+		surfaceH = pGameObject->GetSurface()->clip_rect.h;
+	}
+
 	for (Polygon& poly : culledPolys)
 	{
 		Matrix4X4 normalMat;
+		float x = 0, y = 0, z = 0;
+		for (int i = 0; i < 3; i++)
+		{
+			x += poly.vertex[i].x;
+			y += poly.vertex[i].y;
+			z += poly.vertex[i].z;
+		}
+		x /= 3;
+		y /= 3;
+		z /= 3;
 		Vec3 origin = { 0,0,0 };
 		Vec3 lookAt = { 1,0,0 };
 
@@ -368,18 +388,22 @@ void Renderer3D::Texturing(GameObject3D * pGameObject, vector<reference_wrapper<
 							t += tstep;
 							continue;
 						}
-						int sx = (int)((tex_u/tex_w)*pGameObject->GetSurface()->clip_rect.w);
-						int sy = (int)((tex_v/tex_w)*pGameObject->GetSurface()->clip_rect.h);
+						int sx = (int)((tex_u / tex_w)*surfaceW);
+						int sy = (int)((tex_v / tex_w)*surfaceH);
 						if (!(sx < 0 || sx >= pGameObject->GetSurface()->clip_rect.w || sy < 0 || sy >= pGameObject->GetSurface()->clip_rect.h))
 						{
-							Uint32 normalMapColor = GetPixel(pGameObject->GetNormalMap(), sx, sy);
-							Vec3 normalVec = { (float)((normalMapColor & 0x000000FF)),
-								(float)((normalMapColor & 0x0000FF00) >> 8),
-								(float)((normalMapColor & 0x00FF0000) >> 16) };
-							normalVec *= (2.f / 255.f);
-							normalVec -= 1;
-							normalVec *= normalMat;
+							//Uint32 normalMapColor = GetPixel(pGameObject->GetNormalMap(), sx, sy);
+							//Vec3 normalVec = { (float)((normalMapColor & 0x000000FF)),
+							//	(float)((normalMapColor & 0x0000FF00) >> 8),
+							//	(float)((normalMapColor & 0x00FF0000) >> 16) };
+							//normalVec *= (2.f / 255.f);
+							//normalVec -= 1;
+							//normalVec *= normalMat;
 
+							float brightness = pGameObject->GetShader()->Shading(this, pGameObject->GetNormalMap(),
+								poly.normalVec,&normalMat, i, j, sx, sy, 0.2f);
+							pGameObject->GetPainter()->DrawPolygon(this, pGameObject->GetSurface(), &pGameObject->RefColor(),
+								tex_w, i, j, sx, sy, brightness);
 							//normalVec.x = -normalVec.x;
 							//normalVec.y = -normalVec.y;
 							//normalVec.z = -normalVec.z;
@@ -387,27 +411,27 @@ void Renderer3D::Texturing(GameObject3D * pGameObject, vector<reference_wrapper<
 							//Vec3 lookDir = m_pCamera->lookAt - m_pCamera->pos;
 							//lookDir.Normalize();
 							//float f = Vec3::DotProduct(m_pCamera->lookAt, normalVec);
-							float f = Vec3::DotProduct(m_light, normalVec);
-							f *= -1;
-							f += 1;
-							f /= 2.f;
-							float brightness = f;
-							brightness = (((f) > (0.2f)) ? (f) : (0.2f));
+							//float f = Vec3::DotProduct(m_light, normalVec);
+							//f *= -1;
+							//f += 1;
+							//f /= 2.f;
+							//float brightness = f;
+							//brightness = (((f) > (0.2f)) ? (f) : (0.2f));
 
-							Uint8 a;
-							Uint32 color = GetPixel(pGameObject->GetSurface(), sx, sy);
-							if (a = (Uint8)((color & 0xFF000000) >> 24) != 0)
-							{
-								Uint8 r = (Uint8)((color & 0x000000FF));
-								Uint8 g = (Uint8)((color & 0x0000FF00) >> 8);
-								Uint8 b = (Uint8)((color & 0x00FF0000) >> 16);
-
-								m_pScreenPixels[4 * (i * m_pScreenBuffer->w + j) + 0] = b* brightness;
-								m_pScreenPixels[4 * (i * m_pScreenBuffer->w + j) + 1] = g* brightness;
-								m_pScreenPixels[4 * (i * m_pScreenBuffer->w + j) + 2] = r* brightness;
-								m_pScreenPixels[4 * (i * m_pScreenBuffer->w + j) + 3] = a* brightness;
-								m_pDepthBuffer[i*m_screenW + j] = tex_w;
-							}
+							//Uint8 a;
+							//Uint32 color = GetPixel(pGameObject->GetSurface(), sx, sy);
+							//if (a = (Uint8)((color & 0xFF000000) >> 24) != 0)
+							//{
+							//	Uint8 r = (Uint8)((color & 0x000000FF));
+							//	Uint8 g = (Uint8)((color & 0x0000FF00) >> 8);
+							//	Uint8 b = (Uint8)((color & 0x00FF0000) >> 16);
+							//
+							//	m_pScreenPixels[4 * (i * m_pScreenBuffer->w + j) + 0] = b* brightness;
+							//	m_pScreenPixels[4 * (i * m_pScreenBuffer->w + j) + 1] = g* brightness;
+							//	m_pScreenPixels[4 * (i * m_pScreenBuffer->w + j) + 2] = r* brightness;
+							//	m_pScreenPixels[4 * (i * m_pScreenBuffer->w + j) + 3] = a* brightness;
+							//	m_pDepthBuffer[i*m_screenW + j] = tex_w;
+							//}
 
 						}
 					}
@@ -483,40 +507,42 @@ void Renderer3D::Texturing(GameObject3D * pGameObject, vector<reference_wrapper<
 							t += tstep;
 							continue;
 						}
-						int sx = (int)((tex_u/tex_w)*pGameObject->GetSurface()->clip_rect.w);
-						int sy = (int)((tex_v/tex_w)*pGameObject->GetSurface()->clip_rect.h);
+						int sx = (int)((tex_u/tex_w)*surfaceW);
+						int sy = (int)((tex_v/tex_w)*surfaceH);
 						if (!(sx < 0 || sx >= pGameObject->GetSurface()->clip_rect.w || sy < 0 || sy >= pGameObject->GetSurface()->clip_rect.h))
 						{
-							Uint32 normalMapColor = GetPixel(pGameObject->GetNormalMap(), sx, sy);
-							Vec3 normalVec = { (float)((normalMapColor & 0x000000FF)),
-								(float)((normalMapColor & 0x0000FF00) >> 8),
-								(float)((normalMapColor & 0x00FF0000) >> 16) };
-							normalVec *= (2.f / 255.f);
-							normalVec -= 1;
-							normalVec.Normalize();
-							normalVec *= normalMat;
-							float f = Vec3::DotProduct(m_light, normalVec);
-							f *= -1;
-							f += 1;
-							f /= 2.f;
-							float brightness = f;
-							brightness = (((f) > (0.f)) ? (f) : (0.f));
-
-							Uint32 color = GetPixel(pGameObject->GetSurface(), sx, sy);
-							Uint8 a;
-							if (a = (Uint8)((color & 0xFF000000) >> 24) != 0)
-							{
-								Uint8 r = (Uint8)((color & 0x000000FF));
-								Uint8 b = (Uint8)((color & 0x00FF0000) >> 16);
-								Uint8 g = (Uint8)((color & 0x0000FF00) >> 8);
-
-								m_pScreenPixels[4 * (i * m_pScreenBuffer->w + j) + 0] = b* brightness;
-								m_pScreenPixels[4 * (i * m_pScreenBuffer->w + j) + 1] = g* brightness;
-								m_pScreenPixels[4 * (i * m_pScreenBuffer->w + j) + 2] = r* brightness;
-								m_pScreenPixels[4 * (i * m_pScreenBuffer->w + j) + 3] = a* brightness;
-								m_pDepthBuffer[i*m_screenW + j] = tex_w;
-							}
-
+							//Uint32 normalMapColor = GetPixel(pGameObject->GetNormalMap(), sx, sy);
+							//Vec3 normalVec = { (float)((normalMapColor & 0x000000FF)),
+							//	(float)((normalMapColor & 0x0000FF00) >> 8),
+							//	(float)((normalMapColor & 0x00FF0000) >> 16) };
+							//normalVec *= (2.f / 255.f);
+							//normalVec -= 1;
+							//normalVec.Normalize();
+							//normalVec *= normalMat;
+							//float f = Vec3::DotProduct(m_light, normalVec);
+							//f *= -1;
+							//f += 1;
+							//f /= 2.f;
+							//float brightness = f;
+							//brightness = (((f) > (0.f)) ? (f) : (0.f));
+							float brightness = pGameObject->GetShader()->Shading(this, pGameObject->GetNormalMap(),
+								poly.normalVec, &normalMat, i, j, sx, sy, 0.2f);
+							pGameObject->GetPainter()->DrawPolygon(this, pGameObject->GetSurface(), &pGameObject->RefColor(),
+								tex_w, i, j, sx, sy, brightness);
+							//Uint32 color = GetPixel(pGameObject->GetSurface(), sx, sy);
+							//Uint8 a;
+							//if (a = (Uint8)((color & 0xFF000000) >> 24) != 0)
+							//{
+							//	Uint8 r = (Uint8)((color & 0x000000FF));
+							//	Uint8 b = (Uint8)((color & 0x00FF0000) >> 16);
+							//	Uint8 g = (Uint8)((color & 0x0000FF00) >> 8);
+							//
+							//	m_pScreenPixels[4 * (i * m_pScreenBuffer->w + j) + 0] = b* brightness;
+							//	m_pScreenPixels[4 * (i * m_pScreenBuffer->w + j) + 1] = g* brightness;
+							//	m_pScreenPixels[4 * (i * m_pScreenBuffer->w + j) + 2] = r* brightness;
+							//	m_pScreenPixels[4 * (i * m_pScreenBuffer->w + j) + 3] = a* brightness;
+							//	m_pDepthBuffer[i*m_screenW + j] = tex_w;
+							//}
 						}
 					}
 					t += tstep;

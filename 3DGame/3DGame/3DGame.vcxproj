@@ -133,6 +133,8 @@
     <ClCompile Include="Renderer3D.cpp" />
     <ClCompile Include="SDL2_gfxPrimitives.c" />
     <ClCompile Include="SDL2_rotozoom.c" />
+    <ClCompile Include="Painter.cpp" />
+    <ClCompile Include="Shader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
@@ -155,6 +157,8 @@
     <ClInclude Include="SDL2_rotozoom.h" />
     <ClInclude Include="Vec2.h" />
     <ClInclude Include="Vec3.h" />
+    <ClInclude Include="Painter.h" />
+    <ClInclude Include="Shader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

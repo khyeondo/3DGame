@@ -3,9 +3,12 @@
 #include "GameObject.h"
 #include "Vec3.h"
 #include "Color.h"
+#include "Renderer3D.h"
 
 class SDL_Surface;
 class Mesh;
+class Painter;
+class Shader;
 
 class GameObject3D : public GameObject
 {
@@ -18,9 +21,11 @@ private:
 	Vec3 m_scale = { 1.f,1.f,1.f };
 	Vec3 m_angle = { 0.f,0.f,0.f };
 
+	Painter* m_pPainter;
+	Shader* m_pShader;
+
 public:
-	GameObject3D(SDL_Surface* surface,SDL_Surface* normalMap, Mesh* mesh) : 
-		GameObject(), m_pSurface(surface), m_pNormalMap(normalMap), m_pMesh(mesh) {}
+	GameObject3D(SDL_Surface* surface, SDL_Surface* normalMap, Mesh* mesh);
 	virtual ~GameObject3D() {}
 
 	virtual void Init();
@@ -45,6 +50,13 @@ public:
 	}
 	Vec3 GetScale() {
 		return m_scale;
+	}
+
+	Painter* GetPainter() {
+		return m_pPainter;
+	}
+	Shader* GetShader() {
+		return m_pShader;
 	}
 
 	Vec3& RefPos() {
