@@ -82,7 +82,6 @@ private:
 	void Shading(vector<reference_wrapper<Polygon>>& polys);
 	void Projection(vector<reference_wrapper<Polygon>>& polys);
 	void Viewport(vector<reference_wrapper<Polygon>>& polys);
-	void DrawPolygons(vector<reference_wrapper<Polygon>>& polys);
 	void Texturing(GameObject3D* pGameObject, vector<reference_wrapper<Polygon>>& polys);
 
 private:
@@ -100,13 +99,10 @@ private:
 	}
 
 	Uint32 GetPixel(SDL_Surface *surface, int x, int y);
-	void DrawPolygon(Vec3 * p, Color color, float b);
 
 public:
 	friend class TexturePainter;
 	friend class ColorPainter;
 	friend class FlatShader;
 	friend class PixelShader;
-	friend class EyeTracingShader;
-
 };

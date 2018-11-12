@@ -52,9 +52,6 @@
     <Filter Include="04.GameObject\03.GameObject3D">
       <UniqueIdentifier>{6e3dc729-1971-486a-99d9-2a80be55878e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="SDL2_gfxPrimitives">
-      <UniqueIdentifier>{015eba4f-a858-4367-884b-d7b91df3ecaf}</UniqueIdentifier>
-    </Filter>
     <Filter Include="02.Render3D\01.Renderer3D\Painter">
       <UniqueIdentifier>{582a5bc0-a4a3-4b13-9840-1c08547d9e07}</UniqueIdentifier>
     </Filter>
@@ -83,12 +80,6 @@
     </ClCompile>
     <ClCompile Include="Matrix4X4.cpp">
       <Filter>02.Render3D\02.Matrix4x4</Filter>
-    </ClCompile>
-    <ClCompile Include="SDL2_rotozoom.c">
-      <Filter>SDL2_gfxPrimitives</Filter>
-    </ClCompile>
-    <ClCompile Include="SDL2_gfxPrimitives.c">
-      <Filter>SDL2_gfxPrimitives</Filter>
     </ClCompile>
     <ClCompile Include="Painter.cpp">
       <Filter>02.Render3D\01.Renderer3D\Painter</Filter>
@@ -142,15 +133,6 @@
     </ClInclude>
     <ClInclude Include="Vec2.h">
       <Filter>03.Vector</Filter>
-    </ClInclude>
-    <ClInclude Include="SDL2_gfxPrimitives.h">
-      <Filter>SDL2_gfxPrimitives</Filter>
-    </ClInclude>
-    <ClInclude Include="SDL2_gfxPrimitives_font.h">
-      <Filter>SDL2_gfxPrimitives</Filter>
-    </ClInclude>
-    <ClInclude Include="SDL2_rotozoom.h">
-      <Filter>SDL2_gfxPrimitives</Filter>
     </ClInclude>
     <ClInclude Include="Painter.h">
       <Filter>02.Render3D\01.Renderer3D\Painter</Filter>

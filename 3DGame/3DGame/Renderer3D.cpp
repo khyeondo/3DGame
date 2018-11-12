@@ -5,7 +5,6 @@
 #include "Mesh.h"
 #include "Painter.h"
 #include "Shader.h"
-#include "SDL2_gfxPrimitives.h"
 
 Renderer3D* Renderer3D::inst = 0;
 
@@ -68,7 +67,6 @@ void Renderer3D::Rendering(GameObject3D * pGameObject3D)
 	Shading(clipedPolys);
 	Projection(clipedPolys);
 	Viewport(clipedPolys);
-	//DrawPolygons(culledPolys);
 	Texturing(pGameObject3D, clipedPolys);
 
 	polys.clear();
@@ -109,16 +107,17 @@ void Renderer3D::WorldSpace(GameObject3D * pGameObject, vector<Polygon>& polys)
 	Matrix4X4::MakeRotationY(rotateY, pGameObject->RefAngle().y);
 	Matrix4X4::MakeRotationZ(rotateZ, pGameObject->RefAngle().z);
 
+	Matrix4X4 worldMat;
+	Matrix4X4::MatrixMultiplyMatrix(scaling, rotateZ, worldMat);
+	Matrix4X4::MatrixMultiplyMatrix(worldMat, rotateX, worldMat);
+	Matrix4X4::MatrixMultiplyMatrix(worldMat, rotateY, worldMat);
+
 	//크기 -> 회전(z->x->y) -> 이동
 	for (Polygon poly : pGameObject->GetMesh()->polys)
 	{
 		for (int i = 0; i < 3; i++)
 		{
-			poly.vertex[i] *= scaling;
-			poly.vertex[i] *= rotateZ;
-			poly.vertex[i] *= rotateX;
-			poly.vertex[i] *= rotateY;
-
+			poly.vertex[i] *= worldMat;
 			poly.vertex[i] += pGameObject->RefPos();
 		}
 		polys.push_back(poly);
@@ -231,14 +230,6 @@ void Renderer3D::Viewport(vector<reference_wrapper<Polygon>>& culledPolys)
 	}
 }
 
-void Renderer3D::DrawPolygons(vector<reference_wrapper<Polygon>>& culledPolys)
-{
-	for (Polygon& poly : culledPolys)
-	{
-		DrawPolygon(poly.vertex, Color(255, 255, 255), poly.brightness);
-	}
-}
-
 void Renderer3D::Texturing(GameObject3D * pGameObject, vector<reference_wrapper<Polygon>>& culledPolys)
 {
 	int surfaceW, surfaceH;
@@ -266,7 +257,7 @@ void Renderer3D::Texturing(GameObject3D * pGameObject, vector<reference_wrapper<
 		y /= 3;
 		z /= 3;
 		Vec3 origin = { 0,0,0 };
-		Vec3 lookAt = { 1,0,0 };
+		Vec3 lookAt = poly.vertex[1] - poly.vertex[0];
 
 		Matrix4X4::MakeLookAtMatrix(normalMat, origin, lookAt, poly.normalVec);
 
@@ -392,47 +383,10 @@ void Renderer3D::Texturing(GameObject3D * pGameObject, vector<reference_wrapper<
 						int sy = (int)((tex_v / tex_w)*surfaceH);
 						if (!(sx < 0 || sx >= pGameObject->GetSurface()->clip_rect.w || sy < 0 || sy >= pGameObject->GetSurface()->clip_rect.h))
 						{
-							//Uint32 normalMapColor = GetPixel(pGameObject->GetNormalMap(), sx, sy);
-							//Vec3 normalVec = { (float)((normalMapColor & 0x000000FF)),
-							//	(float)((normalMapColor & 0x0000FF00) >> 8),
-							//	(float)((normalMapColor & 0x00FF0000) >> 16) };
-							//normalVec *= (2.f / 255.f);
-							//normalVec -= 1;
-							//normalVec *= normalMat;
-
 							float brightness = pGameObject->GetShader()->Shading(this, pGameObject->GetNormalMap(),
 								poly.normalVec,&normalMat, i, j, sx, sy, 0.2f);
 							pGameObject->GetPainter()->DrawPolygon(this, pGameObject->GetSurface(), &pGameObject->RefColor(),
 								tex_w, i, j, sx, sy, brightness);
-							//normalVec.x = -normalVec.x;
-							//normalVec.y = -normalVec.y;
-							//normalVec.z = -normalVec.z;
-							//normalVec.Normalize();
-							//Vec3 lookDir = m_pCamera->lookAt - m_pCamera->pos;
-							//lookDir.Normalize();
-							//float f = Vec3::DotProduct(m_pCamera->lookAt, normalVec);
-							//float f = Vec3::DotProduct(m_light, normalVec);
-							//f *= -1;
-							//f += 1;
-							//f /= 2.f;
-							//float brightness = f;
-							//brightness = (((f) > (0.2f)) ? (f) : (0.2f));
-
-							//Uint8 a;
-							//Uint32 color = GetPixel(pGameObject->GetSurface(), sx, sy);
-							//if (a = (Uint8)((color & 0xFF000000) >> 24) != 0)
-							//{
-							//	Uint8 r = (Uint8)((color & 0x000000FF));
-							//	Uint8 g = (Uint8)((color & 0x0000FF00) >> 8);
-							//	Uint8 b = (Uint8)((color & 0x00FF0000) >> 16);
-							//
-							//	m_pScreenPixels[4 * (i * m_pScreenBuffer->w + j) + 0] = b* brightness;
-							//	m_pScreenPixels[4 * (i * m_pScreenBuffer->w + j) + 1] = g* brightness;
-							//	m_pScreenPixels[4 * (i * m_pScreenBuffer->w + j) + 2] = r* brightness;
-							//	m_pScreenPixels[4 * (i * m_pScreenBuffer->w + j) + 3] = a* brightness;
-							//	m_pDepthBuffer[i*m_screenW + j] = tex_w;
-							//}
-
 						}
 					}
 					t += tstep;
@@ -511,38 +465,10 @@ void Renderer3D::Texturing(GameObject3D * pGameObject, vector<reference_wrapper<
 						int sy = (int)((tex_v/tex_w)*surfaceH);
 						if (!(sx < 0 || sx >= pGameObject->GetSurface()->clip_rect.w || sy < 0 || sy >= pGameObject->GetSurface()->clip_rect.h))
 						{
-							//Uint32 normalMapColor = GetPixel(pGameObject->GetNormalMap(), sx, sy);
-							//Vec3 normalVec = { (float)((normalMapColor & 0x000000FF)),
-							//	(float)((normalMapColor & 0x0000FF00) >> 8),
-							//	(float)((normalMapColor & 0x00FF0000) >> 16) };
-							//normalVec *= (2.f / 255.f);
-							//normalVec -= 1;
-							//normalVec.Normalize();
-							//normalVec *= normalMat;
-							//float f = Vec3::DotProduct(m_light, normalVec);
-							//f *= -1;
-							//f += 1;
-							//f /= 2.f;
-							//float brightness = f;
-							//brightness = (((f) > (0.f)) ? (f) : (0.f));
 							float brightness = pGameObject->GetShader()->Shading(this, pGameObject->GetNormalMap(),
 								poly.normalVec, &normalMat, i, j, sx, sy, 0.2f);
 							pGameObject->GetPainter()->DrawPolygon(this, pGameObject->GetSurface(), &pGameObject->RefColor(),
 								tex_w, i, j, sx, sy, brightness);
-							//Uint32 color = GetPixel(pGameObject->GetSurface(), sx, sy);
-							//Uint8 a;
-							//if (a = (Uint8)((color & 0xFF000000) >> 24) != 0)
-							//{
-							//	Uint8 r = (Uint8)((color & 0x000000FF));
-							//	Uint8 b = (Uint8)((color & 0x00FF0000) >> 16);
-							//	Uint8 g = (Uint8)((color & 0x0000FF00) >> 8);
-							//
-							//	m_pScreenPixels[4 * (i * m_pScreenBuffer->w + j) + 0] = b* brightness;
-							//	m_pScreenPixels[4 * (i * m_pScreenBuffer->w + j) + 1] = g* brightness;
-							//	m_pScreenPixels[4 * (i * m_pScreenBuffer->w + j) + 2] = r* brightness;
-							//	m_pScreenPixels[4 * (i * m_pScreenBuffer->w + j) + 3] = a* brightness;
-							//	m_pDepthBuffer[i*m_screenW + j] = tex_w;
-							//}
 						}
 					}
 					t += tstep;
@@ -583,11 +509,4 @@ Uint32 Renderer3D::GetPixel(SDL_Surface * surface, int x, int y)
 	default:
 		return 0;       /* shouldn't happen, but avoids warnings */
 	}
-}
-
-void Renderer3D::DrawPolygon(Vec3 * p, Color color, float b)
-{
-	Sint16 x[3] = { p[0].x,p[1].x,p[2].x };
-	Sint16 y[3] = { p[0].y,p[1].y,p[2].y };
-	filledPolygonRGBA(m_pRenderer, x, y, 3, color.r*b, color.g*b, color.b*b, 100);
 }

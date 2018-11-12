@@ -131,8 +131,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Matrix4X4.cpp" />
     <ClCompile Include="Renderer3D.cpp" />
-    <ClCompile Include="SDL2_gfxPrimitives.c" />
-    <ClCompile Include="SDL2_rotozoom.c" />
     <ClCompile Include="Painter.cpp" />
     <ClCompile Include="Shader.cpp" />
   </ItemGroup>
@@ -152,9 +150,6 @@
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Polygon.h" />
     <ClInclude Include="Renderer3D.h" />
-    <ClInclude Include="SDL2_gfxPrimitives.h" />
-    <ClInclude Include="SDL2_gfxPrimitives_font.h" />
-    <ClInclude Include="SDL2_rotozoom.h" />
     <ClInclude Include="Vec2.h" />
     <ClInclude Include="Vec3.h" />
     <ClInclude Include="Painter.h" />

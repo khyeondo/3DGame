@@ -6,8 +6,6 @@ float FlatShader::Shading(Renderer3D * pRenderer, SDL_Surface * pSurface,
 {
 	float brightness = Vec3::DotProduct(pRenderer->m_light, normalVec);
 	brightness *= -1;
-	brightness += 1;
-	brightness /= 2.f;
 	brightness = (((brightness) > (minBrightness)) ? (brightness) : (minBrightness));
 	return brightness;
 }
@@ -25,8 +23,6 @@ float PixelShader::Shading(Renderer3D * pRenderer, SDL_Surface * pSurface,
 	normalMapVec *= *plookAtMat;
 	Vec3 light = pRenderer->m_light * (*plookAtMat);
 	float f = Vec3::DotProduct(light, normalMapVec);
-	f += 1;
-	f /= 2.f;
 	float brightness = f;
 	brightness = (((f) > (minBrightness)) ? (f) : (minBrightness));
 	return brightness;
