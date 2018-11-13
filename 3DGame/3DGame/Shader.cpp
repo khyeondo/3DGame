@@ -22,8 +22,8 @@ float PixelShader::Shading(Renderer3D * pRenderer, SDL_Surface * pSurface,
 	normalMapVec.Normalize();
 	normalMapVec *= *plookAtMat;
 	Vec3 light = pRenderer->m_light * (*plookAtMat);
-	float f = Vec3::DotProduct(light, normalMapVec);
-	float brightness = f;
-	brightness = (((f) > (minBrightness)) ? (f) : (minBrightness));
+	float brightness = Vec3::DotProduct(light, normalMapVec);
+	//brightness *= -1;
+	brightness = (((brightness) > (minBrightness)) ? (brightness) : (minBrightness));
 	return brightness;
 }
