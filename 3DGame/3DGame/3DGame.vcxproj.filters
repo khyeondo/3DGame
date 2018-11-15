@@ -64,9 +64,6 @@
     <Filter Include="04.GameObject\04.InGameObjects">
       <UniqueIdentifier>{c96abfa6-6614-4cea-8763-8b1563a93d60}</UniqueIdentifier>
     </Filter>
-    <Filter Include="04.GameObject\04.InGameObjects\Cube">
-      <UniqueIdentifier>{3f0f20d6-b37c-4a14-9d96-8ed0a663b792}</UniqueIdentifier>
-    </Filter>
     <Filter Include="04.GameObject\04.InGameObjects\CameraManger">
       <UniqueIdentifier>{35fcdbed-4899-41dd-b6a5-e236f3fe2f92}</UniqueIdentifier>
     </Filter>
@@ -98,12 +95,6 @@
     </ClCompile>
     <ClCompile Include="GameObject3D.cpp">
       <Filter>04.GameObject\03.GameObject3D</Filter>
-    </ClCompile>
-    <ClCompile Include="Cube.cpp">
-      <Filter>04.GameObject\04.InGameObjects\Cube</Filter>
-    </ClCompile>
-    <ClCompile Include="Cube.h">
-      <Filter>04.GameObject\04.InGameObjects\Cube</Filter>
     </ClCompile>
     <ClCompile Include="CameraManger.cpp">
       <Filter>04.GameObject\04.InGameObjects\CameraManger</Filter>

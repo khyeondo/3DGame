@@ -132,8 +132,6 @@
     <ClCompile Include="Renderer3D.cpp" />
     <ClCompile Include="Painter.cpp" />
     <ClCompile Include="Shader.cpp" />
-    <ClCompile Include="Cube.cpp" />
-    <ClCompile Include="Cube.h" />
     <ClCompile Include="CameraManger.cpp" />
     <ClCompile Include="InputHandler.cpp" />
   </ItemGroup>

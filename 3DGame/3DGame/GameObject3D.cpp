@@ -15,7 +15,6 @@ GameObject3D::GameObject3D(SDL_Surface * surface, SDL_Surface * normalMap, Mesh 
 		m_pShader = &(Renderer3D::Instance()->m_flatShader);
 	else
 		m_pShader = &(Renderer3D::Instance()->m_plxelShader);
-
 }
 
 void GameObject3D::Init()
