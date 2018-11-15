@@ -22,9 +22,6 @@
     <Filter Include="03.Vector">
       <UniqueIdentifier>{0d1706c2-57ee-448a-95ca-8f6bee382771}</UniqueIdentifier>
     </Filter>
-    <Filter Include="04.GameObject">
-      <UniqueIdentifier>{74eeead3-05f7-4d4f-8ebc-8e0833e4707d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="02.Render3D\01.render">
       <UniqueIdentifier>{28f70d00-0861-4a00-a242-101c5e67a7f3}</UniqueIdentifier>
     </Filter>
@@ -43,6 +40,18 @@
     <Filter Include="02.Render3D\05.Camera">
       <UniqueIdentifier>{897b85d7-73f8-4d75-9e10-49168f899dca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.Render3D\01.Renderer3D\Painter">
+      <UniqueIdentifier>{582a5bc0-a4a3-4b13-9840-1c08547d9e07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Render3D\01.Renderer3D\Shader">
+      <UniqueIdentifier>{a5996a49-0291-4f6d-8e1a-6554c35cfca7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.InputHandler">
+      <UniqueIdentifier>{23eb9d45-e27b-4b12-bf55-28fd9b38d4b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.GameObject">
+      <UniqueIdentifier>{74eeead3-05f7-4d4f-8ebc-8e0833e4707d}</UniqueIdentifier>
+    </Filter>
     <Filter Include="04.GameObject\01.GameObject">
       <UniqueIdentifier>{11ca0d22-a410-4712-959a-c464389cb35a}</UniqueIdentifier>
     </Filter>
@@ -52,19 +61,19 @@
     <Filter Include="04.GameObject\03.GameObject3D">
       <UniqueIdentifier>{6e3dc729-1971-486a-99d9-2a80be55878e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02.Render3D\01.Renderer3D\Painter">
-      <UniqueIdentifier>{582a5bc0-a4a3-4b13-9840-1c08547d9e07}</UniqueIdentifier>
+    <Filter Include="04.GameObject\04.InGameObjects">
+      <UniqueIdentifier>{c96abfa6-6614-4cea-8763-8b1563a93d60}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02.Render3D\01.Renderer3D\Shader">
-      <UniqueIdentifier>{a5996a49-0291-4f6d-8e1a-6554c35cfca7}</UniqueIdentifier>
+    <Filter Include="04.GameObject\04.InGameObjects\Cube">
+      <UniqueIdentifier>{3f0f20d6-b37c-4a14-9d96-8ed0a663b792}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.GameObject\04.InGameObjects\CameraManger">
+      <UniqueIdentifier>{35fcdbed-4899-41dd-b6a5-e236f3fe2f92}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera1.cpp">
       <Filter>02.Render3D\05.Camera</Filter>
-    </ClCompile>
-    <ClCompile Include="D3Object.cpp">
-      <Filter>04.GameObject\03.GameObject3D</Filter>
     </ClCompile>
     <ClCompile Include="D3Renderer.cpp">
       <Filter>02.Render3D\01.render</Filter>
@@ -90,6 +99,18 @@
     <ClCompile Include="GameObject3D.cpp">
       <Filter>04.GameObject\03.GameObject3D</Filter>
     </ClCompile>
+    <ClCompile Include="Cube.cpp">
+      <Filter>04.GameObject\04.InGameObjects\Cube</Filter>
+    </ClCompile>
+    <ClCompile Include="Cube.h">
+      <Filter>04.GameObject\04.InGameObjects\Cube</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraManger.cpp">
+      <Filter>04.GameObject\04.InGameObjects\CameraManger</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandler.cpp">
+      <Filter>05.InputHandler</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera1.h">
@@ -97,9 +118,6 @@
     </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>02.Render3D\05.Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="D3Object.h">
-      <Filter>04.GameObject\03.GameObject3D</Filter>
     </ClInclude>
     <ClInclude Include="D3Renderer.h">
       <Filter>02.Render3D\01.render</Filter>
@@ -142,6 +160,12 @@
     </ClInclude>
     <ClInclude Include="GameObject3D.h">
       <Filter>04.GameObject\03.GameObject3D</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraManger.h">
+      <Filter>04.GameObject\04.InGameObjects\CameraManger</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandler.h">
+      <Filter>05.InputHandler</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

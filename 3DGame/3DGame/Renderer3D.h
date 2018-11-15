@@ -7,7 +7,7 @@
 #include "Painter.h"
 #include "Shader.h"
 #include <SDL.h>
-#include<vector>
+#include <vector>
 
 using namespace std;
 

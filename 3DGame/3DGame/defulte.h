@@ -10,5 +10,4 @@
 #include <SDL.h>
 
 #include "define.h"
-#include "D3Object.h"
 

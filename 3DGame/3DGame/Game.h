@@ -1,6 +1,8 @@
 #pragma once
 
 #include "defulte.h"
+#include "Mesh.h"
+#include <vector>
 
 class Camera;
 class GameObject;
@@ -44,6 +46,9 @@ private:
 	Mesh mesh;
 
 	Camera* m_pCamera;
+
+	std::vector<GameObject*> m_gameObjects;
+
 	GameObject* m_pGameObject;
 	GameObject* m_pGameObject2;
 	GameObject* m_pGameObject3;
@@ -61,5 +66,6 @@ public:
 	void render();
 	void clean();
 	bool running() { return m_bRunning; }
+	void quit() { m_bRunning = false; }
 	
 };

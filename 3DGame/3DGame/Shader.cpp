@@ -1,6 +1,7 @@
 #include "Shader.h"
 #include"Renderer3D.h"
 #include "Camera.h"
+
 float FlatShader::Shading(Renderer3D * pRenderer, SDL_Surface * pSurface, 
 	Vec3 & normalVec, Matrix4X4* plookAtMat, int i, int j, int sx, int sy, float minBrightness)
 {
@@ -17,7 +18,7 @@ float PixelShader::Shading(Renderer3D * pRenderer, SDL_Surface * pSurface,
 	Vec3 normalMapVec = { (float)((normalMapColor & 0x000000FF)),
 		(float)((normalMapColor & 0x0000FF00) >> 8),
 		(float)((normalMapColor & 0x00FF0000) >> 16) };
-	normalMapVec *= (2.f / 255.f);
+	normalMapVec *= (2.f / 255.f); 
 	normalMapVec -= 1;
 	normalMapVec.Normalize();
 	normalMapVec *= *plookAtMat;

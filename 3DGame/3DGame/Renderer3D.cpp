@@ -384,14 +384,13 @@ void Renderer3D::Texturing(GameObject3D * pGameObject, vector<reference_wrapper<
 						if (!(sx < 0 || sx >= pGameObject->GetSurface()->clip_rect.w || sy < 0 || sy >= pGameObject->GetSurface()->clip_rect.h))
 						{
 							float brightness = pGameObject->GetShader()->Shading(this, pGameObject->GetNormalMap(),
-								poly.normalVec,&normalMat, i, j, sx, sy, 0.2f);
+								poly.normalVec,&normalMat, i, j, sx, sy, 0.3f);
 							pGameObject->GetPainter()->DrawPolygon(this, pGameObject->GetSurface(), &pGameObject->RefColor(),
 								tex_w, i, j, sx, sy, brightness);
 						}
 					}
 					t += tstep;
 				}
-
 			}
 		}
 
@@ -466,7 +465,7 @@ void Renderer3D::Texturing(GameObject3D * pGameObject, vector<reference_wrapper<
 						if (!(sx < 0 || sx >= pGameObject->GetSurface()->clip_rect.w || sy < 0 || sy >= pGameObject->GetSurface()->clip_rect.h))
 						{
 							float brightness = pGameObject->GetShader()->Shading(this, pGameObject->GetNormalMap(),
-								poly.normalVec, &normalMat, i, j, sx, sy, 0.2f);
+								poly.normalVec, &normalMat, i, j, sx, sy, 0.3f);
 							pGameObject->GetPainter()->DrawPolygon(this, pGameObject->GetSurface(), &pGameObject->RefColor(),
 								tex_w, i, j, sx, sy, brightness);
 						}

@@ -194,4 +194,7 @@ struct Mesh
 			polys.push_back(arrPoly[i]);
 		}
 	}
+	void SetPlane(Vec3 center, Vec3 size)
+	{
+	}
 };
