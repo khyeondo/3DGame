@@ -64,7 +64,6 @@ void Renderer3D::Rendering(GameObject3D * pGameObject3D)
 	WorldSpace(pGameObject3D, polys);
 	BackfaceCulling(polys, culledPolys);
 	ViewSpace(culledPolys, clipedPolys);
-	Shading(clipedPolys);
 	Projection(clipedPolys);
 	Viewport(clipedPolys);
 	Texturing(pGameObject3D, clipedPolys);
@@ -107,11 +106,11 @@ void Renderer3D::WorldSpace(GameObject3D * pGameObject, vector<Polygon>& polys)
 	Matrix4X4::MakeRotationY(rotateY, pGameObject->RefAngle().y);
 	Matrix4X4::MakeRotationZ(rotateZ, pGameObject->RefAngle().z);
 
-	//Matrix4X4 worldMat;
-	//Matrix4X4::MatrixMultiplyMatrix(scaling, rotateZ, worldMat);
-	//Matrix4X4::MatrixMultiplyMatrix(worldMat, rotateX, worldMat);
-	//Matrix4X4::MatrixMultiplyMatrix(worldMat, rotateY, worldMat);
-
+	//Matrix4X4 worldMat; 
+	//Matrix4X4::MatrixMultiplyMatrix(rotateZ, scaling, worldMat);
+	//Matrix4X4::MatrixMultiplyMatrix(rotateX, worldMat, worldMat);
+	//Matrix4X4::MatrixMultiplyMatrix(rotateY, worldMat, worldMat);
+	
 	//크기 -> 회전(z->x->y) -> 이동
 	for (Polygon poly : pGameObject->GetMesh()->polys)
 	{
@@ -165,28 +164,6 @@ void Renderer3D::ViewSpace(vector<reference_wrapper<Polygon>>& culledPolys, vect
 	}
 }
 
-void Renderer3D::Shading(vector<reference_wrapper<Polygon>>& cilpedPolys)
-{
-	for (Polygon& poly : cilpedPolys)
-	{
-		//poly.get().brightness = poly.get().normalVec.x * m_light.x + poly.get().normalVec.y * m_light.y + poly.get().normalVec.z * m_light.z;
-		//poly.get().brightness *= -1;
-		m_light.Normalize();
-		float f = Vec3::DotProduct(m_light, poly.normalVec);
-		f *= -1;
-		f += 1;
-		f /= 2.f;
-		poly.brightness = (((f) > (0.5f)) ? (f) : (0.5f));
-		//poly.brightness = f;
-
-		//poly.brightness = 1.2f - poly.brightness;
-		//if (poly.get().brightness < 0)
-		//	poly.get().brightness = 0;
-		//poly.get().brightness += 1.f;
-		//poly.get().brightness *= (1.f / 2.f);
-	}
-}
-
 void Renderer3D::Projection(vector<reference_wrapper<Polygon>>& culledPolys)
 {
 	for (Polygon& poly : culledPolys)
@@ -205,13 +182,6 @@ void Renderer3D::Viewport(vector<reference_wrapper<Polygon>>& culledPolys)
 {
 	for (Polygon& poly : culledPolys)
 	{
-		//poly.vertex[0].w = 1.f;
-		//poly.vertex[1].w = 1.f;
-		//poly.vertex[2].w = 1.f;
-
-		//poly.vertex[0] *= m_matViewport;
-		//poly.vertex[1] *= m_matViewport;
-		//poly.vertex[2] *= m_matViewport;
 		Vec3 temp = { 2.f,-1.f,0.f };
 		poly.vertex[0] += temp;
 		poly.vertex[1] += temp;
@@ -251,16 +221,6 @@ void Renderer3D::Texturing(GameObject3D * pGameObject, vector<reference_wrapper<
 	for (Polygon& poly : culledPolys)
 	{
 		Matrix4X4 normalMat;
-		float x = 0, y = 0, z = 0;
-		for (int i = 0; i < 3; i++)
-		{
-			x += poly.vertex[i].x;
-			y += poly.vertex[i].y;
-			z += poly.vertex[i].z;
-		}
-		x /= 3;
-		y /= 3;
-		z /= 3;
 		Vec3 origin = { 0,0,0 };
 		Vec3 lookAt = poly.vertex[1] - poly.vertex[0];
 
