@@ -53,7 +53,7 @@ void Game::start()
 	m_pSurface3 = IMG_Load("assets/w.png");
 
 	cube.SetCube(Vec3(5.f, 5.f, 5.f), Vec3(10, 10, 10));
-	teaPot.LoadFromObjectFile("assets/mountains.obj");
+	mountains.LoadFromObjectFile("assets/mountains.obj");
 
 	for (int i = 0; i < 12; i += 2)
 	{
@@ -69,7 +69,7 @@ void Game::start()
 	m_pCameraController = new CameraController(m_pCamera);
 	m_pGameObject = new GameObject3D(m_pSurface2, m_pNormal2, &cube);
 	m_pGameObject2 = new GameObject3D(m_pSurface, m_pNormal, &cube);
-	m_pGameObject3 = new GameObject3D(m_pSurface3, NULL, &teaPot);
+	m_pGameObject3 = new GameObject3D(m_pSurface3, NULL, &mountains);
 	((GameObject3D*)m_pGameObject)->RefPos().x = 13.f;
 	((GameObject3D*)m_pGameObject)->RefPos().y = 0.f;
 	((GameObject3D*)m_pGameObject)->RefPos().z = 0.f;

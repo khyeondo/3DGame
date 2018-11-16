@@ -46,7 +46,7 @@ private:
 	int screenWidth, screenHeight;
 
 	Mesh cube;
-	Mesh teaPot;
+	Mesh mountains;
 
 	Camera* m_pCamera;
 
