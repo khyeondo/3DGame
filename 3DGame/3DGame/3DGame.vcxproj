@@ -121,7 +121,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Camera1.cpp" />
     <ClCompile Include="D3Renderer.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
@@ -132,12 +131,12 @@
     <ClCompile Include="Renderer3D.cpp" />
     <ClCompile Include="Painter.cpp" />
     <ClCompile Include="Shader.cpp" />
-    <ClCompile Include="CameraManger.cpp" />
+    <ClCompile Include="CameraController.cpp" />
     <ClCompile Include="InputHandler.cpp" />
+    <ClCompile Include="Cube.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
-    <ClInclude Include="Camera1.h" />
     <ClInclude Include="D3Renderer.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClInclude>
@@ -154,8 +153,9 @@
     <ClInclude Include="Vec3.h" />
     <ClInclude Include="Painter.h" />
     <ClInclude Include="Shader.h" />
-    <ClInclude Include="CameraManger.h" />
+    <ClInclude Include="CameraController.h" />
     <ClInclude Include="InputHandler.h" />
+    <ClInclude Include="Cube.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

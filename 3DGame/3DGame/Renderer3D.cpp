@@ -107,17 +107,22 @@ void Renderer3D::WorldSpace(GameObject3D * pGameObject, vector<Polygon>& polys)
 	Matrix4X4::MakeRotationY(rotateY, pGameObject->RefAngle().y);
 	Matrix4X4::MakeRotationZ(rotateZ, pGameObject->RefAngle().z);
 
-	Matrix4X4 worldMat;
-	Matrix4X4::MatrixMultiplyMatrix(scaling, rotateZ, worldMat);
-	Matrix4X4::MatrixMultiplyMatrix(worldMat, rotateX, worldMat);
-	Matrix4X4::MatrixMultiplyMatrix(worldMat, rotateY, worldMat);
+	//Matrix4X4 worldMat;
+	//Matrix4X4::MatrixMultiplyMatrix(scaling, rotateZ, worldMat);
+	//Matrix4X4::MatrixMultiplyMatrix(worldMat, rotateX, worldMat);
+	//Matrix4X4::MatrixMultiplyMatrix(worldMat, rotateY, worldMat);
 
 	//크기 -> 회전(z->x->y) -> 이동
 	for (Polygon poly : pGameObject->GetMesh()->polys)
 	{
 		for (int i = 0; i < 3; i++)
 		{
-			poly.vertex[i] *= worldMat;
+			poly.vertex[i] *= scaling;
+			poly.vertex[i] *= rotateZ;
+			poly.vertex[i] *= rotateX;
+			poly.vertex[i] *= rotateY;
+
+			//poly.vertex[i] *= worldMat;
 			poly.vertex[i] += pGameObject->RefPos();
 		}
 		polys.push_back(poly);
@@ -261,11 +266,11 @@ void Renderer3D::Texturing(GameObject3D * pGameObject, vector<reference_wrapper<
 
 		Matrix4X4::MakeLookAtMatrix(normalMat, origin, lookAt, poly.normalVec);
 
-		//폴리곤의 모든 정점이 화면 밖에 있으면 출력하지 않는다.		
-		if (poly.vertex[0].x < 0 && poly.vertex[1].x < 0 && poly.vertex[2].x < 0 ||
-			poly.vertex[0].y < 0 && poly.vertex[1].y < 0 && poly.vertex[2].y < 0 ||
-			poly.vertex[0].x > m_screenW && poly.vertex[1].x > m_screenW && poly.vertex[2].x > m_screenW ||
-			poly.vertex[0].y > m_screenW && poly.vertex[1].y > m_screenW && poly.vertex[2].y > m_screenW)
+		//폴리곤의 정점이 화면 밖에 있으면 출력하지 않는다.		
+		if (poly.vertex[0].x < 0 || poly.vertex[1].x < 0 || poly.vertex[2].x < 0 ||
+			poly.vertex[0].y < 0 || poly.vertex[1].y < 0 || poly.vertex[2].y < 0 ||
+			poly.vertex[0].x > m_screenW || poly.vertex[1].x > m_screenW || poly.vertex[2].x > m_screenW ||
+			poly.vertex[0].y > m_screenW || poly.vertex[1].y > m_screenW || poly.vertex[2].y > m_screenW)
 			continue;
 
 		if (poly.vertex[1].y < poly.vertex[0].y)

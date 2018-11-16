@@ -123,6 +123,16 @@ struct Mesh
 			//}
 		}
 
+		for (int i = 0; i < polys.size(); i += 2)
+		{
+			polys[i].uv[0] = Vec2(0, 1);
+			polys[i].uv[1] = Vec2(0, 0);
+			polys[i].uv[2] = Vec2(1, 1);
+
+			polys[i + 1].uv[0] = Vec2(1, 1);
+			polys[i + 1].uv[1] = Vec2(0, 0);
+			polys[i + 1].uv[2] = Vec2(1, 0);
+		}
 		return true;
 	}
 
@@ -193,8 +203,15 @@ struct Mesh
 		{
 			polys.push_back(arrPoly[i]);
 		}
-	}
-	void SetPlane(Vec3 center, Vec3 size)
-	{
+		for (int i = 0; i < 12; i += 2)
+		{
+			polys[i].uv[0] = Vec2(0, 1);
+			polys[i].uv[1] = Vec2(0, 0);
+			polys[i].uv[2] = Vec2(1, 1);
+
+			polys[i + 1].uv[0] = Vec2(1, 1);
+			polys[i + 1].uv[1] = Vec2(0, 0);
+			polys[i + 1].uv[2] = Vec2(1, 0);
+		}
 	}
 };

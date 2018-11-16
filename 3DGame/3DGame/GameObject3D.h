@@ -4,15 +4,15 @@
 #include "Vec3.h"
 #include "Color.h"
 #include "Renderer3D.h"
+#include <SDL.h>
+#include "Mesh.h"
 
-class SDL_Surface;
-class Mesh;
 class Painter;
 class Shader;
 
 class GameObject3D : public GameObject
 {
-private:
+protected:
 	SDL_Surface* m_pSurface = 0;
 	SDL_Surface* m_pNormalMap = 0;
 	Mesh* m_pMesh;

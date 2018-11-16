@@ -67,11 +67,11 @@
     <Filter Include="04.GameObject\04.InGameObjects\CameraManger">
       <UniqueIdentifier>{35fcdbed-4899-41dd-b6a5-e236f3fe2f92}</UniqueIdentifier>
     </Filter>
+    <Filter Include="04.GameObject\04.InGameObjects\Cube">
+      <UniqueIdentifier>{5d6f7ad0-bdac-4856-99ce-62220f8caf10}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Camera1.cpp">
-      <Filter>02.Render3D\05.Camera</Filter>
-    </ClCompile>
     <ClCompile Include="D3Renderer.cpp">
       <Filter>02.Render3D\01.render</Filter>
     </ClCompile>
@@ -96,17 +96,17 @@
     <ClCompile Include="GameObject3D.cpp">
       <Filter>04.GameObject\03.GameObject3D</Filter>
     </ClCompile>
-    <ClCompile Include="CameraManger.cpp">
-      <Filter>04.GameObject\04.InGameObjects\CameraManger</Filter>
-    </ClCompile>
     <ClCompile Include="InputHandler.cpp">
       <Filter>05.InputHandler</Filter>
     </ClCompile>
+    <ClCompile Include="CameraController.cpp">
+      <Filter>04.GameObject\04.InGameObjects\CameraManger</Filter>
+    </ClCompile>
+    <ClCompile Include="Cube.cpp">
+      <Filter>04.GameObject\04.InGameObjects\Cube</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Camera1.h">
-      <Filter>02.Render3D\05.Camera</Filter>
-    </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>02.Render3D\05.Camera</Filter>
     </ClInclude>
@@ -152,11 +152,14 @@
     <ClInclude Include="GameObject3D.h">
       <Filter>04.GameObject\03.GameObject3D</Filter>
     </ClInclude>
-    <ClInclude Include="CameraManger.h">
-      <Filter>04.GameObject\04.InGameObjects\CameraManger</Filter>
-    </ClInclude>
     <ClInclude Include="InputHandler.h">
       <Filter>05.InputHandler</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraController.h">
+      <Filter>04.GameObject\04.InGameObjects\CameraManger</Filter>
+    </ClInclude>
+    <ClInclude Include="Cube.h">
+      <Filter>04.GameObject\04.InGameObjects\Cube</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

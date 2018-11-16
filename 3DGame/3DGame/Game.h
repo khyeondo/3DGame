@@ -6,6 +6,9 @@
 
 class Camera;
 class GameObject;
+class CameraController;
+
+using namespace std;
 
 class Game
 {
@@ -30,6 +33,7 @@ private:
 	SDL_Surface* m_pNormal;
 	SDL_Surface * m_pSurface2;
 	SDL_Surface* m_pNormal2;
+	SDL_Surface * m_pSurface3;
 	SDL_Window * m_pWindow;
 	SDL_Renderer* m_pRenderer;
 
@@ -41,17 +45,18 @@ private:
 	char windowTitle[20];
 	int screenWidth, screenHeight;
 
-	bool isKeyHolding[1000] = {false};
-
-	Mesh mesh;
+	Mesh cube;
+	Mesh teaPot;
 
 	Camera* m_pCamera;
 
-	std::vector<GameObject*> m_gameObjects;
+	vector<GameObject*> m_gameObjects;
 
 	GameObject* m_pGameObject;
 	GameObject* m_pGameObject2;
 	GameObject* m_pGameObject3;
+	CameraController* m_pCameraController;
+
 private:
 	Game() {}
 
