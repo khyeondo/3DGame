@@ -22,9 +22,6 @@
     <Filter Include="03.Vector">
       <UniqueIdentifier>{0d1706c2-57ee-448a-95ca-8f6bee382771}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02.Render3D\01.render">
-      <UniqueIdentifier>{28f70d00-0861-4a00-a242-101c5e67a7f3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="02.Render3D\01.Renderer3D">
       <UniqueIdentifier>{1d8e2ea8-b30f-4d2a-a5d0-87577bdb3d94}</UniqueIdentifier>
     </Filter>
@@ -72,9 +69,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="D3Renderer.cpp">
-      <Filter>02.Render3D\01.render</Filter>
-    </ClCompile>
     <ClCompile Include="Game.cpp">
       <Filter>01.Game</Filter>
     </ClCompile>
@@ -109,9 +103,6 @@
   <ItemGroup>
     <ClInclude Include="Camera.h">
       <Filter>02.Render3D\05.Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="D3Renderer.h">
-      <Filter>02.Render3D\01.render</Filter>
     </ClInclude>
     <ClInclude Include="defulte.h">
       <Filter>헤더 파일</Filter>
