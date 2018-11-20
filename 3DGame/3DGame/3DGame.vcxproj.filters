@@ -67,6 +67,39 @@
     <Filter Include="04.GameObject\04.InGameObjects\Cube">
       <UniqueIdentifier>{5d6f7ad0-bdac-4856-99ce-62220f8caf10}</UniqueIdentifier>
     </Filter>
+    <Filter Include="06.DeltaTime">
+      <UniqueIdentifier>{2f9114ec-d1cf-48e0-bb54-6f44a8362791}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Scene">
+      <UniqueIdentifier>{78e58c03-9a8b-42f4-a210-9e9e01fc2c13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Scene\01.Scene">
+      <UniqueIdentifier>{009a8ad2-9131-440b-a588-f2dda54c92e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Scene\02.SceneManager">
+      <UniqueIdentifier>{8478cd59-cec1-4c1c-8da6-886786d98d6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.GameObject\05.GameObectManager">
+      <UniqueIdentifier>{b073efb3-7b62-4ba0-8057-fde98985d057}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.GameObject\04.InGameObjects\MapManager">
+      <UniqueIdentifier>{6d588fc1-f4de-4d52-9c63-6f06d4b35696}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08.Collision">
+      <UniqueIdentifier>{b0d9eb9f-7445-4cac-96d6-608e9e46ddf6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08.Collision\01.Collider">
+      <UniqueIdentifier>{631f700b-2bd3-4c1d-a17e-af574d51929a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08.Collision\02.CollideManger">
+      <UniqueIdentifier>{b84819db-c470-4845-8ab3-5a3463bb02c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="09.TextureManager">
+      <UniqueIdentifier>{365fadfb-a716-4c94-b443-e1e3be1f185d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="10.SurfaceManager">
+      <UniqueIdentifier>{901fe91c-8199-4a12-a1ee-505550197d4c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -98,6 +131,33 @@
     </ClCompile>
     <ClCompile Include="Cube.cpp">
       <Filter>04.GameObject\04.InGameObjects\Cube</Filter>
+    </ClCompile>
+    <ClCompile Include="DeltaTime.cpp">
+      <Filter>06.DeltaTime</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>07.Scene\01.Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>07.Scene\02.SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="MapManager.cpp">
+      <Filter>04.GameObject\04.InGameObjects\MapManager</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject2D.cpp">
+      <Filter>04.GameObject\02.GameObject2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Collider.cpp">
+      <Filter>08.Collision\01.Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="CollideManger.cpp">
+      <Filter>08.Collision\02.CollideManger</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureManager.cpp">
+      <Filter>09.TextureManager</Filter>
+    </ClCompile>
+    <ClCompile Include="SurfaceManager.cpp">
+      <Filter>10.SurfaceManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -151,6 +211,33 @@
     </ClInclude>
     <ClInclude Include="Cube.h">
       <Filter>04.GameObject\04.InGameObjects\Cube</Filter>
+    </ClInclude>
+    <ClInclude Include="DeltaTime.h">
+      <Filter>06.DeltaTime</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>07.Scene\01.Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>07.Scene\02.SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="MapManager.h">
+      <Filter>04.GameObject\04.InGameObjects\MapManager</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject2D.h">
+      <Filter>04.GameObject\02.GameObject2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Collider.h">
+      <Filter>08.Collision\01.Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="CollideManger.h">
+      <Filter>08.Collision\02.CollideManger</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureManager.h">
+      <Filter>09.TextureManager</Filter>
+    </ClInclude>
+    <ClInclude Include="SurfaceManager.h">
+      <Filter>10.SurfaceManager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

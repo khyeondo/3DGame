@@ -139,6 +139,15 @@
     <ClCompile Include="CameraController.cpp" />
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="Cube.cpp" />
+    <ClCompile Include="DeltaTime.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="MapManager.cpp" />
+    <ClCompile Include="GameObject2D.cpp" />
+    <ClCompile Include="Collider.cpp" />
+    <ClCompile Include="CollideManger.cpp" />
+    <ClCompile Include="TextureManager.cpp" />
+    <ClCompile Include="SurfaceManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
@@ -158,6 +167,15 @@
     <ClInclude Include="CameraController.h" />
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="Cube.h" />
+    <ClInclude Include="DeltaTime.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="MapManager.h" />
+    <ClInclude Include="GameObject2D.h" />
+    <ClInclude Include="Collider.h" />
+    <ClInclude Include="CollideManger.h" />
+    <ClInclude Include="TextureManager.h" />
+    <ClInclude Include="SurfaceManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

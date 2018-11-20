@@ -1,34 +1,35 @@
 #include "Game.h"
-
+#include "DeltaTime.h"
 
 int main(int argc, char* argv[])
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
-	const int FPS = 60;
+	const int FPS = 10;
 	const int DELAY_TIME = 1000.0f / FPS;
 
-	Game::GetInst()->init("3DGame", 100, 100, 512, 360, false);
-	Game::GetInst()->start();
+	Game::Instance()->init("3DGame", 100, 100, 512, 360, false);
+	Game::Instance()->start();
 
 	Uint32 frameStart, frameTime;
-	while (Game::GetInst()->running())
+	while (Game::Instance()->running())
 	{
 		frameStart = SDL_GetTicks();
-		Game::GetInst()->handleEvents();
-		Game::GetInst()->update();
-		Game::GetInst()->render();
+		DeltaTime::Instance()->SetDeltaTime();
+		Game::Instance()->handleEvents();
+		Game::Instance()->update();
+		Game::Instance()->render();
 
-		frameTime = SDL_GetTicks() - frameStart;
-
-		if (frameTime < DELAY_TIME)
-		{
-			SDL_Delay((int)(DELAY_TIME - frameTime));
-		}
+		//frameTime = SDL_GetTicks() - frameStart;
+		//
+		//if (frameTime < DELAY_TIME)
+		//{
+		//	SDL_Delay((int)(DELAY_TIME - frameTime));
+		//}
 	}
 	
-	Game::GetInst()->clean();
-	Game::GetInst()->DeleteSingle();
+	Game::Instance()->clean();
+	Game::Instance()->DeleteSingle();
 	
 	return 0;
 }

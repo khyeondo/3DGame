@@ -16,7 +16,7 @@ class Game
 private:
 	static Game * m_pinst;
 public:
-	static Game * GetInst() {
+	static Game * Instance() {
 		if (m_pinst == 0)
 			m_pinst = new Game();
 		return m_pinst;
@@ -29,14 +29,6 @@ public:
 #pragma endregion
 
 private:
-	SDL_Surface * m_pSurface;
-	SDL_Surface* m_pNormal;
-	SDL_Surface * m_pSurface2;
-	SDL_Surface* m_pNormal2;
-	SDL_Surface * m_pSurface3;
-	SDL_Window * m_pWindow;
-	SDL_Renderer* m_pRenderer;
-
 	bool m_bRunning;
 
 	float fps;
@@ -45,17 +37,27 @@ private:
 	char windowTitle[20];
 	int screenWidth, screenHeight;
 
-	Mesh cube;
-	Mesh mountains;
-
 	Camera* m_pCamera;
 
 	vector<GameObject*> m_gameObjects;
+
+
+	Mesh cube;
+	Mesh mountains;
 
 	GameObject* m_pGameObject;
 	GameObject* m_pGameObject2;
 	GameObject* m_pGameObject3;
 	CameraController* m_pCameraController;
+
+	SDL_Surface * m_pSurface;
+	SDL_Surface* m_pNormal;
+	SDL_Surface * m_pSurface2;
+	SDL_Surface* m_pNormal2;
+	SDL_Surface * m_pSurface3;
+	SDL_Window * m_pWindow;
+	SDL_Renderer* m_pRenderer;
+
 
 private:
 	Game() {}

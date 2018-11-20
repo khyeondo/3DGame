@@ -36,7 +36,7 @@ bool Game::init(const char * title, int xpos, int ypos, int width, int height, b
 
 	strcpy_s(windowTitle,20 ,(char*)title);
 
-	m_pCamera = new Camera(Vec3(0.f, 0.f, -30.f), Vec3(1.f, 1.f, -1.f), 10.f, 1000.f, 90.f);
+	m_pCamera = new Camera(Vec3(0.f, 0.f, -30.f), Vec3(1.f, 1.f, -1.f), 1.f, 1000.f, 90.f);
 
 	Renderer3D::Instance()->Init(m_pRenderer, m_pCamera, Vec3(0.f, 0.f, 1.f), Color(200,230, 255),width, height);
 

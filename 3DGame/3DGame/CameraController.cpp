@@ -41,8 +41,8 @@ void CameraController::handleInput()
 	}
 	if (TheInputHandler::Instance()->isKeyHolding(SDL_SCANCODE_Z))
 	{
-		m_pCamera->pos.y += 1.f;
-		m_pCamera->lookAt.y += 1.f;
+		m_pCamera->pos.y += 20.f*DELTATIME;
+		m_pCamera->lookAt.y += 20.f*DELTATIME;
 	}
 	if (TheInputHandler::Instance()->isKeyHolding(SDL_SCANCODE_X))
 	{

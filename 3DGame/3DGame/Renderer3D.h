@@ -15,6 +15,7 @@ class SDL_Surface;
 class SDL_Renderer;
 class Camera;
 class GameObject3D;
+class GameObejct2D;
 
 class Renderer3D
 {
@@ -66,6 +67,7 @@ public:
 
 	bool Init(SDL_Renderer* pRenderer, Camera* pCamera, Vec3 light,Color background, int screenW, int screenH);
 	void Rendering(GameObject3D* pGameObject3D);
+	
 	void Present();
 
 	Camera* GetCamera() {
