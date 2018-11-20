@@ -4,9 +4,11 @@
 #include "Renderer3D.h"
 #include "Camera.h"
 #include "GameObject3D.h"
+#include "SurfaceManager.h"
 #include "InputHandler.h"
 #include "CameraController.h"
 #include "Cube.h"
+#include "MapManager.h"
 
 Game* Game::m_pinst = 0;
 
@@ -36,9 +38,9 @@ bool Game::init(const char * title, int xpos, int ypos, int width, int height, b
 
 	strcpy_s(windowTitle,20 ,(char*)title);
 
-	m_pCamera = new Camera(Vec3(0.f, 0.f, -30.f), Vec3(1.f, 1.f, -1.f), 1.f, 1000.f, 90.f);
+	m_pCamera = new Camera(Vec3(0.f, 0.f, 0.f), Vec3(0.f, 0.f, -1.f), 0.1f, 100.f, 90.f);
 
-	Renderer3D::Instance()->Init(m_pRenderer, m_pCamera, Vec3(0.f, 0.f, 1.f), Color(200,230, 255),width, height);
+	Renderer3D::Instance()->Init(m_pRenderer, m_pCamera, Vec3(0.f, -1.f, 1.f), Color(200,230, 255),width, height);
 
 	return true;
 }
@@ -51,6 +53,8 @@ void Game::start()
 	m_pSurface2 = IMG_Load("Assets/DisplacementMap2.png");
 	m_pNormal2 = IMG_Load("assets/NormalMap2.png");
 	m_pSurface3 = IMG_Load("assets/w.png");
+
+	SurfaceManager::Instance()->load("Assets/DisplacementMap.png", "surface");
 
 	cube.SetCube(Vec3(5.f, 5.f, 5.f), Vec3(10, 10, 10));
 	mountains.LoadFromObjectFile("assets/mountains.obj");
@@ -66,6 +70,13 @@ void Game::start()
 		cube.polys[i + 1].uv[2] = Vec2(1, 0);
 	}
 
+	Polygon poly;
+	poly.vertex[0] = Vec3(0, 0, 10);
+	poly.vertex[1] = Vec3(0, 10, 0);
+	poly.vertex[2] = Vec3(0, 0, 0);
+
+	tri.polys.push_back(poly);
+
 	m_pCameraController = new CameraController(m_pCamera);
 	m_pGameObject = new GameObject3D(m_pSurface2, m_pNormal2, &cube);
 	m_pGameObject2 = new GameObject3D(m_pSurface, m_pNormal, &cube);
@@ -76,10 +87,11 @@ void Game::start()
 	((GameObject3D*)m_pGameObject3)->RefPos().y = -50.f;
 
 	m_gameObjects.push_back(m_pCameraController);
-	m_gameObjects.push_back(m_pGameObject);
-	m_gameObjects.push_back(m_pGameObject2);
-	m_gameObjects.push_back(m_pGameObject3);
-	m_gameObjects.push_back(new Cube(m_pSurface3, NULL, &cube));
+	//m_gameObjects.push_back(m_pGameObject);
+	//m_gameObjects.push_back(m_pGameObject2);
+	//m_gameObjects.push_back(m_pGameObject3);
+	m_gameObjects.push_back(new MapManager());
+	m_gameObjects.push_back(new Cube(NULL, NULL, &cube));
 }
 
 void Game::handleEvents()

@@ -77,6 +77,8 @@ public:
 		return m_light;
 	}
 
+
+
 private:
 	void WorldSpace(GameObject3D* pGameObject,vector<Polygon>& polys);
 	void BackfaceCulling(vector<Polygon>& polys, vector<reference_wrapper<Polygon>>& culledPolys);
@@ -85,22 +87,38 @@ private:
 	void Viewport(vector<reference_wrapper<Polygon>>& polys);
 	void Texturing(GameObject3D* pGameObject, vector<reference_wrapper<Polygon>>& polys);
 
-private:
-	void Swap(int& a, int& b)
+	Uint32 GetPixel(SDL_Surface * surface, int x, int y)
 	{
-		int temp = a;
-		a = b;
-		b = temp;
-	}
-	void Swap(float& a, float& b)
-	{
-		float temp = a;
-		a = b;
-		b = temp;
-	}
+		if (surface == 0)
+			return 0;
+		int bpp = surface->format->BytesPerPixel;
+		/* Here p is the address to the pixel we want to retrieve */
+		Uint8 *p = (Uint8 *)surface->pixels + y * surface->pitch + x * bpp;
 
-	Uint32 GetPixel(SDL_Surface *surface, int x, int y);
+		switch (bpp) {
+		case 1:
+			return *p;
+			break;
 
+		case 2:
+			return *(Uint16 *)p;
+			break;
+
+		case 3:
+			if (SDL_BYTEORDER == SDL_BIG_ENDIAN)
+				return p[0] << 16 | p[1] << 8 | p[2];
+			else
+				return p[0] | p[1] << 8 | p[2] << 16;
+			break;
+
+		case 4:
+			return *(Uint32 *)p;
+			break;
+
+		default:
+			return 0;       /* shouldn't happen, but avoids warnings */
+		}
+	}
 public:
 	friend class TexturePainter;
 	friend class ColorPainter;

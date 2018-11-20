@@ -16,9 +16,11 @@ void Cube::Init()
 
 void Cube::Update()
 {
-	m_angle.x += 0.1f;
-	m_angle.y += 0.1f;
-	m_angle.z += 0.1f;
+	//m_angle.x += 0.1f;
+	//m_angle.y += 0.1f;
+	//m_angle.z += 0.1f;
+	//Vec3 a = m_pos - Renderer3D::Instance()->GetCamera()->pos;
+	//m_angle.y = atan2(a.z , a.x);
 }
 
 void Cube::Render()

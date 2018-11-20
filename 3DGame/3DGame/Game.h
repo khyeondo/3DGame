@@ -44,6 +44,7 @@ private:
 
 	Mesh cube;
 	Mesh mountains;
+	Mesh tri;
 
 	GameObject* m_pGameObject;
 	GameObject* m_pGameObject2;

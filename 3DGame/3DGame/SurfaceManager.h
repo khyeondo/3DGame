@@ -8,14 +8,14 @@ using namespace std;
 class SurfaceManager
 {
 private:
-	static SurfaceManager* m_pInst;
-	SurfaceManager();
+	static SurfaceManager* s_pInst;
+	SurfaceManager() {}
 
 public:
 	static SurfaceManager* Instance() {
-		if (m_pInst == 0)
-			m_pInst = new SurfaceManager();
-		return m_pInst;
+		if (s_pInst == 0)
+			s_pInst = new SurfaceManager();
+		return s_pInst;
 	}
 
 private:

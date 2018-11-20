@@ -1,17 +1,19 @@
 #pragma once
 
 #include "GameObject.h"
+#include "Mesh.h"
 #include <vector>
 
 using namespace std;
 
-class MapManager : GameObject
+class MapManager : public GameObject
 {
 private:
-	vector<GameObject*> mapTiles;
-	char* map;
+	vector<GameObject*> m_mapTiles;
+	Mesh m_tile;
 
 public:
+	MapManager();
 	virtual void Init();
 	virtual void Update();
 	virtual void Render();
