@@ -37,15 +37,16 @@ void MapManager::Init()
 	};
 
 	m_tile.SetPlane(Vec3(0.f, 0.f, 0.f), Vec3(10.f, 10.f, 10.f));
-	SDL_Surface* surface = SurfaceManager::Instance()->GetSurface("surface");;
+	SDL_Surface* surface = SurfaceManager::Instance()->GetSurface("box");
 
+	Color tileColor = { 108, 58, 25 };
 	for (int i = 0; i < MAPSIZEY; i++)
 	{
 		for (int j = 0; j < MAPSIZEX * 2; j += 2)
 		{
 			if (map[i][j] == (('¦§' & 0xFF00FF) >> 8) && map[i][j+1] == ('¦§' & 0x0000FF))
 			{
-				GameObject3D* tile = new GameObject3D(NULL, NULL, &m_tile);
+				GameObject3D* tile = new GameObject3D(tileColor, &m_tile);
 				tile->RefPos().x = j / 2 * 9;
 				tile->RefPos().z = i * 9;
 				tile->RefAngle().z = M_PI;
@@ -54,21 +55,21 @@ void MapManager::Init()
 			GameObject3D* tile;
 			if (j % 4 == 0)
 			{
-				tile = new GameObject3D(surface, NULL, &m_tile);
+				tile = new GameObject3D(surface, NULL , &m_tile);
 				tile->RefPos().x = j / 2 * 10;
-				tile->RefPos().z = i * 9;
+				tile->RefPos().z = i * 10;
 			}
 			else
 			{
-				tile = new GameObject3D(NULL, NULL, &m_tile);
+				tile = new GameObject3D(tileColor, &m_tile);
 				tile->RefPos().x = j / 2 * 10;
-				tile->RefPos().z = i * 9;
+				tile->RefPos().z = i * 10;
 			}
 		
 
-			GameObject3D* tile2 = new GameObject3D(NULL, NULL, &m_tile);
+			GameObject3D* tile2 = new GameObject3D(tileColor, &m_tile);
 			tile2->RefPos().x = j / 2 * 10;
-			tile2->RefPos().z = i * 9;
+			tile2->RefPos().z = i * 10;
 			tile2->RefPos().y = 40.f;
 			tile2->RefAngle().x = M_PI;
 

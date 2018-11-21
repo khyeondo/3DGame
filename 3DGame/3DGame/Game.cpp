@@ -38,9 +38,11 @@ bool Game::init(const char * title, int xpos, int ypos, int width, int height, b
 
 	strcpy_s(windowTitle,20 ,(char*)title);
 
-	m_pCamera = new Camera(Vec3(0.f, 0.f, 0.f), Vec3(0.f, 0.f, -1.f), 0.1f, 100.f, 90.f);
+	m_pCamera = new Camera(Vec3(0.f, 0.f, 0.f), Vec3(0.f, 0.f, -1.f), 0.1f, 500.f, 90.f);
 
-	Renderer3D::Instance()->Init(m_pRenderer, m_pCamera, Vec3(0.f, -1.f, 1.f), Color(200,230, 255),width, height);
+	Renderer3D::Instance()->Init(m_pRenderer, m_pCamera, Vec3(0.f, -1.f, 1.f), Color(0,0,0),width, height);
+
+	SDL_ShowCursor(0);
 
 	return true;
 }
@@ -55,6 +57,8 @@ void Game::start()
 	m_pSurface3 = IMG_Load("assets/w.png");
 
 	SurfaceManager::Instance()->load("Assets/DisplacementMap.png", "surface");
+	SurfaceManager::Instance()->load("Assets/box.png", "box");
+	SurfaceManager::Instance()->load("Assets/NormalMap.png", "normalMap");
 
 	cube.SetCube(Vec3(5.f, 5.f, 5.f), Vec3(10, 10, 10));
 	mountains.LoadFromObjectFile("assets/mountains.obj");
@@ -92,6 +96,8 @@ void Game::start()
 	//m_gameObjects.push_back(m_pGameObject3);
 	m_gameObjects.push_back(new MapManager());
 	m_gameObjects.push_back(new Cube(NULL, NULL, &cube));
+	m_gameObjects.push_back(new Cube(m_pSurface3, NULL, &cube));
+
 }
 
 void Game::handleEvents()
@@ -115,6 +121,8 @@ void Game::update()
 
 	for (GameObject* gameObject : m_gameObjects)
 	{
+
+		SDL_WarpMouseInWindow(m_pWindow, screenWidth/2.f, screenHeight / 2.f);
 		gameObject->Update();
 	}
 }

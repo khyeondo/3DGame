@@ -17,6 +17,14 @@ GameObject3D::GameObject3D(SDL_Surface * surface, SDL_Surface * normalMap, Mesh 
 		m_pShader = &(Renderer3D::Instance()->m_plxelShader);
 }
 
+GameObject3D::GameObject3D(Color color, Mesh * mesh) : 
+	GameObject(), m_pSurface(NULL), m_pNormalMap(NULL), m_pMesh(mesh)
+{
+	m_pPainter = &(Renderer3D::Instance()->m_colorPainter);
+	m_pShader = &(Renderer3D::Instance()->m_flatShader);
+	m_color = color;
+}
+
 void GameObject3D::Init()
 {
 }
@@ -28,4 +36,10 @@ void GameObject3D::Update()
 void GameObject3D::Render()
 {
 	Renderer3D::Instance()->Rendering(this);
+}
+
+void GameObject3D::LookAt(Vec3 vec)
+{
+	Vec3 dist = m_pos - vec;
+	m_angle.y = atan2(dist.z, dist.x);
 }

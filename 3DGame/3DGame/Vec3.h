@@ -68,6 +68,8 @@ public:
 		temp.x = x / f;
 		temp.y = y / f;
 		temp.z = z / f;
+
+		return temp;
 	}
 	void operator += (Vec3 vec) {
 		x = x + vec.x;
@@ -128,7 +130,7 @@ public:
 
 	//크기
 	float Length() {
-		return sqrt(powf(x, 2.f) + powf(y, 2.f) + powf(z, 2.f));
+		return sqrt(x*x + y*y + z*z);
 	}
 
 	//정규화

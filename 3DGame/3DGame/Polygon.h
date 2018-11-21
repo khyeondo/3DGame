@@ -8,6 +8,7 @@ public:
 	Vec3 vertex[3];
 	Vec2 uv[3];
 	Vec3 normalVec;
+	Vec3 center;
 	float brightness;
 
 	//

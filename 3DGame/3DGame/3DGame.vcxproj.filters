@@ -100,6 +100,12 @@
     <Filter Include="10.SurfaceManager">
       <UniqueIdentifier>{901fe91c-8199-4a12-a1ee-505550197d4c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="04.GameObject\04.InGameObjects\Bullet">
+      <UniqueIdentifier>{0414a646-65d0-46c7-8cdf-6ffceaf9b089}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.GameObject\06.Force">
+      <UniqueIdentifier>{0b2a5393-8ff5-4a4f-8a15-6369b2dbc129}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -158,6 +164,12 @@
     </ClCompile>
     <ClCompile Include="SurfaceManager.cpp">
       <Filter>10.SurfaceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>04.GameObject\04.InGameObjects\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Force.cpp">
+      <Filter>04.GameObject\06.Force</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -238,6 +250,12 @@
     </ClInclude>
     <ClInclude Include="SurfaceManager.h">
       <Filter>10.SurfaceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>04.GameObject\04.InGameObjects\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Force.h">
+      <Filter>04.GameObject\06.Force</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

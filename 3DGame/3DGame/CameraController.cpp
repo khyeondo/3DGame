@@ -1,12 +1,23 @@
 #include "CameraController.h"
 #include "InputHandler.h"
 #include "Camera.h"
-
+#include "Vec2.h"
+#include "Game.h"
 
 CameraController::CameraController(Camera* pCamera)
 {
 	m_pCamera = pCamera;
 	Init();
+}
+
+void CameraController::RotateY(float angle)
+{
+	Matrix4X4 rotateY;
+	Matrix4X4::MakeRotationY(rotateY, angle);
+
+	Vec3 lookDir = m_pCamera->lookAt - m_pCamera->pos;
+	lookDir *= rotateY;
+	m_pCamera->lookAt = m_pCamera->pos + lookDir;
 }
 
 void CameraController::Init()
@@ -19,6 +30,9 @@ void CameraController::Init()
 void CameraController::Update()
 {
 	handleInput();
+
+	RotateY(-(InputHandler::Instance()->getMousePosition()->x - Game::Instance()->GetScreenWidth()/2)/500.f);
+
 	m_lookDir = m_pCamera->lookAt - m_pCamera->pos;
 	m_lookDir.Normalize();
 }
@@ -31,13 +45,13 @@ void CameraController::handleInput()
 {
 	if (TheInputHandler::Instance()->isKeyHolding(SDL_SCANCODE_W))
 	{
-		m_pCamera->pos += m_lookDir;
-		m_pCamera->lookAt += m_lookDir;
+		m_pCamera->pos += m_lookDir*DELTATIME*20.f;
+		m_pCamera->lookAt += m_lookDir*DELTATIME*20.f;
 	}
 	if (TheInputHandler::Instance()->isKeyHolding(SDL_SCANCODE_S))
 	{
-		m_pCamera->pos -= m_lookDir;
-		m_pCamera->lookAt -= m_lookDir;
+		m_pCamera->pos -= m_lookDir * DELTATIME*20.f;
+		m_pCamera->lookAt -= m_lookDir * DELTATIME*20.f;
 	}
 	if (TheInputHandler::Instance()->isKeyHolding(SDL_SCANCODE_Z))
 	{
@@ -46,35 +60,29 @@ void CameraController::handleInput()
 	}
 	if (TheInputHandler::Instance()->isKeyHolding(SDL_SCANCODE_X))
 	{
-		m_pCamera->pos.y -= 1.f;
-		m_pCamera->lookAt.y -= 1.f;
+		m_pCamera->pos.y -= 20.f*DELTATIME;
+		m_pCamera->lookAt.y -= 20.f*DELTATIME;
 	}
 	if (TheInputHandler::Instance()->isKeyHolding(SDL_SCANCODE_A))
 	{
 		Vec3 right;
 		right = m_lookDir * m_right;
-		m_pCamera->pos -= right;
-		m_pCamera->lookAt -= right;
+		m_pCamera->pos -= right * DELTATIME*20.f;
+		m_pCamera->lookAt -= right * DELTATIME*20.f;;
 	}
 	if (TheInputHandler::Instance()->isKeyHolding(SDL_SCANCODE_D))
 	{
 		Vec3 right;
 		right = m_lookDir * m_right;
-		m_pCamera->pos += right;
-		m_pCamera->lookAt += right;
+		m_pCamera->pos += right * DELTATIME*20.f;
+		m_pCamera->lookAt += right * DELTATIME*20.f;
 	}
 	if (TheInputHandler::Instance()->isKeyHolding(SDL_SCANCODE_RIGHT))
 	{
-		Vec3 lookDir = m_pCamera->lookAt - m_pCamera->pos;
-		lookDir *= m_rotateRight;
-		lookDir += m_pCamera->pos;
-		m_pCamera->lookAt = lookDir;
+		RotateY(-2.0f*DELTATIME);
 	}
 	if (TheInputHandler::Instance()->isKeyHolding(SDL_SCANCODE_LEFT))
 	{
-		Vec3 lookDir = m_pCamera->lookAt - m_pCamera->pos;
-		lookDir *= m_rotateLeft;
-		lookDir += m_pCamera->pos;
-		m_pCamera->lookAt = lookDir;
+		RotateY(2.0f*DELTATIME);
 	}
 }

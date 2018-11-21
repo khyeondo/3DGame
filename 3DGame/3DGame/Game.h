@@ -76,4 +76,10 @@ public:
 	bool running() { return m_bRunning; }
 	void quit() { m_bRunning = false; }
 	
+	int GetScreenWidth() {
+		return screenWidth;
+	}
+	int GetScreenHeight() {
+		return screenHeight;
+	}
 };

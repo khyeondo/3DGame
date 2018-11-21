@@ -123,6 +123,8 @@ void Renderer3D::WorldSpace(GameObject3D * pGameObject, vector<Polygon>& polys)
 
 			//poly.vertex[i] *= worldMat;
 			poly.vertex[i] += pGameObject->RefPos();
+
+			poly.center = (poly.vertex[0] + poly.vertex[1] + poly.vertex[2]) / 3.f;
 		}
 		polys.push_back(poly);
 	}

@@ -148,6 +148,8 @@
     <ClCompile Include="CollideManger.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="SurfaceManager.cpp" />
+    <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="Force.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
@@ -176,6 +178,8 @@
     <ClInclude Include="CollideManger.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="SurfaceManager.h" />
+    <ClInclude Include="Bullet.h" />
+    <ClInclude Include="Force.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

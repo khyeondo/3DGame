@@ -26,6 +26,7 @@ protected:
 
 public:
 	GameObject3D(SDL_Surface* surface, SDL_Surface* normalMap, Mesh* mesh);
+	GameObject3D(Color color, Mesh* mesh);
 	virtual ~GameObject3D() {}
 
 	virtual void Init();
@@ -38,6 +39,8 @@ public:
 	void SetSurface(SDL_Surface* surface) {
 		m_pSurface = surface;
 	}
+
+	void LookAt(Vec3 vec);
 
 	Mesh* GetMesh() {
 		return m_pMesh;
@@ -71,4 +74,5 @@ public:
 	Color& RefColor() {
 		return m_color;
 	}
+
 };
