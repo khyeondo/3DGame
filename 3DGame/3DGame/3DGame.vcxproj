@@ -151,6 +151,9 @@
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Force.cpp" />
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="GameStateMachine.cpp" />
+    <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="Stage1.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
@@ -182,6 +185,10 @@
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Force.h" />
     <ClInclude Include="Button.h" />
+    <ClInclude Include="GameState.h" />
+    <ClInclude Include="GameStateMachine.h" />
+    <ClInclude Include="Menu.h" />
+    <ClInclude Include="Stage1.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -79,60 +79,60 @@ void MapManager::Init()
 			{
 				for (int k = 0; k < 5; k++)
 				{
-					SetTile(Vec3(j * 9, k * 9, i * 9), Vec3(0.f, 0.f, -M_PI / 2.f),tileColor);
+					SetTile(Vec3(j * 10, k * 10, i * 10), Vec3(0.f, 0.f, -M_PI / 2.f),tileColor);
 				}
 			}
 			else if (map[i][j] == L'¦©')
 			{
 				for (int k = 0; k < 5; k++)
 				{
-					SetTile(Vec3(j * 9, k * 9, i * 9), Vec3(0.f, 0.f, M_PI / 2.f), tileColor);
+					SetTile(Vec3(j * 10, k * 10, i * 10), Vec3(0.f, 0.f, M_PI / 2.f), tileColor);
 				}
 			}
 			else if (map[i][j] == L'¦¨')
 			{
 				for (int k = 0; k < 5; k++)
 				{
-					SetTile(Vec3(j * 9, k * 9, i * 9), Vec3(M_PI / 2.f, 0.f, 0.f), tileColor);
+					SetTile(Vec3(j * 10, k * 10, i * 10), Vec3(M_PI / 2.f, 0.f, 0.f), tileColor);
 				}
 			}
 			else if (map[i][j] == L'¦ª')
 			{
 				for (int k = 0; k < 5; k++)
 				{
-					SetTile(Vec3(j * 9, k * 9, i * 9), Vec3(-M_PI / 2.f, 0.f, 0.f), tileColor);
+					SetTile(Vec3(j * 10, k * 10, i * 10), Vec3(-M_PI / 2.f, 0.f, 0.f), tileColor);
 				}
 			}
 			else if (map[i][j] == L'¦£')
 			{
 				for (int k = 0; k < 5; k++)
 				{
-					SetTile(Vec3(j * 9, k * 9, i * 9), Vec3(M_PI / 2.f, 0.f, 0.f), tileColor);
-					SetTile(Vec3(j * 9, k * 9, i * 9), Vec3(0.f, 0.f, -M_PI / 2.f), tileColor);
+					SetTile(Vec3(j * 10, k * 10, i * 10), Vec3(M_PI / 2.f, 0.f, 0.f), tileColor);
+					SetTile(Vec3(j * 10, k * 10, i * 10), Vec3(0.f, 0.f, -M_PI / 2.f), tileColor);
 				}
 			}
 			else if (map[i][j] == L'¦¤')
 			{
 				for (int k = 0; k < 5; k++)
 				{
-					SetTile(Vec3(j * 9, k * 9, i * 9), Vec3(M_PI / 2.f, 0.f, 0.f), tileColor);
-					SetTile(Vec3(j * 9, k * 9, i * 9), Vec3(0.f, 0.f, M_PI / 2.f), tileColor);
+					SetTile(Vec3(j * 10, k * 10, i * 10), Vec3(M_PI / 2.f, 0.f, 0.f), tileColor);
+					SetTile(Vec3(j * 10, k * 10, i * 10), Vec3(0.f, 0.f, M_PI / 2.f), tileColor);
 				}
 			}
 			else if (map[i][j] == L'¦¦')
 			{
 				for (int k = 0; k < 5; k++)
 				{
-					SetTile(Vec3(j * 9, k * 9, i * 9), Vec3(0.f, 0.f, -M_PI / 2.f), tileColor);
-					SetTile(Vec3(j * 9, k * 9, i * 9), Vec3(-M_PI / 2.f, 0.f, 0.f), tileColor);
+					SetTile(Vec3(j * 10, k * 10, i * 10), Vec3(0.f, 0.f, -M_PI / 2.f), tileColor);
+					SetTile(Vec3(j * 10, k * 10, i * 10), Vec3(-M_PI / 2.f, 0.f, 0.f), tileColor);
 				}
 			}
 			else if (map[i][j] == L'¦¥')
 			{
 				for (int k = 0; k < 5; k++)
 				{
-					SetTile(Vec3(j * 9, k * 9, i * 9), Vec3(0.f, 0.f, M_PI / 2.f), tileColor);
-					SetTile(Vec3(j * 9, k * 9, i * 9), Vec3(-M_PI / 2.f, 0.f, 0.f), tileColor);
+					SetTile(Vec3(j * 10, k * 10, i * 10), Vec3(0.f, 0.f, M_PI / 2.f), tileColor);
+					SetTile(Vec3(j * 10, k * 10, i * 10), Vec3(-M_PI / 2.f, 0.f, 0.f), tileColor);
 				}
 			}
 

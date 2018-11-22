@@ -9,6 +9,7 @@
 #include "CameraController.h"
 #include "Cube.h"
 #include "MapManager.h"
+#include "GameStateMachine.h"
 
 Game* Game::m_pinst = 0;
 
@@ -42,6 +43,8 @@ bool Game::init(const char * title, int xpos, int ypos, int width, int height, b
 
 	Renderer3D::Instance()->Init(m_pRenderer, m_pCamera, Vec3(0.f, -1.f, 1.f), Color(0,0,0),width, height);
 
+	m_pGameStateMachine = new GameStateMachine();
+
 	return true;
 }
 
@@ -61,16 +64,7 @@ void Game::start()
 	cube.SetCube(Vec3(5.f, 5.f, 5.f), Vec3(10, 10, 10));
 	mountains.LoadFromObjectFile("assets/mountains.obj");
 
-	for (int i = 0; i < 12; i += 2)
-	{
-		cube.polys[i].uv[0] = Vec2(0, 1);
-		cube.polys[i].uv[1] = Vec2(0, 0);
-		cube.polys[i].uv[2] = Vec2(1, 1);
 
-		cube.polys[i + 1].uv[0] = Vec2(1, 1);
-		cube.polys[i + 1].uv[1] = Vec2(0, 0);
-		cube.polys[i + 1].uv[2] = Vec2(1, 0);
-	}
 
 	Polygon poly;
 	poly.vertex[0] = Vec3(0, 0, 10);
@@ -116,11 +110,11 @@ void Game::update()
 	Renderer3D::Instance()->RefLight() *= rotateY;
 	//Renderer3D::Instance()->RefLight() *= rotateX;
 	//Renderer3D::Instance()->RefLight() *= rotateZ;
-
 	for (GameObject* gameObject : m_gameObjects)
 	{
 		gameObject->Update();
 	}
+	m_pGameStateMachine->Update();
 }
 
 void Game::render()
@@ -128,7 +122,7 @@ void Game::render()
 	SDL_SetRenderDrawColor(m_pRenderer, 0, 255, 255, 255);
 	SDL_RenderClear(m_pRenderer);
 
-
+	m_pGameStateMachine->Render();
 	for (GameObject* gameObject : m_gameObjects)
 	{
 		gameObject->Render();

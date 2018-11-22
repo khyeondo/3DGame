@@ -6,6 +6,11 @@ Force::Force(GameObject3D * gameObject) :
 {
 }
 
+void Force::AddForce(Vec3 force)
+{
+	m_force += force;
+}
+
 void Force::Update()
 {
 	m_velocity += m_force;

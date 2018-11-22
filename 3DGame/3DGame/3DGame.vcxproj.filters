@@ -106,6 +106,24 @@
     <Filter Include="04.GameObject\04.InGameObjects\Button">
       <UniqueIdentifier>{33f6894b-fdbf-4ecc-858a-13e67fe0f78a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="11.GameState">
+      <UniqueIdentifier>{45c19358-0718-4c48-ba36-f37803c608d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="11.GameState\01.GameState">
+      <UniqueIdentifier>{8e2ec4a6-2728-4541-9f50-eee4722a19ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="11.GameState\02.GameStateMachine">
+      <UniqueIdentifier>{00c9ab0d-fb72-4a80-accc-230747e94867}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="11.GameState\03.InGameState">
+      <UniqueIdentifier>{1e8e6764-78b1-4d60-9881-e3c4bba62f98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="11.GameState\03.InGameState\02.Stage1">
+      <UniqueIdentifier>{b7775d53-8917-440d-ade2-e4128415938c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="11.GameState\03.InGameState\01.Menu">
+      <UniqueIdentifier>{4199c819-1c6a-4afd-bd12-8b73d591d3f6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -173,6 +191,15 @@
     </ClCompile>
     <ClCompile Include="Button.cpp">
       <Filter>04.GameObject\04.InGameObjects\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStateMachine.cpp">
+      <Filter>11.GameState\02.GameStateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>11.GameState\03.InGameState\01.Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage1.cpp">
+      <Filter>11.GameState\03.InGameState\02.Stage1</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -262,6 +289,18 @@
     </ClInclude>
     <ClInclude Include="Button.h">
       <Filter>04.GameObject\04.InGameObjects\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>11.GameState\01.GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStateMachine.h">
+      <Filter>11.GameState\02.GameStateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>11.GameState\03.InGameState\01.Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage1.h">
+      <Filter>11.GameState\03.InGameState\02.Stage1</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

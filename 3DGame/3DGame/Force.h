@@ -15,6 +15,8 @@ private:
 public:
 	Force(GameObject3D* gameObject);
 
+	void AddForce(Vec3 force);
+
 	void Update();
 
 	Vec3& RefVelocity() {

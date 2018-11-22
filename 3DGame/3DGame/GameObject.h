@@ -5,6 +5,8 @@
 
 using namespace std;
 
+class GameState;
+
 class GameObject
 {
 public:
@@ -20,5 +22,5 @@ protected:
 	virtual ~GameObject() {}
 
 	string m_tag;
-
+	GameState* m_pGameState;
 };

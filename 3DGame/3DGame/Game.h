@@ -7,6 +7,7 @@
 class Camera;
 class GameObject;
 class CameraController;
+class GameStateMachine;
 
 using namespace std;
 
@@ -40,7 +41,7 @@ private:
 	Camera* m_pCamera;
 
 	vector<GameObject*> m_gameObjects;
-
+	GameStateMachine* m_pGameStateMachine;
 
 	Mesh cube;
 	Mesh mountains;
