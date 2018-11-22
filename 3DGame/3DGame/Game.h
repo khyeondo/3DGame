@@ -82,4 +82,7 @@ public:
 	int GetScreenHeight() {
 		return screenHeight;
 	}
+	SDL_Window* GetSDLWindow() {
+		return m_pWindow;
+	}
 };

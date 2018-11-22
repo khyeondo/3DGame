@@ -10,15 +10,13 @@ class CameraController : public GameObject
 {
 private:
 	Camera* m_pCamera;
-	Matrix4X4 m_rotateLeft;
 	Matrix4X4 m_rotateRight;
-
-	Matrix4X4 m_rotateX;
-	Matrix4X4 m_rotateY;
 
 	Matrix4X4 m_right;
 
 	Vec3 m_lookDir;
+
+	bool mouseLock = true;
 
 public:
 	CameraController(Camera* pCamera);

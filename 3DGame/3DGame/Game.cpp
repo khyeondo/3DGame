@@ -42,8 +42,6 @@ bool Game::init(const char * title, int xpos, int ypos, int width, int height, b
 
 	Renderer3D::Instance()->Init(m_pRenderer, m_pCamera, Vec3(0.f, -1.f, 1.f), Color(0,0,0),width, height);
 
-	SDL_ShowCursor(0);
-
 	return true;
 }
 
@@ -121,8 +119,6 @@ void Game::update()
 
 	for (GameObject* gameObject : m_gameObjects)
 	{
-
-		SDL_WarpMouseInWindow(m_pWindow, screenWidth/2.f, screenHeight / 2.f);
 		gameObject->Update();
 	}
 }

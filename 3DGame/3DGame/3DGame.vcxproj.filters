@@ -79,9 +79,6 @@
     <Filter Include="07.Scene\02.SceneManager">
       <UniqueIdentifier>{8478cd59-cec1-4c1c-8da6-886786d98d6e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="04.GameObject\05.GameObectManager">
-      <UniqueIdentifier>{b073efb3-7b62-4ba0-8057-fde98985d057}</UniqueIdentifier>
-    </Filter>
     <Filter Include="04.GameObject\04.InGameObjects\MapManager">
       <UniqueIdentifier>{6d588fc1-f4de-4d52-9c63-6f06d4b35696}</UniqueIdentifier>
     </Filter>
@@ -103,8 +100,11 @@
     <Filter Include="04.GameObject\04.InGameObjects\Bullet">
       <UniqueIdentifier>{0414a646-65d0-46c7-8cdf-6ffceaf9b089}</UniqueIdentifier>
     </Filter>
-    <Filter Include="04.GameObject\06.Force">
+    <Filter Include="04.GameObject\05.Force">
       <UniqueIdentifier>{0b2a5393-8ff5-4a4f-8a15-6369b2dbc129}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.GameObject\04.InGameObjects\Button">
+      <UniqueIdentifier>{33f6894b-fdbf-4ecc-858a-13e67fe0f78a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -169,7 +169,10 @@
       <Filter>04.GameObject\04.InGameObjects\Bullet</Filter>
     </ClCompile>
     <ClCompile Include="Force.cpp">
-      <Filter>04.GameObject\06.Force</Filter>
+      <Filter>04.GameObject\05.Force</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>04.GameObject\04.InGameObjects\Button</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -255,7 +258,10 @@
       <Filter>04.GameObject\04.InGameObjects\Bullet</Filter>
     </ClInclude>
     <ClInclude Include="Force.h">
-      <Filter>04.GameObject\06.Force</Filter>
+      <Filter>04.GameObject\05.Force</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>04.GameObject\04.InGameObjects\Button</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
