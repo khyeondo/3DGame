@@ -5,6 +5,30 @@
 #define MAPSIZEX 20
 #define MAPSIZEY 20
 
+void MapManager::SetTile(Vec3 pos, Vec3 angle, SDL_Surface * surface, SDL_Surface* nomalMap)
+{
+	GameObject3D* tile = new GameObject3D(surface, nomalMap, &m_tile);
+	tile->RefPos().x = pos.x;
+	tile->RefPos().y = pos.y;
+	tile->RefPos().z = pos.z;
+	tile->RefAngle().x = angle.x;
+	tile->RefAngle().y = angle.y;
+	tile->RefAngle().z = angle.z;
+	m_mapTiles.push_back(tile);
+}
+
+void MapManager::SetTile(Vec3 pos, Vec3 angle, Color color)
+{
+	GameObject3D* tile = new GameObject3D(color, &m_tile);
+	tile->RefPos().x = pos.x; 
+	tile->RefPos().y = pos.y; 
+	tile->RefPos().z = pos.z;
+	tile->RefAngle().x = angle.x;
+	tile->RefAngle().y = angle.y;
+	tile->RefAngle().z = angle.z;
+	m_mapTiles.push_back(tile);
+}
+
 MapManager::MapManager()
 {
 	Init();
@@ -55,50 +79,63 @@ void MapManager::Init()
 			{
 				for (int k = 0; k < 5; k++)
 				{
-					GameObject3D* tile = new GameObject3D(tileColor, &m_tile);
-					tile->RefPos().x = j * 9;
-					tile->RefPos().z = i * 9;
-					tile->RefPos().y = k * 9;
-					tile->RefAngle().z = -M_PI / 2.f;
-					m_mapTiles.push_back(tile);
+					SetTile(Vec3(j * 9, k * 9, i * 9), Vec3(0.f, 0.f, -M_PI / 2.f),tileColor);
 				}
 			}
 			else if (map[i][j] == L'¦©')
 			{
 				for (int k = 0; k < 5; k++)
 				{
-					GameObject3D* tile = new GameObject3D(tileColor, &m_tile);
-					tile->RefPos().x = j * 9;
-					tile->RefPos().z = i * 9;
-					tile->RefPos().y = k * 9;
-					tile->RefAngle().z = M_PI / 2.f;
-					m_mapTiles.push_back(tile);
+					SetTile(Vec3(j * 9, k * 9, i * 9), Vec3(0.f, 0.f, M_PI / 2.f), tileColor);
 				}
 			}
 			else if (map[i][j] == L'¦¨')
 			{
 				for (int k = 0; k < 5; k++)
 				{
-					GameObject3D* tile = new GameObject3D(tileColor, &m_tile);
-					tile->RefPos().x = j * 9;
-					tile->RefPos().z = i * 9;
-					tile->RefPos().y = k * 9;
-					tile->RefAngle().x = M_PI / 2.f;
-					m_mapTiles.push_back(tile);
+					SetTile(Vec3(j * 9, k * 9, i * 9), Vec3(M_PI / 2.f, 0.f, 0.f), tileColor);
 				}
 			}
 			else if (map[i][j] == L'¦ª')
 			{
 				for (int k = 0; k < 5; k++)
 				{
-					GameObject3D* tile = new GameObject3D(tileColor, &m_tile);
-					tile->RefPos().x = j * 9;
-					tile->RefPos().z = i * 9;
-					tile->RefPos().y = k * 9;
-					tile->RefAngle().x = -M_PI / 2.f;
-					m_mapTiles.push_back(tile);
+					SetTile(Vec3(j * 9, k * 9, i * 9), Vec3(-M_PI / 2.f, 0.f, 0.f), tileColor);
 				}
 			}
+			else if (map[i][j] == L'¦£')
+			{
+				for (int k = 0; k < 5; k++)
+				{
+					SetTile(Vec3(j * 9, k * 9, i * 9), Vec3(M_PI / 2.f, 0.f, 0.f), tileColor);
+					SetTile(Vec3(j * 9, k * 9, i * 9), Vec3(0.f, 0.f, -M_PI / 2.f), tileColor);
+				}
+			}
+			else if (map[i][j] == L'¦¤')
+			{
+				for (int k = 0; k < 5; k++)
+				{
+					SetTile(Vec3(j * 9, k * 9, i * 9), Vec3(M_PI / 2.f, 0.f, 0.f), tileColor);
+					SetTile(Vec3(j * 9, k * 9, i * 9), Vec3(0.f, 0.f, M_PI / 2.f), tileColor);
+				}
+			}
+			else if (map[i][j] == L'¦¦')
+			{
+				for (int k = 0; k < 5; k++)
+				{
+					SetTile(Vec3(j * 9, k * 9, i * 9), Vec3(0.f, 0.f, -M_PI / 2.f), tileColor);
+					SetTile(Vec3(j * 9, k * 9, i * 9), Vec3(-M_PI / 2.f, 0.f, 0.f), tileColor);
+				}
+			}
+			else if (map[i][j] == L'¦¥')
+			{
+				for (int k = 0; k < 5; k++)
+				{
+					SetTile(Vec3(j * 9, k * 9, i * 9), Vec3(0.f, 0.f, M_PI / 2.f), tileColor);
+					SetTile(Vec3(j * 9, k * 9, i * 9), Vec3(-M_PI / 2.f, 0.f, 0.f), tileColor);
+				}
+			}
+
 			GameObject3D* tile;
 			if (j % 4 == 0)
 			{

@@ -8,7 +8,7 @@ int main(int argc, char* argv[])
 	const int FPS = 10;
 	const int DELAY_TIME = 1000.0f / FPS;
 
-	Game::Instance()->init("3DGame", 100, 100, 768, 540, false);
+	Game::Instance()->init("3DGame", 100, 100, 768, 540, true);
 	Game::Instance()->start();
 
 	Uint32 frameStart, frameTime;
