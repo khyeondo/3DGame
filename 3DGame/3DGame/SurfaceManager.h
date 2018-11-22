@@ -1,6 +1,7 @@
 #pragma once
 
 #include <map>
+#include <vector>
 #include <SDL_image.h>
 
 using namespace std;
@@ -19,10 +20,10 @@ public:
 	}
 
 private:
-	map<string, SDL_Surface*> m_surfaceMap;
+	map<string, vector<SDL_Surface*>> m_surfaceMap;
 
 public:
 	bool load(string fileName, string id);
-	SDL_Surface* GetSurface(string id);
-
+	vector<SDL_Surface*>* GetSurface(string id);
+	void Clear();
 };

@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class SDL_Surface;
+struct SDL_Surface;
 class SDL_Renderer;
 class Camera;
 class GameObject3D;
@@ -87,38 +87,16 @@ private:
 	void Viewport(vector<reference_wrapper<Polygon>>& polys);
 	void Texturing(GameObject3D* pGameObject, vector<reference_wrapper<Polygon>>& polys);
 
-	Uint32 GetPixel(SDL_Surface * surface, int x, int y)
-	{
-		if (surface == 0)
-			return 0;
-		int bpp = surface->format->BytesPerPixel;
-		/* Here p is the address to the pixel we want to retrieve */
-		Uint8 *p = (Uint8 *)surface->pixels + y * surface->pitch + x * bpp;
+	void WorldSpace(GameObject3D* pGameObject, vector<Polygon>& polys,int a);
+	void BackfaceCulling(GameObject3D* pGameObject, Polygon& poly);
+	void ViewSpace(GameObject3D* pGameObject,Polygon& poly);
+	void Projection(GameObject3D* pGameObject, Polygon& poly);
+	void Viewport(GameObject3D* pGameObject, Polygon& poly);
+	void Texturing(GameObject3D* pGameObject, Polygon& poly);
 
-		switch (bpp) {
-		case 1:
-			return *p;
-			break;
 
-		case 2:
-			return *(Uint16 *)p;
-			break;
+	Uint32 GetPixel(SDL_Surface * surface, int x, int y);
 
-		case 3:
-			if (SDL_BYTEORDER == SDL_BIG_ENDIAN)
-				return p[0] << 16 | p[1] << 8 | p[2];
-			else
-				return p[0] | p[1] << 8 | p[2] << 16;
-			break;
-
-		case 4:
-			return *(Uint32 *)p;
-			break;
-
-		default:
-			return 0;       /* shouldn't happen, but avoids warnings */
-		}
-	}
 public:
 	friend class TexturePainter;
 	friend class ColorPainter;

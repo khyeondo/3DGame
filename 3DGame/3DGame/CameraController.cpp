@@ -3,11 +3,14 @@
 #include "Camera.h"
 #include "Vec2.h"
 #include "Game.h"
+#include "GameState.h"
+#include "Bullet.h"
+#include "SurfaceManager.h"
+#include "MeshManager.h"
 
 CameraController::CameraController(Camera* pCamera)
 {
 	m_pCamera = pCamera;
-	Init();
 }
 
 void CameraController::RotateY(float angle)
@@ -20,15 +23,15 @@ void CameraController::RotateY(float angle)
 	m_pCamera->lookAt = m_pCamera->pos + lookDir;
 }
 
-void CameraController::Init()
+void CameraController::Init(GameState* pGameState)
 {
 	Matrix4X4::MakeRotationY(m_right, -M_PI / 2.f);
 	SDL_ShowCursor(0);
 }
 
-void CameraController::Update()
+void CameraController::Update(GameState* pGameState)
 {
-	handleInput();
+	handleInput(pGameState);
 
 	if (mouseLock) 
 	{
@@ -45,7 +48,7 @@ void CameraController::Render()
 {
 }
 
-void CameraController::handleInput()
+void CameraController::handleInput(GameState* pGameState)
 {
 	if (TheInputHandler::Instance()->isKeyHolding(SDL_SCANCODE_W))
 	{
@@ -80,6 +83,14 @@ void CameraController::handleInput()
 		right = m_lookDir * m_right;
 		m_pCamera->pos += right * DELTATIME*20.f;
 		m_pCamera->lookAt += right * DELTATIME*20.f;
+	}
+	if (TheInputHandler::Instance()->getMouseButtonState(LEFT))
+	{
+		Bullet* pBullet = new Bullet(
+			SurfaceManager::Instance()->GetSurface("box")->at(0), NULL,
+			MeshManager::Instance()->GetMesh("cube"));
+		pBullet->SetDir(m_lookDir*100.f);
+		pGameState->GameObject3DInstantiate(pBullet, m_pCamera->pos + (m_lookDir*10),Vec3(0.f,0.f,0.f));
 	}
 	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE))
 	{

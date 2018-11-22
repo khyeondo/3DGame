@@ -58,53 +58,26 @@
     <Filter Include="04.GameObject\03.GameObject3D">
       <UniqueIdentifier>{6e3dc729-1971-486a-99d9-2a80be55878e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="04.GameObject\04.InGameObjects">
-      <UniqueIdentifier>{c96abfa6-6614-4cea-8763-8b1563a93d60}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04.GameObject\04.InGameObjects\CameraManger">
-      <UniqueIdentifier>{35fcdbed-4899-41dd-b6a5-e236f3fe2f92}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04.GameObject\04.InGameObjects\Cube">
-      <UniqueIdentifier>{5d6f7ad0-bdac-4856-99ce-62220f8caf10}</UniqueIdentifier>
-    </Filter>
     <Filter Include="06.DeltaTime">
       <UniqueIdentifier>{2f9114ec-d1cf-48e0-bb54-6f44a8362791}</UniqueIdentifier>
     </Filter>
-    <Filter Include="07.Scene">
-      <UniqueIdentifier>{78e58c03-9a8b-42f4-a210-9e9e01fc2c13}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="07.Scene\01.Scene">
-      <UniqueIdentifier>{009a8ad2-9131-440b-a588-f2dda54c92e3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="07.Scene\02.SceneManager">
-      <UniqueIdentifier>{8478cd59-cec1-4c1c-8da6-886786d98d6e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04.GameObject\04.InGameObjects\MapManager">
-      <UniqueIdentifier>{6d588fc1-f4de-4d52-9c63-6f06d4b35696}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="08.Collision">
+    <Filter Include="07.Collision">
       <UniqueIdentifier>{b0d9eb9f-7445-4cac-96d6-608e9e46ddf6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="08.Collision\01.Collider">
+    <Filter Include="07.Collision\01.Collider">
       <UniqueIdentifier>{631f700b-2bd3-4c1d-a17e-af574d51929a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="08.Collision\02.CollideManger">
+    <Filter Include="07.Collision\02.CollideManger">
       <UniqueIdentifier>{b84819db-c470-4845-8ab3-5a3463bb02c6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="09.TextureManager">
+    <Filter Include="08.TextureManager">
       <UniqueIdentifier>{365fadfb-a716-4c94-b443-e1e3be1f185d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="10.SurfaceManager">
+    <Filter Include="09.SurfaceManager">
       <UniqueIdentifier>{901fe91c-8199-4a12-a1ee-505550197d4c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="04.GameObject\04.InGameObjects\Bullet">
-      <UniqueIdentifier>{0414a646-65d0-46c7-8cdf-6ffceaf9b089}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04.GameObject\05.Force">
-      <UniqueIdentifier>{0b2a5393-8ff5-4a4f-8a15-6369b2dbc129}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04.GameObject\04.InGameObjects\Button">
-      <UniqueIdentifier>{33f6894b-fdbf-4ecc-858a-13e67fe0f78a}</UniqueIdentifier>
+    <Filter Include="10.MeshManager">
+      <UniqueIdentifier>{44e00794-9118-4bd4-9151-e6af3429f6d1}</UniqueIdentifier>
     </Filter>
     <Filter Include="11.GameState">
       <UniqueIdentifier>{45c19358-0718-4c48-ba36-f37803c608d4}</UniqueIdentifier>
@@ -115,13 +88,37 @@
     <Filter Include="11.GameState\02.GameStateMachine">
       <UniqueIdentifier>{00c9ab0d-fb72-4a80-accc-230747e94867}</UniqueIdentifier>
     </Filter>
-    <Filter Include="11.GameState\03.InGameState">
+    <Filter Include="15.InGame">
+      <UniqueIdentifier>{49222f12-85e8-4c94-aa36-f52de6fa177c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.GameObject\04.Force">
+      <UniqueIdentifier>{0b2a5393-8ff5-4a4f-8a15-6369b2dbc129}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="15.InGame\02.InGameObjects">
+      <UniqueIdentifier>{c96abfa6-6614-4cea-8763-8b1563a93d60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="15.InGame\02.InGameObjects\Cube">
+      <UniqueIdentifier>{5d6f7ad0-bdac-4856-99ce-62220f8caf10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="15.InGame\02.InGameObjects\MapManager">
+      <UniqueIdentifier>{6d588fc1-f4de-4d52-9c63-6f06d4b35696}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="15.InGame\02.InGameObjects\Bullet">
+      <UniqueIdentifier>{0414a646-65d0-46c7-8cdf-6ffceaf9b089}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="15.InGame\02.InGameObjects\Button">
+      <UniqueIdentifier>{33f6894b-fdbf-4ecc-858a-13e67fe0f78a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="15.InGame\02.InGameObjects\CameraController">
+      <UniqueIdentifier>{35fcdbed-4899-41dd-b6a5-e236f3fe2f92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="15.InGame\01.InGameStates">
       <UniqueIdentifier>{1e8e6764-78b1-4d60-9881-e3c4bba62f98}</UniqueIdentifier>
     </Filter>
-    <Filter Include="11.GameState\03.InGameState\02.Stage1">
+    <Filter Include="15.InGame\01.InGameStates\02.Stage1">
       <UniqueIdentifier>{b7775d53-8917-440d-ade2-e4128415938c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="11.GameState\03.InGameState\01.Menu">
+    <Filter Include="15.InGame\01.InGameStates\01.Menu">
       <UniqueIdentifier>{4199c819-1c6a-4afd-bd12-8b73d591d3f6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -151,55 +148,55 @@
       <Filter>05.InputHandler</Filter>
     </ClCompile>
     <ClCompile Include="CameraController.cpp">
-      <Filter>04.GameObject\04.InGameObjects\CameraManger</Filter>
+      <Filter>15.InGame\02.InGameObjects\CameraController</Filter>
     </ClCompile>
     <ClCompile Include="Cube.cpp">
-      <Filter>04.GameObject\04.InGameObjects\Cube</Filter>
+      <Filter>15.InGame\02.InGameObjects\Cube</Filter>
     </ClCompile>
     <ClCompile Include="DeltaTime.cpp">
       <Filter>06.DeltaTime</Filter>
     </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>07.Scene\01.Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
-      <Filter>07.Scene\02.SceneManager</Filter>
-    </ClCompile>
     <ClCompile Include="MapManager.cpp">
-      <Filter>04.GameObject\04.InGameObjects\MapManager</Filter>
+      <Filter>15.InGame\02.InGameObjects\MapManager</Filter>
     </ClCompile>
     <ClCompile Include="GameObject2D.cpp">
       <Filter>04.GameObject\02.GameObject2D</Filter>
     </ClCompile>
     <ClCompile Include="Collider.cpp">
-      <Filter>08.Collision\01.Collider</Filter>
+      <Filter>07.Collision\01.Collider</Filter>
     </ClCompile>
     <ClCompile Include="CollideManger.cpp">
-      <Filter>08.Collision\02.CollideManger</Filter>
+      <Filter>07.Collision\02.CollideManger</Filter>
     </ClCompile>
     <ClCompile Include="TextureManager.cpp">
-      <Filter>09.TextureManager</Filter>
+      <Filter>08.TextureManager</Filter>
     </ClCompile>
     <ClCompile Include="SurfaceManager.cpp">
-      <Filter>10.SurfaceManager</Filter>
+      <Filter>09.SurfaceManager</Filter>
     </ClCompile>
     <ClCompile Include="Bullet.cpp">
-      <Filter>04.GameObject\04.InGameObjects\Bullet</Filter>
+      <Filter>15.InGame\02.InGameObjects\Bullet</Filter>
     </ClCompile>
     <ClCompile Include="Force.cpp">
-      <Filter>04.GameObject\05.Force</Filter>
+      <Filter>04.GameObject\04.Force</Filter>
     </ClCompile>
     <ClCompile Include="Button.cpp">
-      <Filter>04.GameObject\04.InGameObjects\Button</Filter>
+      <Filter>15.InGame\02.InGameObjects\Button</Filter>
     </ClCompile>
     <ClCompile Include="GameStateMachine.cpp">
       <Filter>11.GameState\02.GameStateMachine</Filter>
     </ClCompile>
     <ClCompile Include="Menu.cpp">
-      <Filter>11.GameState\03.InGameState\01.Menu</Filter>
+      <Filter>15.InGame\01.InGameStates\01.Menu</Filter>
     </ClCompile>
     <ClCompile Include="Stage1.cpp">
-      <Filter>11.GameState\03.InGameState\02.Stage1</Filter>
+      <Filter>15.InGame\01.InGameStates\02.Stage1</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshManager.cpp">
+      <Filter>10.MeshManager</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState.cpp">
+      <Filter>11.GameState\01.GameState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -249,46 +246,40 @@
       <Filter>05.InputHandler</Filter>
     </ClInclude>
     <ClInclude Include="CameraController.h">
-      <Filter>04.GameObject\04.InGameObjects\CameraManger</Filter>
+      <Filter>15.InGame\02.InGameObjects\CameraController</Filter>
     </ClInclude>
     <ClInclude Include="Cube.h">
-      <Filter>04.GameObject\04.InGameObjects\Cube</Filter>
+      <Filter>15.InGame\02.InGameObjects\Cube</Filter>
     </ClInclude>
     <ClInclude Include="DeltaTime.h">
       <Filter>06.DeltaTime</Filter>
     </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>07.Scene\01.Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneManager.h">
-      <Filter>07.Scene\02.SceneManager</Filter>
-    </ClInclude>
     <ClInclude Include="MapManager.h">
-      <Filter>04.GameObject\04.InGameObjects\MapManager</Filter>
+      <Filter>15.InGame\02.InGameObjects\MapManager</Filter>
     </ClInclude>
     <ClInclude Include="GameObject2D.h">
       <Filter>04.GameObject\02.GameObject2D</Filter>
     </ClInclude>
     <ClInclude Include="Collider.h">
-      <Filter>08.Collision\01.Collider</Filter>
+      <Filter>07.Collision\01.Collider</Filter>
     </ClInclude>
     <ClInclude Include="CollideManger.h">
-      <Filter>08.Collision\02.CollideManger</Filter>
+      <Filter>07.Collision\02.CollideManger</Filter>
     </ClInclude>
     <ClInclude Include="TextureManager.h">
-      <Filter>09.TextureManager</Filter>
+      <Filter>08.TextureManager</Filter>
     </ClInclude>
     <ClInclude Include="SurfaceManager.h">
-      <Filter>10.SurfaceManager</Filter>
+      <Filter>09.SurfaceManager</Filter>
     </ClInclude>
     <ClInclude Include="Bullet.h">
-      <Filter>04.GameObject\04.InGameObjects\Bullet</Filter>
+      <Filter>15.InGame\02.InGameObjects\Bullet</Filter>
     </ClInclude>
     <ClInclude Include="Force.h">
-      <Filter>04.GameObject\05.Force</Filter>
+      <Filter>04.GameObject\04.Force</Filter>
     </ClInclude>
     <ClInclude Include="Button.h">
-      <Filter>04.GameObject\04.InGameObjects\Button</Filter>
+      <Filter>15.InGame\02.InGameObjects\Button</Filter>
     </ClInclude>
     <ClInclude Include="GameState.h">
       <Filter>11.GameState\01.GameState</Filter>
@@ -297,10 +288,13 @@
       <Filter>11.GameState\02.GameStateMachine</Filter>
     </ClInclude>
     <ClInclude Include="Menu.h">
-      <Filter>11.GameState\03.InGameState\01.Menu</Filter>
+      <Filter>15.InGame\01.InGameStates\01.Menu</Filter>
     </ClInclude>
     <ClInclude Include="Stage1.h">
-      <Filter>11.GameState\03.InGameState\02.Stage1</Filter>
+      <Filter>15.InGame\01.InGameStates\02.Stage1</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshManager.h">
+      <Filter>10.MeshManager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

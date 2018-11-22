@@ -123,7 +123,7 @@ struct Mesh
 			//}
 		}
 
-		for (int i = 0; i < polys.size(); i += 2)
+		for (unsigned int i = 0; i < polys.size(); i += 2)
 		{
 			polys[i].uv[0] = Vec2(0, 1);
 			polys[i].uv[1] = Vec2(0, 0);

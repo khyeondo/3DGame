@@ -23,8 +23,8 @@ public:
 
 	void RotateY(float angle);
 
-	virtual void Init();
-	virtual void Update();
+	virtual void Init(GameState* pGameState);
+	virtual void Update(GameState* gameState);
 	virtual void Render();
-	void handleInput();
+	void handleInput(GameState* pGameState);
 };

@@ -25,11 +25,11 @@ GameObject3D::GameObject3D(Color color, Mesh * mesh) :
 	m_color = color;
 }
 
-void GameObject3D::Init()
+void GameObject3D::Init(GameState* pGameState)
 {
 }
 
-void GameObject3D::Update()
+void GameObject3D::Update(GameState* pGameState)
 {
 }
 
@@ -41,5 +41,5 @@ void GameObject3D::Render()
 void GameObject3D::LookAt(Vec3 vec)
 {
 	Vec3 dist = m_pos - vec;
-	m_angle.y = atan2(dist.z, dist.x);
+	m_lookAngle.y = atan2(dist.z, dist.x);
 }

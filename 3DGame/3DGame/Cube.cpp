@@ -6,15 +6,14 @@
 Cube::Cube(SDL_Surface * surface, SDL_Surface * normalMap, Mesh * mesh) :
 	GameObject3D(surface, normalMap, mesh)
 {
-	Init();
 }
 
-void Cube::Init()
+void Cube::Init(GameState* pGameState)
 {
 	m_pos.x = -14.f;
 }
 
-void Cube::Update()
+void Cube::Update(GameState* pGameState)
 {
 	//m_angle.x += 0.1f;
 	//m_angle.y += 0.1f;

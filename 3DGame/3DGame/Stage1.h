@@ -5,6 +5,9 @@
 class Stage1 : public GameState
 {
 public:
+	Stage1() {};
+
+	virtual void init();
 	virtual void update();
 	virtual void render();
 	virtual bool onEnter();

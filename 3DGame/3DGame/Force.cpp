@@ -8,11 +8,11 @@ Force::Force(GameObject3D * gameObject) :
 
 void Force::AddForce(Vec3 force)
 {
-	m_force += force;
+	m_acceleration += force;
 }
 
 void Force::Update()
 {
-	m_velocity += m_force;
-	m_pGameObject->RefPos() += m_velocity;
+	m_velocity += m_acceleration * DELTATIME;
+	m_pGameObject->RefPos() += m_velocity * DELTATIME;
 }

@@ -1,6 +1,7 @@
 #include "Painter.h"
 #include "Renderer3D.h"
 #include "GameObject3D.h"
+#include <functional>
 
 void ColorPainter::DrawPolygon(GameObject3D * pGameObject,Polygon& poly)
 {
@@ -186,18 +187,23 @@ void TexturePainter::DrawPolygon(GameObject3D * pGameObject, Polygon& poly)
 	Vec3 origin = { 0,0,0 };
 	Vec3 lookAt = poly.vertex[1] - poly.vertex[0];
 
-	Matrix4X4::MakeLookAtMatrix(normalMat, origin, lookAt, poly.normalVec);
+	Renderer3D* pRenderer3D = Renderer3D::Instance();
 
-	int screenW = Renderer3D::Instance()->m_screenW;
-	int screenH = Renderer3D::Instance()->m_screenH;
-	SDL_Surface* pScreenBuffer = Renderer3D::Instance()->m_pScreenBuffer;
+	int screenW = pRenderer3D->m_screenW;
+	int screenH = pRenderer3D->m_screenH;
+	SDL_Surface* pScreenBuffer = pRenderer3D->m_pScreenBuffer;
 
-	unsigned char* pScreenPixels = Renderer3D::Instance()->m_pScreenPixels;
-	float* pDepthBuffer = Renderer3D::Instance()->m_pDepthBuffer;
+	SDL_Surface* pObjectSurface = pGameObject->GetSurface();
+	SDL_Surface* pNormalMap = pGameObject->GetNormalMap();
+
+	unsigned char* pScreenPixels = pRenderer3D->m_pScreenPixels;
+	float* pDepthBuffer			 = pRenderer3D->m_pDepthBuffer;
 
 	float brightness;
-	if(pGameObject->GetNormalMap() == 0)
+	if (pNormalMap == 0) {
 		brightness = pGameObject->GetShader()->Shading(NULL, poly.normalVec, NULL, 0, 0, 0, 0, 0.3f, poly.center);
+		Matrix4X4::MakeLookAtMatrix(normalMat, origin, lookAt, poly.normalVec);
+	}
 	
 
 	if (poly.vertex[1].y < poly.vertex[0].y)
@@ -304,18 +310,18 @@ void TexturePainter::DrawPolygon(GameObject3D * pGameObject, Polygon& poly)
 
 				if (tex_w > pDepthBuffer[i * screenW + j])
 				{
-					int sx = (int)((tex_u / tex_w)*pGameObject->GetSurface()->w);
-					int sy = (int)((tex_v / tex_w)*pGameObject->GetSurface()->h);
-					if (!(sx < 0 || sx >= pGameObject->GetSurface()->clip_rect.w || sy < 0 || sy >= pGameObject->GetSurface()->clip_rect.h))
+					int sx = (int)((tex_u / tex_w)*pObjectSurface->w);
+					int sy = (int)((tex_v / tex_w)*pObjectSurface->h);
+					if (!(sx < 0 || sx >= pObjectSurface->clip_rect.w || sy < 0 || sy >= pObjectSurface->clip_rect.h))
 					{
-						if (pGameObject->GetNormalMap() != 0) {
-							brightness = pGameObject->GetShader()->Shading(pGameObject->GetNormalMap(),
+						if (pNormalMap != 0) {
+							brightness = pGameObject->GetShader()->Shading(pNormalMap,
 								poly.normalVec, &normalMat, i, j, sx, sy, 0.3f, poly.center);
 						}
 						////
 						//pGameObject->GetPainter()->DrawPolygon(this, pGameObject->GetSurface(), &pGameObject->RefColor(),
 						//	tex_w, i, j, sx, sy, brightness);
-						Uint32 tcolor = Renderer3D::Instance()->GetPixel(pGameObject->GetSurface(), sx, sy);
+						Uint32 tcolor = pRenderer3D->GetPixel(pObjectSurface, sx, sy);
 						Uint8 a;
 						if (a = (Uint8)((tcolor & 0xFF000000) >> 24) != 0)
 						{
@@ -393,18 +399,18 @@ void TexturePainter::DrawPolygon(GameObject3D * pGameObject, Polygon& poly)
 
 				if (tex_w > pDepthBuffer[i * screenW + j])
 				{
-					int sx = (int)((tex_u / tex_w)*pGameObject->GetSurface()->w);
-					int sy = (int)((tex_v / tex_w)*pGameObject->GetSurface()->h);
-					if (!(sx < 0 || sx >= pGameObject->GetSurface()->clip_rect.w || sy < 0 || sy >= pGameObject->GetSurface()->clip_rect.h))
+					int sx = (int)((tex_u / tex_w)*pObjectSurface->w);
+					int sy = (int)((tex_v / tex_w)*pObjectSurface->h);
+					if (!(sx < 0 || sx >= pObjectSurface->clip_rect.w || sy < 0 || sy >= pObjectSurface->clip_rect.h))
 					{
-						if (pGameObject->GetNormalMap() != 0) {
-							brightness = pGameObject->GetShader()->Shading(pGameObject->GetNormalMap(),
+						if (pNormalMap != 0) {
+							brightness = pGameObject->GetShader()->Shading(pNormalMap,
 								poly.normalVec, &normalMat, i, j, sx, sy, 0.3f, poly.center);
 						}
 						////
 						//pGameObject->GetPainter()->DrawPolygon(this, pGameObject->GetSurface(), &pGameObject->RefColor(),
 						//	tex_w, i, j, sx, sy, brightness);
-						Uint32 tcolor = Renderer3D::Instance()->GetPixel(pGameObject->GetSurface(), sx, sy);
+						Uint32 tcolor = pRenderer3D->GetPixel(pObjectSurface, sx, sy);
 						Uint8 a;
 						if (a = (Uint8)((tcolor & 0xFF000000) >> 24) != 0)
 						{

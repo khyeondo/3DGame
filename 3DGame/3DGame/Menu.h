@@ -3,6 +3,7 @@
 class Menu : public GameState
 {
 public:
+	virtual void init();
 	virtual void update();
 	virtual void render();
 	virtual bool onEnter();

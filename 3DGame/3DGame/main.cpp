@@ -5,10 +5,10 @@ int main(int argc, char* argv[])
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
-	const int FPS = 10;
-	const int DELAY_TIME = 1000.0f / FPS;
+	//const int FPS = 10;
+	//const int DELAY_TIME = 1000.0f / FPS;
 
-	Game::Instance()->init("3DGame", 100, 100, 768, 540, false);
+	Game::Instance()->init("3DGame", 100, 100, 800, 600, false);
 	Game::Instance()->start();
 
 	Uint32 frameStart, frameTime;

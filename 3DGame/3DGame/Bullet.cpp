@@ -1,23 +1,32 @@
 #include "Bullet.h"
 #include "InputHandler.h"
+#include "Renderer3D.h"
 #include "Camera.h"
 
+#include "SurfaceManager.h"
 
-void Bullet::Init()
+Bullet::Bullet(SDL_Surface * surface, SDL_Surface * normalMap, Mesh * mesh) : 
+	GameObject3D(surface, normalMap,mesh),m_force(this)
 {
-	//m_pos.x = -14.f;
+	m_tag = "Bullet";
 }
 
-void Bullet::Update()
+void Bullet::Init(GameState* pGameState)
 {
-	//m_angle.x += 0.1f;
-	//m_angle.y += 0.1f;
-	//m_angle.z += 0.1f;
-	//Vec3 a = m_pos - Renderer3D::Instance()->GetCamera()->pos;
-	//m_angle.y = atan2(a.z , a.x);
+}
+
+void Bullet::Update(GameState* pGameState)
+{
+	m_force.Update();
+	LookAt(Renderer3D::Instance()->GetCamera()->pos);
 }
 
 void Bullet::Render()
 {
-	//GameObject3D::Render();
+	GameObject3D::Render();
+}
+
+void Bullet::SetDir(Vec3 dir)
+{
+	m_force.RefVelocity() = dir;
 }

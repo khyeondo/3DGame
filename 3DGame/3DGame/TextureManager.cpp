@@ -55,3 +55,12 @@ void TextureManager::drawFrame(string id,
 	SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect,
 		&destRect, 0, 0, flip);
 }
+
+void TextureManager::Clear()
+{
+	map<string, SDL_Texture*>::iterator iter = m_textureMap.begin();
+	map<string, SDL_Texture*>::iterator iterEnd = m_textureMap.end();
+
+	for (; iter != iterEnd; iter++)
+		SDL_DestroyTexture(iter->second);
+}

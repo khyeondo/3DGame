@@ -13,8 +13,8 @@ public:
 	GameObject2D();
 	virtual ~GameObject2D();
 
-	virtual void Init();
-	virtual void Update();
+	virtual void Init(GameState* pGameState);
+	virtual void Update(GameState* pGameState);
 	virtual void Render();
 
 	Vec2 GetPos() {

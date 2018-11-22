@@ -6,7 +6,7 @@
 using namespace std;
 
 class Renderer3D;
-class SDL_Surface;
+struct SDL_Surface;
 class Color;
 class GameObject3D;
 
@@ -19,15 +19,13 @@ public:
 protected:
 	void Swap(int& a, int& b)
 	{
-		int temp = a;
-		a = b;
-		b = temp;
+		a ^= b ^= a ^= b;
 	}
 	void Swap(float& a, float& b)
 	{
-		float temp = a;
-		a = b;
-		b = temp;
+		a = a + b;
+		b = a - b;
+		a = a - b;
 	}
 };
 

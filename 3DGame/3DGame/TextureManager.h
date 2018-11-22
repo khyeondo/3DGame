@@ -38,5 +38,7 @@ public:
 		SDL_Renderer* pRenderer,
 		SDL_RendererFlip flip = SDL_FLIP_NONE);
 
+	void Clear();
+
 };
 typedef class TextureManager TheTextureManager;

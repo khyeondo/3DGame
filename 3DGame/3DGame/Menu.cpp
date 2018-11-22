@@ -4,6 +4,10 @@
 Menu* Menu::s_pInstance = 0;
 const std::string Menu::s_menuID = "MENU";
 
+void Menu::init()
+{
+}
+
 void Menu::update()
 {
 	// nothing for now

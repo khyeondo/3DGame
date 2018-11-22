@@ -1,9 +1,9 @@
 #pragma once
 
-class Vec3;
+struct Vec3;
 class Camera;
 class Renderer3D;
-class SDL_Surface;
+struct SDL_Surface;
 class Matrix4X4;
 
 class Shader

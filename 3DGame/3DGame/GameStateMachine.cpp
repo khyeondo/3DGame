@@ -10,6 +10,7 @@ void GameStateMachine::changeState(GameState *pState)
 		}
 		m_currentState = pState;
 		m_currentState->onEnter();
+		m_currentState->init();
 	}
 }
 

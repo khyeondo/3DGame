@@ -16,10 +16,11 @@ protected:
 	SDL_Surface* m_pSurface = 0;
 	SDL_Surface* m_pNormalMap = 0;
 	Mesh* m_pMesh;
-	Color m_color = { 255.f,255.f,255.f };
+	Color m_color = { 255,255,255 };
 	Vec3 m_pos = { 0.f,0.f,0.f };
 	Vec3 m_scale = { 1.f,1.f,1.f };
 	Vec3 m_angle = { 0.f,0.f,0.f };
+	Vec3 m_lookAngle = { 0.f,0.f,0.f };
 
 	Painter* m_pPainter;
 	Shader* m_pShader;
@@ -29,8 +30,8 @@ public:
 	GameObject3D(Color color, Mesh* mesh);
 	virtual ~GameObject3D() {}
 
-	virtual void Init();
-	virtual void Update();
+	virtual void Init(GameState* pGameState);
+	virtual void Update(GameState* pGameState);
 	virtual void Render();
 
 	void SetMesh(Mesh* mesh) {
@@ -67,6 +68,9 @@ public:
 	}
 	Vec3& RefAngle() {
 		return m_angle;
+	}
+	Vec3& RefLookAtAngle() {
+		return m_lookAngle;
 	}
 	Vec3& RefScale() {
 		return m_scale;

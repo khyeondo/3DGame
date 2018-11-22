@@ -5,8 +5,6 @@
 #include <vector>
 
 class Camera;
-class GameObject;
-class CameraController;
 class GameStateMachine;
 
 using namespace std;
@@ -40,27 +38,10 @@ private:
 
 	Camera* m_pCamera;
 
-	vector<GameObject*> m_gameObjects;
-	GameStateMachine* m_pGameStateMachine;
-
-	Mesh cube;
-	Mesh mountains;
-	Mesh tri;
-
-	GameObject* m_pGameObject;
-	GameObject* m_pGameObject2;
-	GameObject* m_pGameObject3;
-	CameraController* m_pCameraController;
-
-	SDL_Surface * m_pSurface;
-	SDL_Surface* m_pNormal;
-	SDL_Surface * m_pSurface2;
-	SDL_Surface* m_pNormal2;
-	SDL_Surface * m_pSurface3;
 	SDL_Window * m_pWindow;
 	SDL_Renderer* m_pRenderer;
 
-
+	GameStateMachine* m_pGameStateMachine;
 private:
 	Game() {}
 

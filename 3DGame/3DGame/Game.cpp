@@ -3,13 +3,9 @@
 #include "Vec2.h"
 #include "Renderer3D.h"
 #include "Camera.h"
-#include "GameObject3D.h"
-#include "SurfaceManager.h"
 #include "InputHandler.h"
-#include "CameraController.h"
-#include "Cube.h"
-#include "MapManager.h"
 #include "GameStateMachine.h"
+#include "Stage1.h"
 
 Game* Game::m_pinst = 0;
 
@@ -39,57 +35,17 @@ bool Game::init(const char * title, int xpos, int ypos, int width, int height, b
 
 	strcpy_s(windowTitle,20 ,(char*)title);
 
-	m_pCamera = new Camera(Vec3(0.f, 0.f, 0.f), Vec3(0.f, 0.f, -1.f), 0.1f, 500.f, 90.f);
+	m_pCamera = new Camera(Vec3(0.f, 0.f, 0.f), Vec3(0.f, 0.f, -1.f), 1.f, 500.f, 90.f);
 
 	Renderer3D::Instance()->Init(m_pRenderer, m_pCamera, Vec3(0.f, -1.f, 1.f), Color(0,0,0),width, height);
 
 	m_pGameStateMachine = new GameStateMachine();
-
+	m_pGameStateMachine->changeState(new Stage1());
 	return true;
 }
 
 void Game::start()
 {
-	//m_Surface = SDL_LoadBMP("Assets/animate.bmp");
-	m_pSurface = IMG_Load("Assets/DisplacementMap.png");
-	m_pNormal = IMG_Load("assets/NormalMap.png");
-	m_pSurface2 = IMG_Load("Assets/DisplacementMap2.png");
-	m_pNormal2 = IMG_Load("assets/NormalMap2.png");
-	m_pSurface3 = IMG_Load("assets/w.png");
-
-	SurfaceManager::Instance()->load("Assets/DisplacementMap.png", "surface");
-	SurfaceManager::Instance()->load("Assets/box.png", "box");
-	SurfaceManager::Instance()->load("Assets/NormalMap.png", "normalMap");
-
-	cube.SetCube(Vec3(5.f, 5.f, 5.f), Vec3(10, 10, 10));
-	mountains.LoadFromObjectFile("assets/mountains.obj");
-
-
-
-	Polygon poly;
-	poly.vertex[0] = Vec3(0, 0, 10);
-	poly.vertex[1] = Vec3(0, 10, 0);
-	poly.vertex[2] = Vec3(0, 0, 0);
-
-	tri.polys.push_back(poly);
-
-	m_pCameraController = new CameraController(m_pCamera);
-	m_pGameObject = new GameObject3D(m_pSurface2, m_pNormal2, &cube);
-	m_pGameObject2 = new GameObject3D(m_pSurface, m_pNormal, &cube);
-	m_pGameObject3 = new GameObject3D(m_pSurface3, NULL, &mountains);
-	((GameObject3D*)m_pGameObject)->RefPos().x = 13.f;
-	((GameObject3D*)m_pGameObject)->RefPos().y = 0.f;
-	((GameObject3D*)m_pGameObject)->RefPos().z = 0.f;
-	((GameObject3D*)m_pGameObject3)->RefPos().y = -50.f;
-
-	m_gameObjects.push_back(m_pCameraController);
-	//m_gameObjects.push_back(m_pGameObject);
-	//m_gameObjects.push_back(m_pGameObject2);
-	//m_gameObjects.push_back(m_pGameObject3);
-	m_gameObjects.push_back(new MapManager());
-	m_gameObjects.push_back(new Cube(NULL, NULL, &cube));
-	m_gameObjects.push_back(new Cube(m_pSurface3, NULL, &cube));
-
 }
 
 void Game::handleEvents()
@@ -100,20 +56,6 @@ void Game::handleEvents()
 
 void Game::update()
 {
-	//object.angle += Vec3(0.05f, 0.05f, 0.05f);
-	Matrix4X4 rotateX;
-	Matrix4X4 rotateY;
-	Matrix4X4 rotateZ;
-	//Matrix4X4::MakeRotationX(rotateX, 0.1f);
-	Matrix4X4::MakeRotationY(rotateY, 0.1f);
-	//Matrix4X4::MakeRotationY(rotateZ, 0.07f);
-	Renderer3D::Instance()->RefLight() *= rotateY;
-	//Renderer3D::Instance()->RefLight() *= rotateX;
-	//Renderer3D::Instance()->RefLight() *= rotateZ;
-	for (GameObject* gameObject : m_gameObjects)
-	{
-		gameObject->Update();
-	}
 	m_pGameStateMachine->Update();
 }
 
@@ -123,11 +65,6 @@ void Game::render()
 	SDL_RenderClear(m_pRenderer);
 
 	m_pGameStateMachine->Render();
-	for (GameObject* gameObject : m_gameObjects)
-	{
-		gameObject->Render();
-	}
-
 	Renderer3D::Instance()->Present();
 
 	SDL_RenderPresent(m_pRenderer);
@@ -143,6 +80,7 @@ void Game::clean()
 {
 	std::cout << "cleaning game\n";
 
+	delete m_pGameStateMachine;
 	SDL_DestroyWindow(m_pWindow);
 	SDL_DestroyRenderer(m_pRenderer);
 	SDL_Quit();

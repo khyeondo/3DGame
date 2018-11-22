@@ -131,6 +131,7 @@
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject3D.cpp" />
+    <ClCompile Include="GameState.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Matrix4X4.cpp" />
     <ClCompile Include="Renderer3D.cpp" />
@@ -140,8 +141,6 @@
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="DeltaTime.cpp" />
-    <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="MapManager.cpp" />
     <ClCompile Include="GameObject2D.cpp" />
     <ClCompile Include="Collider.cpp" />
@@ -154,6 +153,7 @@
     <ClCompile Include="GameStateMachine.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Stage1.cpp" />
+    <ClCompile Include="MeshManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
@@ -174,8 +174,6 @@
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="Cube.h" />
     <ClInclude Include="DeltaTime.h" />
-    <ClInclude Include="Scene.h" />
-    <ClInclude Include="SceneManager.h" />
     <ClInclude Include="MapManager.h" />
     <ClInclude Include="GameObject2D.h" />
     <ClInclude Include="Collider.h" />
@@ -189,6 +187,7 @@
     <ClInclude Include="GameStateMachine.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Stage1.h" />
+    <ClInclude Include="MeshManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

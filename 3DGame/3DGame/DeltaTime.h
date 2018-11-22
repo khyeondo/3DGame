@@ -28,6 +28,7 @@ private:
 	Uint64 last;
 
 	double deltaTime;
+	float gameSpeed = 1.f;
 
 public:
 	void SetDeltaTime() {
@@ -36,11 +37,14 @@ public:
 
 		deltaTime = (double)((now - last) / (double)SDL_GetPerformanceFrequency());
 	}
+	void SetGameSpeed(float speed) {
+		gameSpeed = speed;
+	}
 
 	double GetDeltaTime() {
-		return deltaTime;
+		return deltaTime * gameSpeed;
 	}
 
 };
 
-#define DELTATIME DeltaTime::Instance()->GetDeltaTime()
+#define DELTATIME (float)(DeltaTime::Instance()->GetDeltaTime())

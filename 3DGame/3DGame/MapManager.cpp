@@ -31,10 +31,10 @@ void MapManager::SetTile(Vec3 pos, Vec3 angle, Color color)
 
 MapManager::MapManager()
 {
-	Init();
+	m_tag = "MapManager";
 }
 
-void MapManager::Init()
+void MapManager::Init(GameState* pGameState)
 {
 
 	/*
@@ -68,7 +68,7 @@ void MapManager::Init()
 	};
 
 	m_tile.SetPlane(Vec3(0.f, 0.f, 0.f), Vec3(10.f, 10.f, 10.f));
-	SDL_Surface* surface = SurfaceManager::Instance()->GetSurface("box");
+	SDL_Surface* surface = SurfaceManager::Instance()->GetSurface("box")->at(0);
 
 	Color tileColor = { 108, 58, 25 };
 	for (int i = 0; i < MAPSIZEY; i++)
@@ -163,11 +163,11 @@ void MapManager::Init()
 	}
 }
 
-void MapManager::Update()
+void MapManager::Update(GameState* pGameState)
 {
 	for (GameObject* gameObject : m_mapTiles)
 	{
-		gameObject->Update();
+		gameObject->Update(pGameState);
 	}
 }
 
