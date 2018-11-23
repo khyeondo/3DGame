@@ -1,12 +1,13 @@
 #pragma once
 
-#include "GameObject.h"
+#include "GameObject3D.h"
 #include "Matrix4X4.h"
 #include "Vec3.h"
-
+#include "Collider.h"
+#include "Light.h"
 class Camera;
 
-class CameraController : public GameObject
+class Player : public GameObject3D
 {
 private:
 	Camera* m_pCamera;
@@ -18,13 +19,17 @@ private:
 
 	bool mouseLock = true;
 
+	Collider m_collision;
+	Light m_light;
+
 public:
-	CameraController(Camera* pCamera);
+	Player(Camera* pCamera);
 
 	void RotateY(float angle);
 
 	virtual void Init(GameState* pGameState);
 	virtual void Update(GameState* gameState);
 	virtual void Render();
+	virtual void Collision(GameObject3D* other);
 	void handleInput(GameState* pGameState);
 };

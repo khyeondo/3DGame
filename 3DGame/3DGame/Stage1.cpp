@@ -1,12 +1,13 @@
 #include "Stage1.h"
 #include "GameObject.h"
-#include "CameraController.h"
+#include "Player.h"
 #include "Cube.h"
 #include "MapManager.h"
 #include "SurfaceManager.h"
 #include "MeshManager.h"
 #include "Renderer3D.h"
 #include "Camera.h"
+#include "CollideManger.h"
 #include <iostream>
 
 Stage1* Stage1::s_pInstance = 0;
@@ -27,6 +28,7 @@ void Stage1::update()
 	{
 		m_gameObjects[i]->Update(this);
 	}
+	ColliderManager::Instance()->Update();
 }
 
 void Stage1::render()
@@ -51,7 +53,7 @@ bool Stage1::onEnter()
 	MeshManager::Instance()->SetMesh(plane, "plane");
 	MeshManager::Instance()->SetMesh(cube, "cube");
 
-	m_gameObjects.push_back(new CameraController(Renderer3D::Instance()->GetCamera()));
+	m_gameObjects.push_back(new Player(Renderer3D::Instance()->GetCamera()));
 	m_gameObjects.push_back(new MapManager());
 	m_gameObjects.push_back(new Cube(SurfaceManager::Instance()->GetSurface("box")->at(0), 
 		NULL, MeshManager::Instance()->GetMesh("cube")));
@@ -63,6 +65,7 @@ bool Stage1::onEnter()
 bool Stage1::onExit()
 {
 	SurfaceManager::Instance()->Clear();
+	ColliderManager::Instance()->Clear();
 	std::cout << "exiting stage1\n";
 	return true;
 }

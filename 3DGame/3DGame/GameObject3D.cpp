@@ -33,6 +33,10 @@ void GameObject3D::Update(GameState* pGameState)
 {
 }
 
+void GameObject3D::Collision(GameObject3D * other)
+{
+}
+
 void GameObject3D::Render()
 {
 	Renderer3D::Instance()->Rendering(this);

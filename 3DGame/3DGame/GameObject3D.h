@@ -28,10 +28,13 @@ protected:
 public:
 	GameObject3D(SDL_Surface* surface, SDL_Surface* normalMap, Mesh* mesh);
 	GameObject3D(Color color, Mesh* mesh);
-	virtual ~GameObject3D() {}
+	virtual ~GameObject3D() {
+		GameObject::~GameObject();
+	}
 
 	virtual void Init(GameState* pGameState);
 	virtual void Update(GameState* pGameState);
+	virtual void Collision(GameObject3D *other);
 	virtual void Render();
 
 	void SetMesh(Mesh* mesh) {

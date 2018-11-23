@@ -12,6 +12,22 @@ public:
 public:
 	Uint8 r, g, b;
 
+	void operator *= (Vec3 vec)
+	{
+		int r = this->r;
+		int g = this->g;
+		int b = this->b;
+		r *= vec.x;
+		g *= vec.y;
+		b *= vec.z;
+		if (r > 255) r = 255;
+		if (g > 255) g = 255;
+		if (b > 255) b = 255;
+		this->r = (Uint8)r;
+		this->g = (Uint8)g;
+		this->b = (Uint8)b;
+	}
+
 	void operator * (float a)
 	{
 		r *= (Uint8)a;

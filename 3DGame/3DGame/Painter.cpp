@@ -2,6 +2,7 @@
 #include "Renderer3D.h"
 #include "GameObject3D.h"
 #include <functional>
+#include "LightManger.h"
 
 void ColorPainter::DrawPolygon(GameObject3D * pGameObject,Polygon& poly)
 {
@@ -13,7 +14,10 @@ void ColorPainter::DrawPolygon(GameObject3D * pGameObject,Polygon& poly)
 	float* pDepthBuffer = Renderer3D::Instance()->m_pDepthBuffer;
 	//
 	Color color = pGameObject->RefColor();
-	float brightness = pGameObject->GetShader()->Shading(NULL, poly.normalVec, NULL, 0, 0, 0, 0, 0.3f, poly.center);
+	Vec3 brightness = { 0,0,0 };
+	for(Light* light : LightManager::Instance()->m_lights)
+		pGameObject->GetShader()->Shading(brightness,NULL, poly.normalVec, NULL, 0, 0, 0, 0,  poly.center, light);
+	color *= brightness;
 
 	if (poly.vertex[1].y < poly.vertex[0].y)
 	{
@@ -105,9 +109,9 @@ void ColorPainter::DrawPolygon(GameObject3D * pGameObject,Polygon& poly)
 					//pGameObject->GetPainter()->DrawPolygon(this, pGameObject->GetSurface(), &pGameObject->RefColor(),
 					//	tex_w, i, j, sx, sy, brightness);
 	
-					pScreenPixels[4 * (i * pScreenBuffer->w + j) + 0] = color.b * brightness;
-					pScreenPixels[4 * (i * pScreenBuffer->w + j) + 1] = color.g * brightness;
-					pScreenPixels[4 * (i * pScreenBuffer->w + j) + 2] = color.r * brightness;
+					pScreenPixels[4 * (i * pScreenBuffer->w + j) + 0] = color.b;
+					pScreenPixels[4 * (i * pScreenBuffer->w + j) + 1] = color.g;
+					pScreenPixels[4 * (i * pScreenBuffer->w + j) + 2] = color.r;
 					pScreenPixels[4 * (i * pScreenBuffer->w + j) + 3] = 255;
 					pDepthBuffer[i* screenW + j] = tex_w;
 					////
@@ -169,9 +173,9 @@ void ColorPainter::DrawPolygon(GameObject3D * pGameObject,Polygon& poly)
 	
 				if (tex_w > pDepthBuffer[i * screenW + j])
 				{
-					pScreenPixels[4 * (i * pScreenBuffer->w + j) + 0] = color.b * brightness;
-					pScreenPixels[4 * (i * pScreenBuffer->w + j) + 1] = color.g * brightness;
-					pScreenPixels[4 * (i * pScreenBuffer->w + j) + 2] = color.r * brightness;
+					pScreenPixels[4 * (i * pScreenBuffer->w + j) + 0] = color.b;
+					pScreenPixels[4 * (i * pScreenBuffer->w + j) + 1] = color.g;
+					pScreenPixels[4 * (i * pScreenBuffer->w + j) + 2] = color.r;
 					pScreenPixels[4 * (i * pScreenBuffer->w + j) + 3] = 255;
 					pDepthBuffer[i* screenW + j] = tex_w;
 				}
@@ -199,11 +203,9 @@ void TexturePainter::DrawPolygon(GameObject3D * pGameObject, Polygon& poly)
 	unsigned char* pScreenPixels = pRenderer3D->m_pScreenPixels;
 	float* pDepthBuffer			 = pRenderer3D->m_pDepthBuffer;
 
-	float brightness;
-	if (pNormalMap == 0) {
-		brightness = pGameObject->GetShader()->Shading(NULL, poly.normalVec, NULL, 0, 0, 0, 0, 0.3f, poly.center);
-		Matrix4X4::MakeLookAtMatrix(normalMat, origin, lookAt, poly.normalVec);
-	}
+	Vec3 brightness = { 0,0,0 };
+	for (Light* light : LightManager::Instance()->m_lights)
+		pGameObject->GetShader()->Shading(brightness, NULL, poly.normalVec, NULL, 0, 0, 0, 0, poly.center, light);
 	
 
 	if (poly.vertex[1].y < poly.vertex[0].y)
@@ -315,8 +317,8 @@ void TexturePainter::DrawPolygon(GameObject3D * pGameObject, Polygon& poly)
 					if (!(sx < 0 || sx >= pObjectSurface->clip_rect.w || sy < 0 || sy >= pObjectSurface->clip_rect.h))
 					{
 						if (pNormalMap != 0) {
-							brightness = pGameObject->GetShader()->Shading(pNormalMap,
-								poly.normalVec, &normalMat, i, j, sx, sy, 0.3f, poly.center);
+							//brightness = pGameObject->GetShader()->Shading(pNormalMap,
+							//	poly.normalVec, &normalMat, i, j, sx, sy, 0.3f, poly.center);
 						}
 						////
 						//pGameObject->GetPainter()->DrawPolygon(this, pGameObject->GetSurface(), &pGameObject->RefColor(),
@@ -329,10 +331,10 @@ void TexturePainter::DrawPolygon(GameObject3D * pGameObject, Polygon& poly)
 							Uint8 b = (Uint8)((tcolor & 0x00FF0000) >> 16);
 							Uint8 g = (Uint8)((tcolor & 0x0000FF00) >> 8);
 
-							pScreenPixels[4 * (i * pScreenBuffer->w + j) + 0] = b * brightness;
-							pScreenPixels[4 * (i * pScreenBuffer->w + j) + 1] = g * brightness;
-							pScreenPixels[4 * (i * pScreenBuffer->w + j) + 2] = r * brightness;
-							pScreenPixels[4 * (i * pScreenBuffer->w + j) + 3] = a * brightness;
+							pScreenPixels[4 * (i * pScreenBuffer->w + j) + 0] = b * brightness.z;
+							pScreenPixels[4 * (i * pScreenBuffer->w + j) + 1] = g * brightness.y;
+							pScreenPixels[4 * (i * pScreenBuffer->w + j) + 2] = r * brightness.x;
+							pScreenPixels[4 * (i * pScreenBuffer->w + j) + 3] = a;
 							pDepthBuffer[i* screenW + j] = tex_w;
 						}
 						////
@@ -404,8 +406,8 @@ void TexturePainter::DrawPolygon(GameObject3D * pGameObject, Polygon& poly)
 					if (!(sx < 0 || sx >= pObjectSurface->clip_rect.w || sy < 0 || sy >= pObjectSurface->clip_rect.h))
 					{
 						if (pNormalMap != 0) {
-							brightness = pGameObject->GetShader()->Shading(pNormalMap,
-								poly.normalVec, &normalMat, i, j, sx, sy, 0.3f, poly.center);
+							//brightness = pGameObject->GetShader()->Shading(pNormalMap,
+							//	poly.normalVec, &normalMat, i, j, sx, sy, 0.3f, poly.center);
 						}
 						////
 						//pGameObject->GetPainter()->DrawPolygon(this, pGameObject->GetSurface(), &pGameObject->RefColor(),
@@ -418,10 +420,10 @@ void TexturePainter::DrawPolygon(GameObject3D * pGameObject, Polygon& poly)
 							Uint8 b = (Uint8)((tcolor & 0x00FF0000) >> 16);
 							Uint8 g = (Uint8)((tcolor & 0x0000FF00) >> 8);
 
-							pScreenPixels[4 * (i * pScreenBuffer->w + j) + 0] = b * brightness;
-							pScreenPixels[4 * (i * pScreenBuffer->w + j) + 1] = g * brightness;
-							pScreenPixels[4 * (i * pScreenBuffer->w + j) + 2] = r * brightness;
-							pScreenPixels[4 * (i * pScreenBuffer->w + j) + 3] = a * brightness;
+							pScreenPixels[4 * (i * pScreenBuffer->w + j) + 0] = b * brightness.z;
+							pScreenPixels[4 * (i * pScreenBuffer->w + j) + 1] = g * brightness.y;
+							pScreenPixels[4 * (i * pScreenBuffer->w + j) + 2] = r * brightness.x;
+							pScreenPixels[4 * (i * pScreenBuffer->w + j) + 3] = a;
 							pDepthBuffer[i* screenW + j] = tex_w;
 						}
 						////

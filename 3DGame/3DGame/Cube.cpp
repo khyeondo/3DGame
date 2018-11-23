@@ -4,8 +4,10 @@
 
 
 Cube::Cube(SDL_Surface * surface, SDL_Surface * normalMap, Mesh * mesh) :
-	GameObject3D(surface, normalMap, mesh)
+	GameObject3D(surface, normalMap, mesh) ,m_collider(this)
 {
+	m_collider.SetCollsionRage(5.f, 5.f);
+	m_tag = "cube";
 }
 
 void Cube::Init(GameState* pGameState)
@@ -19,6 +21,10 @@ void Cube::Update(GameState* pGameState)
 	//m_angle.y += 0.1f;
 	//m_angle.z += 0.1f;
 	LookAt(Renderer3D::Instance()->GetCamera()->pos);
+}
+
+void Cube::Collision(GameObject3D * other)
+{
 }
 
 void Cube::Render()

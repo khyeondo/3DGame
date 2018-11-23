@@ -1,4 +1,4 @@
-#include "CameraController.h"
+#include "Player.h"
 #include "InputHandler.h"
 #include "Camera.h"
 #include "Vec2.h"
@@ -8,12 +8,16 @@
 #include "SurfaceManager.h"
 #include "MeshManager.h"
 
-CameraController::CameraController(Camera* pCamera)
+Player::Player(Camera* pCamera):
+	GameObject3D(NULL,NULL,NULL), m_collision(this),m_light(this)
 {
 	m_pCamera = pCamera;
+	m_collision.SetCollsionRage(5.f, 5.f);
+	m_light.color = { 255, 255, 255 };
+	m_light.brightness = 1.f;
 }
 
-void CameraController::RotateY(float angle)
+void Player::RotateY(float angle)
 {
 	Matrix4X4 rotateY;
 	Matrix4X4::MakeRotationY(rotateY, angle);
@@ -23,13 +27,13 @@ void CameraController::RotateY(float angle)
 	m_pCamera->lookAt = m_pCamera->pos + lookDir;
 }
 
-void CameraController::Init(GameState* pGameState)
+void Player::Init(GameState* pGameState)
 {
 	Matrix4X4::MakeRotationY(m_right, -M_PI / 2.f);
 	SDL_ShowCursor(0);
 }
 
-void CameraController::Update(GameState* pGameState)
+void Player::Update(GameState* pGameState)
 {
 	handleInput(pGameState);
 
@@ -42,13 +46,18 @@ void CameraController::Update(GameState* pGameState)
 
 	m_lookDir = m_pCamera->lookAt - m_pCamera->pos;
 	m_lookDir.Normalize();
+	m_pos = m_pCamera->pos;
 }
 
-void CameraController::Render()
+void Player::Render()
 {
 }
 
-void CameraController::handleInput(GameState* pGameState)
+void Player::Collision(GameObject3D * other)
+{
+}
+
+void Player::handleInput(GameState* pGameState)
 {
 	if (TheInputHandler::Instance()->isKeyHolding(SDL_SCANCODE_W))
 	{

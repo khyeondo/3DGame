@@ -25,6 +25,8 @@ public:
 	void GameObject2DInstantiate(GameObject* pGameObject,
 		Vec2 pos = Vec2(0.f, 0.f));
 
+	void DestroyGameObject(GameObject* pGameObject);
+
 	GameObject* FindObjectByTag(std::string tag);
 
 };

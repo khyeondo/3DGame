@@ -1,18 +1,28 @@
 #pragma once
 
+class GameObject3D;
 class GameObject;
 
 class Collider
 {
 private:
-	GameObject* m_pGameObject;
+	GameObject3D* m_pGameObject;
+
+	float m_radius = 0.f;
+	float m_height = 0.f;
 
 public:
-	Collider(GameObject* pGameObject);
+	Collider(GameObject3D* pGameObject);
+	~Collider();
 
-	bool IsCollision(Collider* pCollider);
+	friend class ColliderManager;
 
-	GameObject* GetGameObject() {
+	void SetCollsionRage(float radius, float height) {
+		m_radius = radius;
+		m_height = height;
+	}
+
+	GameObject3D* GetGameObject() {
 		return m_pGameObject;
 	}
 };

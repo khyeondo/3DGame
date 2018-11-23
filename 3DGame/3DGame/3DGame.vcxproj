@@ -137,7 +137,7 @@
     <ClCompile Include="Renderer3D.cpp" />
     <ClCompile Include="Painter.cpp" />
     <ClCompile Include="Shader.cpp" />
-    <ClCompile Include="CameraController.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="DeltaTime.cpp" />
@@ -154,11 +154,18 @@
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Stage1.cpp" />
     <ClCompile Include="MeshManager.cpp" />
+    <ClCompile Include="Light.cpp" />
+    <ClCompile Include="LightManger.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
-    <ClInclude Include="define.h" />
-    <ClInclude Include="defulte.h" />
+    <ClInclude Include="Color.h" />
+    <ClInclude Include="define.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="defulte.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObject3D.h" />
@@ -170,7 +177,7 @@
     <ClInclude Include="Vec3.h" />
     <ClInclude Include="Painter.h" />
     <ClInclude Include="Shader.h" />
-    <ClInclude Include="CameraController.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="Cube.h" />
     <ClInclude Include="DeltaTime.h" />
@@ -188,6 +195,8 @@
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Stage1.h" />
     <ClInclude Include="MeshManager.h" />
+    <ClInclude Include="Light.h" />
+    <ClInclude Include="LightManger.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

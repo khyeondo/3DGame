@@ -6,6 +6,7 @@ GameObject2D::GameObject2D()
 
 GameObject2D::~GameObject2D()
 {
+	GameObject::~GameObject();
 }
 
 void GameObject2D::Init(GameState* pGameState)
