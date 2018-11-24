@@ -1,5 +1,10 @@
 #pragma once
 
+/*
+	Âü°í: https://github.com/OneLoneCoder/videos/blob/master/OneLoneCoder_olcEngine3D_Part4.cpp
+		  https://www.youtube.com/watch?v=nBzCS-Y0FcY
+*/
+
 #include "Matrix4X4.h"
 #include "Vec3.h"
 #include "Polygon.h"
