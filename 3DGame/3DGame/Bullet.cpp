@@ -8,10 +8,10 @@
 Bullet::Bullet(SDL_Surface * surface, SDL_Surface * normalMap, Mesh * mesh) : 
 	GameObject3D(surface, normalMap,mesh),m_force(this),m_light(this),m_colider(this)
 {
-	m_tag = "Bullet";
+	m_tag = "bullet";
 	
-	m_light.color = { 255,0,0 };
-	m_light.brightness = 0.4f;
+	m_light.color = { 255,150,150 };
+	m_light.brightness = 0.15f;
 
 	m_colider.SetCollsionRage(5.f, 5.f);
 }
@@ -19,12 +19,15 @@ Bullet::Bullet(SDL_Surface * surface, SDL_Surface * normalMap, Mesh * mesh) :
 void Bullet::Init(GameState* pGameState)
 {
 	m_pGameState = pGameState;
+	m_firePos = m_pos;
 }
 
 void Bullet::Update(GameState* pGameState)
 {
 	m_force.Update();
 	LookAt(Renderer3D::Instance()->GetCamera()->pos);
+	if ((m_firePos - m_pos).Length() > 200.f)
+		pGameState->DestroyGameObject(this);
 }
 
 void Bullet::Collision(GameObject3D * other)

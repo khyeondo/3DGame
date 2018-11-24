@@ -17,9 +17,12 @@ void FlatShader::Shading(Vec3& brightness,SDL_Surface * pSurface,
 
 	lightDir.Normalize();
 	float intensity = Vec3::DotProduct(lightDir, normalVec);
+	//intensity *= M_PI / 2.f;
+	//intensity = sin(intensity);
 	intensity *= -1;
-	intensity = (((intensity) > (0)) ? (intensity) : (0));
-	intensity /= (dist/(30.f*light->brightness));
+	intensity = (((intensity) > (0.2)) ? (intensity) : (0.2));
+	//intensity = (((intensity) > (0)) ? (intensity) : (0));
+	intensity /= (dist)/(20.f*light->brightness);
 	intensity = (((intensity) < (1)) ? (intensity) : (1));
 
 	brightness.x += light->color.r/255.f * intensity;

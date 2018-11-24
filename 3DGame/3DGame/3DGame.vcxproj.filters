@@ -136,6 +136,9 @@
     <Filter Include="02.Render3D\06.Color">
       <UniqueIdentifier>{6ec1f4c1-8e2c-46ab-9001-b59f5b51f5ba}</UniqueIdentifier>
     </Filter>
+    <Filter Include="15.InGame\02.InGameObjects\Fire">
+      <UniqueIdentifier>{8590c8a7-29d0-4996-8d86-09828d37a200}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -218,6 +221,9 @@
     </ClCompile>
     <ClCompile Include="Light.cpp">
       <Filter>04.GameObject\05.Components\03.Light\01.Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Fire.cpp">
+      <Filter>15.InGame\02.InGameObjects\Fire</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -325,6 +331,9 @@
     </ClInclude>
     <ClInclude Include="Color.h">
       <Filter>02.Render3D\06.Color</Filter>
+    </ClInclude>
+    <ClInclude Include="Fire.h">
+      <Filter>15.InGame\02.InGameObjects\Fire</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

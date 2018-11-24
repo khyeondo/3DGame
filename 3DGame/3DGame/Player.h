@@ -19,6 +19,9 @@ private:
 
 	bool mouseLock = true;
 
+	float m_shootDeley = 0.2f;
+	Uint32 m_shootTimer = 0.f;
+
 	Collider m_collision;
 	Light m_light;
 

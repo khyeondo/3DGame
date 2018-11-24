@@ -14,6 +14,8 @@ private:
 	Collider m_colider;
 
 	GameState* m_pGameState;
+
+	Vec3 m_firePos;
 public:
 	Bullet(SDL_Surface* surface, SDL_Surface* normalMap, Mesh* mesh);
 

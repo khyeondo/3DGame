@@ -214,7 +214,7 @@ struct Mesh
 			polys[i + 1].uv[2] = Vec2(1, 0);
 		}
 	}
-	void SetPlane(Vec3 center, Vec3 size)
+	void SetPlane(Vec3 size)
 	{
 		Vec3 p[4];
 		Vec2 uv[4];
@@ -224,27 +224,25 @@ struct Mesh
 		2       3
 		*/
 
-		p[0].x = center.x - size.x / 2.f;
-		p[0].z = center.z + size.z / 2.f;
+		p[0].x = -size.x/2.f;
+		p[0].z = size.z/2.f;
 		p[0].y = 0.f;
 		uv[0] = { 0,1 };
 
-		p[1].x = center.x + size.x / 2.f;
-		p[1].z = center.z + size.z / 2.f;
+		p[1].x = size.x/2.f;
+		p[1].z = size.z/2.f;
 		p[1].y = 0.f;
 		uv[1] = { 1,1 };
 
-		p[2].x = center.x - size.x / 2.f;
-		p[2].z = center.z - size.z / 2.f;
+		p[2].x =  -size.x/2.f;
+		p[2].z =  -size.z/2.f;
 		p[2].y = 0.f;
 		uv[2] = { 0,0 };
 
-		p[3].x = center.x + size.x / 2.f;
-		p[3].z = center.z - size.z / 2.f;
+		p[3].x = size.x/2.f;
+		p[3].z = - size.z/2.f;
 		p[3].y = 0.f;
 		uv[3] = { 1,0 };
-
-
 
 		Polygon poly[2];
 		poly[0].vertex[0] = p[1];

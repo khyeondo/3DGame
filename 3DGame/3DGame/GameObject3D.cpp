@@ -44,6 +44,6 @@ void GameObject3D::Render()
 
 void GameObject3D::LookAt(Vec3 vec)
 {
-	Vec3 dist = m_pos - vec;
-	m_lookAngle.y = atan2(dist.z, dist.x);
+	Vec3 direction = m_pos - vec;
+	m_lookAngle.y = atan2(direction.z, direction.x) - M_PI/2.f;
 }

@@ -14,7 +14,7 @@ Player::Player(Camera* pCamera):
 	m_pCamera = pCamera;
 	m_collision.SetCollsionRage(5.f, 5.f);
 	m_light.color = { 255, 255, 255 };
-	m_light.brightness = 1.f;
+	m_light.brightness = 0.7f;
 }
 
 void Player::RotateY(float angle)
@@ -95,11 +95,17 @@ void Player::handleInput(GameState* pGameState)
 	}
 	if (TheInputHandler::Instance()->getMouseButtonState(LEFT))
 	{
-		Bullet* pBullet = new Bullet(
-			SurfaceManager::Instance()->GetSurface("box")->at(0), NULL,
-			MeshManager::Instance()->GetMesh("cube"));
-		pBullet->SetDir(m_lookDir*100.f);
-		pGameState->GameObject3DInstantiate(pBullet, m_pCamera->pos + (m_lookDir*10),Vec3(0.f,0.f,0.f));
+		Uint32 curTicks = SDL_GetTicks();
+		if (curTicks - (m_shootTimer) >= m_shootDeley*1000.f)
+		{
+			m_shootTimer = curTicks;
+			Bullet* pBullet = new Bullet(
+				SurfaceManager::Instance()->GetSurface("bullet")->at(0), NULL,
+				MeshManager::Instance()->GetMesh("plane"));
+			pBullet->SetDir(m_lookDir*100.f);
+			pGameState->GameObject3DInstantiate(pBullet, m_pCamera->pos + (m_lookDir * 10),
+				Vec3(-M_PI / 2.f, 0.f, 0.f));
+		}
 	}
 	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE))
 	{

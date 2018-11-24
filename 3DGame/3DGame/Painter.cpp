@@ -206,7 +206,6 @@ void TexturePainter::DrawPolygon(GameObject3D * pGameObject, Polygon& poly)
 	Vec3 brightness = { 0,0,0 };
 	for (Light* light : LightManager::Instance()->m_lights)
 		pGameObject->GetShader()->Shading(brightness, NULL, poly.normalVec, NULL, 0, 0, 0, 0, poly.center, light);
-	
 
 	if (poly.vertex[1].y < poly.vertex[0].y)
 	{
@@ -327,14 +326,16 @@ void TexturePainter::DrawPolygon(GameObject3D * pGameObject, Polygon& poly)
 						Uint8 a;
 						if (a = (Uint8)((tcolor & 0xFF000000) >> 24) != 0)
 						{
-							Uint8 r = (Uint8)((tcolor & 0x000000FF));
-							Uint8 b = (Uint8)((tcolor & 0x00FF0000) >> 16);
-							Uint8 g = (Uint8)((tcolor & 0x0000FF00) >> 8);
+							Color color;
+							color.r = (Uint8)((tcolor & 0x000000FF));
+							color.b = (Uint8)((tcolor & 0x00FF0000) >> 16);
+							color.g = (Uint8)((tcolor & 0x0000FF00) >> 8);
+							color *= brightness;
 
-							pScreenPixels[4 * (i * pScreenBuffer->w + j) + 0] = b * brightness.z;
-							pScreenPixels[4 * (i * pScreenBuffer->w + j) + 1] = g * brightness.y;
-							pScreenPixels[4 * (i * pScreenBuffer->w + j) + 2] = r * brightness.x;
-							pScreenPixels[4 * (i * pScreenBuffer->w + j) + 3] = a;
+							pScreenPixels[4 * (i * pScreenBuffer->w + j) + 0] = color.b;
+							pScreenPixels[4 * (i * pScreenBuffer->w + j) + 1] = color.g;
+							pScreenPixels[4 * (i * pScreenBuffer->w + j) + 2] = color.r;
+							pScreenPixels[4 * (i * pScreenBuffer->w + j) + 3] = 255;
 							pDepthBuffer[i* screenW + j] = tex_w;
 						}
 						////
@@ -416,14 +417,16 @@ void TexturePainter::DrawPolygon(GameObject3D * pGameObject, Polygon& poly)
 						Uint8 a;
 						if (a = (Uint8)((tcolor & 0xFF000000) >> 24) != 0)
 						{
-							Uint8 r = (Uint8)((tcolor & 0x000000FF));
-							Uint8 b = (Uint8)((tcolor & 0x00FF0000) >> 16);
-							Uint8 g = (Uint8)((tcolor & 0x0000FF00) >> 8);
+							Color color;
+							color.r = (Uint8)((tcolor & 0x000000FF));
+							color.b = (Uint8)((tcolor & 0x00FF0000) >> 16);
+							color.g = (Uint8)((tcolor & 0x0000FF00) >> 8);
+							color *= brightness;
 
-							pScreenPixels[4 * (i * pScreenBuffer->w + j) + 0] = b * brightness.z;
-							pScreenPixels[4 * (i * pScreenBuffer->w + j) + 1] = g * brightness.y;
-							pScreenPixels[4 * (i * pScreenBuffer->w + j) + 2] = r * brightness.x;
-							pScreenPixels[4 * (i * pScreenBuffer->w + j) + 3] = a;
+							pScreenPixels[4 * (i * pScreenBuffer->w + j) + 0] = color.b;
+							pScreenPixels[4 * (i * pScreenBuffer->w + j) + 1] = color.g;
+							pScreenPixels[4 * (i * pScreenBuffer->w + j) + 2] = color.r;
+							pScreenPixels[4 * (i * pScreenBuffer->w + j) + 3] = 255;
 							pDepthBuffer[i* screenW + j] = tex_w;
 						}
 						////
