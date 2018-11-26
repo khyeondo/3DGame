@@ -57,9 +57,10 @@ bool Renderer3D::Init(SDL_Renderer * pRenderer, Camera * pCamera, Vec3 light, Co
 
 void Renderer3D::Rendering(GameObject3D * pGameObject3D)
 {
-	vector<Polygon> polys;
-	//vector<reference_wrapper<Polygon>> culledPolys;
-	//vector<reference_wrapper<Polygon>> clipedPolys;
+
+		vector<Polygon> polys;
+		//vector<reference_wrapper<Polygon>> culledPolys;
+		//vector<reference_wrapper<Polygon>> clipedPolys;
 
 	Matrix4X4::MakeLookAtMatrix(m_matLootAt, m_pCamera->pos, m_pCamera->lookAt, Vec3(0, 1, 0));
 
@@ -73,6 +74,7 @@ void Renderer3D::Rendering(GameObject3D * pGameObject3D)
 
 	polys.clear();
 	//culledPolys.clear();
+
 }
 
 void Renderer3D::Present()

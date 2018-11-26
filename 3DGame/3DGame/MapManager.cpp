@@ -3,10 +3,8 @@
 #include "SurfaceManager.h"
 #include "Fire.h"
 #include "MeshManager.h"
-
-#define MAPSIZEX 20
-#define MAPSIZEZ 20
-#define MAPHEIGHT 6 
+#include "Monster.h"
+#include "GameState.h"
 
 void MapManager::SetTile(Vec3 pos, Vec3 angle, SDL_Surface * surface, SDL_Surface* nomalMap)
 {
@@ -34,12 +32,12 @@ void MapManager::SetTile(Vec3 pos, Vec3 angle, Color color)
 
 MapManager::MapManager()
 {
-	m_tag = "MapManager";
 }
 
 void MapManager::Init(GameState* pGameState)
 {
-
+	m_tag = "MapManager";
+	m_pGameState = pGameState;
 	/*
 	  (0,0)
 		 ¦£ ¡æ x+	
@@ -52,7 +50,8 @@ void MapManager::Init(GameState* pGameState)
 	{ L"¦§¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¦©" },
 	{ L"¦§¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¦©" },
 	{ L"¦§¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¦©" },
-	{ L"¦§¡á¡á¢Í¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¦©" },
+	{ L"¦§¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¦©" },
+	{ L"¦§¡á¡á¡á¡á¡á¡á¢Í¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¦©" },
 	{ L"¦§¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¦©" },
 	{ L"¦§¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¦©" },
 	{ L"¦§¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¦©" },
@@ -63,8 +62,7 @@ void MapManager::Init(GameState* pGameState)
 	{ L"¦§¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¦©" },
 	{ L"¦§¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¦©" },
 	{ L"¦§¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¦©" },
-	{ L"¦§¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¦©" },
-	{ L"¦§¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¦©" },
+	{ L"¦§¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¢Í¡á¡á¡á¦©" },
 	{ L"¦§¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¦©" },
 	{ L"¦§¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¦©" },
 	{ L"¦¦¦ª¦ª¦ª¦ª¦ª¦ª¦ª¦ª¦ª¦ª¦ª¦ª¦ª¦ª¦ª¦ª¦ª¦ª¦¥" },
@@ -74,7 +72,8 @@ void MapManager::Init(GameState* pGameState)
 	m_tile.SetPlane(Vec3(10.f, 10.f, 10.f));
 	SDL_Surface* surface = SurfaceManager::Instance()->GetSurface("box")->at(0);
 
-	Color tileColor = { 108, 58, 25 };
+	//Color tileColor = { 108, 58, 25 };
+	Color tileColor = { 50, 50, 50 };
 	for (int i = 0; i < MAPSIZEZ; i++)
 	{
 		for (int j = 0; j < MAPSIZEX; j++)
@@ -175,13 +174,26 @@ void MapManager::Init(GameState* pGameState)
 			m_mapTiles.push_back(tile2);
 		}
 	}
+	m_spawnCount = SDL_GetTicks();
 }
 
-void MapManager::Update(GameState* pGameState)
+void MapManager::Update()
 {
+	srand(SDL_GetTicks());
+	float spawnPosX = rand() % 200;
+	float spawnPosZ = rand() % 200;
+
+	if (SDL_GetTicks() - m_spawnCount > 5000 && Monster::GetMonsterCount() < 3)
+	{
+		m_spawnCount = SDL_GetTicks();
+		Monster* pMonster = new Monster(SurfaceManager::Instance()->GetSurface("monster_walk")->at(0), NULL,
+			MeshManager::Instance()->GetMesh("plane"));
+		m_pGameState->GameObject3DInstantiate(pMonster, Vec3(spawnPosX, 14.f, spawnPosZ));
+	}
+
 	for (GameObject* gameObject : m_mapTiles)
 	{
-		gameObject->Update(pGameState);
+		gameObject->Update();
 	}
 }
 

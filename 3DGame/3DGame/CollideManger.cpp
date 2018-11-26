@@ -10,7 +10,7 @@ bool ColliderManager::CollisionCheck(Collider * col1, Collider * col2)
 	//원기둥 모양의 충돌체 검사
 	float dx = col1->m_pGameObject->RefPos().x - col2->m_pGameObject->RefPos().x;
 	float dz = col1->m_pGameObject->RefPos().z - col2->m_pGameObject->RefPos().z;
-	float dist = sqrt(dx*dx + dz * dz);
+	float dist = sqrt(dx * dx + dz * dz);
 
 	if (dist > col1->m_radius + col2->m_radius)
 		return false;
@@ -23,7 +23,7 @@ bool ColliderManager::CollisionCheck(Collider * col1, Collider * col2)
 	top2 = col2->m_pGameObject->RefPos().y + col1->m_height / 2.f;
 	bottom2 = top2 - col2->m_height;
 
-	if (top1 < bottom2 || bottom1 > top2)
+	if (top1 < bottom2 && bottom1 > top2)
 		return false;
 
 	return true;

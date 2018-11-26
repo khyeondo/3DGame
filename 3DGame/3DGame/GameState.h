@@ -11,6 +11,7 @@ class GameState
 {
 protected:
 	std::vector<GameObject*> m_gameObjects;
+
 public:
 	virtual void init() = 0;
 	virtual void update() = 0;
@@ -24,6 +25,8 @@ public:
 
 	void GameObject2DInstantiate(GameObject* pGameObject,
 		Vec2 pos = Vec2(0.f, 0.f));
+
+	void GameObjectInstantiate(GameObject* pGameObject);
 
 	void DestroyGameObject(GameObject* pGameObject);
 

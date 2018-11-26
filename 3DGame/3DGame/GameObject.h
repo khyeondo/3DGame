@@ -11,7 +11,7 @@ class GameObject
 {
 public:
 	virtual void Init(GameState* pGameState) = 0;
-	virtual void Update(GameState* pGameState) = 0;
+	virtual void Update() = 0;
 	virtual void Render() = 0;
 
 	string GetTag() {

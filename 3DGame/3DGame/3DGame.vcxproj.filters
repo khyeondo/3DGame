@@ -139,6 +139,9 @@
     <Filter Include="15.InGame\02.InGameObjects\Fire">
       <UniqueIdentifier>{8590c8a7-29d0-4996-8d86-09828d37a200}</UniqueIdentifier>
     </Filter>
+    <Filter Include="15.InGame\02.InGameObjects\Monster">
+      <UniqueIdentifier>{c942c102-67cc-4553-8f03-723010b353aa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -224,6 +227,9 @@
     </ClCompile>
     <ClCompile Include="Fire.cpp">
       <Filter>15.InGame\02.InGameObjects\Fire</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>15.InGame\02.InGameObjects\Monster</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -334,6 +340,9 @@
     </ClInclude>
     <ClInclude Include="Fire.h">
       <Filter>15.InGame\02.InGameObjects\Fire</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>15.InGame\02.InGameObjects\Monster</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -12,7 +12,7 @@ public:
 	Fire(SDL_Surface* surface, SDL_Surface* normalMap, Mesh* mesh);
 
 	virtual void Init(GameState* pGameState);
-	virtual void Update(GameState* pGameState);
+	virtual void Update();
 	virtual void Render();
 
 };

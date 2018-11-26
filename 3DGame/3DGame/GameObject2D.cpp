@@ -13,7 +13,7 @@ void GameObject2D::Init(GameState* pGameState)
 {
 }
 
-void GameObject2D::Update(GameState* pGameState)
+void GameObject2D::Update()
 {
 }
 

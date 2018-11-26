@@ -22,8 +22,12 @@ private:
 	float m_shootDeley = 0.2f;
 	Uint32 m_shootTimer = 0.f;
 
+	GameState* m_pGameState;
+
 	Collider m_collision;
 	Light m_light;
+
+	float m_moveSpeed = 30.f;
 
 public:
 	Player(Camera* pCamera);
@@ -31,8 +35,10 @@ public:
 	void RotateY(float angle);
 
 	virtual void Init(GameState* pGameState);
-	virtual void Update(GameState* gameState);
+	virtual void Update();
 	virtual void Render();
 	virtual void Collision(GameObject3D* other);
-	void handleInput(GameState* pGameState);
+	void handleInput();
+
+	void Move(Vec3 vec);
 };

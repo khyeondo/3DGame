@@ -33,7 +33,7 @@ public:
 	}
 
 	virtual void Init(GameState* pGameState);
-	virtual void Update(GameState* pGameState);
+	virtual void Update();
 	virtual void Collision(GameObject3D *other);
 	virtual void Render();
 

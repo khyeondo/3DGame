@@ -29,7 +29,7 @@ void GameObject3D::Init(GameState* pGameState)
 {
 }
 
-void GameObject3D::Update(GameState* pGameState)
+void GameObject3D::Update()
 {
 }
 

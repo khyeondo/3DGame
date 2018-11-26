@@ -14,7 +14,7 @@ public:
 	virtual ~GameObject2D();
 
 	virtual void Init(GameState* pGameState);
-	virtual void Update(GameState* pGameState);
+	virtual void Update();
 	virtual void Render();
 
 	Vec2 GetPos() {

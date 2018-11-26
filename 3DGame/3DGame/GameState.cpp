@@ -9,12 +9,19 @@ void GameState::GameObject3DInstantiate(GameObject * pGameObject, Vec3 pos, Vec3
 	((GameObject3D*)pGameObject)->RefAngle() = angle;
 	((GameObject3D*)pGameObject)->RefScale() = scale;
 
-	m_gameObjects.push_back(pGameObject);
 	pGameObject->Init(this);
+	m_gameObjects.push_back(pGameObject);
 }
 
 void GameState::GameObject2DInstantiate(GameObject * pGameObject, Vec2 pos)
 {
+
+}
+
+void GameState::GameObjectInstantiate(GameObject * pGameObject)
+{
+	pGameObject->Init(this);
+	m_gameObjects.push_back(pGameObject);
 }
 
 void GameState::DestroyGameObject(GameObject * pGameObject)
