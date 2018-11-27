@@ -99,6 +99,7 @@ bool Stage1::onExit()
 {
 	SurfaceManager::Instance()->Clear();
 	ColliderManager::Instance()->Clear();
+	MeshManager::Instance()->Clear();
 	std::cout << "exiting stage1\n";
 	return true;
 }
