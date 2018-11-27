@@ -18,7 +18,7 @@ void Monster::Init(GameState * pGameState)
 	m_moveSpeed = 10.f;
 	m_hp = 10;
 	m_tag = "monster";
-	m_scale = Vec3(30.f, 0.f, 40.f);
+	m_scale = Vec3(35.f, 0.f, 50.f);
 	m_angle = Vec3(M_PI / 2.f, M_PI, 0.f);
 }
 
@@ -41,7 +41,7 @@ void Monster::Update()
 			m_state = WALK;
 		}
 	}
-	else if ((m_pos - ((GameObject3D*)m_pPlayer)->RefPos()).Length() < 15.f)
+	else if ((m_pos - ((GameObject3D*)m_pPlayer)->RefPos()).Length() < 30.f)
 	{
 		m_state = ATTACK;
 		Attack();
