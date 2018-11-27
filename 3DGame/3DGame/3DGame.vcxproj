@@ -159,6 +159,8 @@
     <ClCompile Include="LightManger.cpp" />
     <ClCompile Include="Fire.cpp" />
     <ClCompile Include="Monster.cpp" />
+    <ClCompile Include="PlayerUI.cpp" />
+    <ClCompile Include="Pause.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
@@ -202,6 +204,8 @@
     <ClInclude Include="LightManger.h" />
     <ClInclude Include="Fire.h" />
     <ClInclude Include="Monster.h" />
+    <ClInclude Include="PlayerUI.h" />
+    <ClInclude Include="Pause.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

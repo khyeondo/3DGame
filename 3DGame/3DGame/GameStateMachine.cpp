@@ -1,5 +1,7 @@
 #include "GameStateMachine.h"
 
+GameStateMachine* GameStateMachine::s_pInst = 0;
+
 void GameStateMachine::changeState(GameState *pState)
 {
 	if (pState != NULL)

@@ -10,7 +10,9 @@ class GameObject;
 class GameState
 {
 protected:
-	std::vector<GameObject*> m_gameObjects;
+	std::vector<GameObject*> m_3DGameObjects;
+	std::vector<GameObject*> m_2DGameObjects;
+	std::vector<GameObject*> m_UIGameObjects;
 
 public:
 	virtual void init() = 0;
@@ -20,16 +22,19 @@ public:
 	virtual bool onExit() = 0;
 	virtual std::string getStateID() const = 0;
 
+	void Clean();
+
 	void GameObject3DInstantiate(GameObject* pGameObject,
 		Vec3 pos = Vec3(0.f, 0.f, 0.f), Vec3 angle = Vec3(0.f, 0.f, 0.f), Vec3 scale = Vec3(1.f, 1.f, 1.f));
+	void GameObject2DInstantiate(GameObject* pGameObject);
+	void GameObjectUIInstantiate(GameObject* pGameObject);
 
-	void GameObject2DInstantiate(GameObject* pGameObject,
-		Vec2 pos = Vec2(0.f, 0.f));
+	bool Destroy3DGameObject(GameObject* pGameObject);
+	bool Destroy2DGameObject(GameObject* pGameObject);
+	bool DestroyUIGameObject(GameObject* pGameObject);
 
-	void GameObjectInstantiate(GameObject* pGameObject);
-
-	void DestroyGameObject(GameObject* pGameObject);
-
-	GameObject* FindObjectByTag(std::string tag);
+	GameObject* Find3DObjectByTag(std::string tag);
+	GameObject* Find2DObjectByTag(std::string tag);
+	GameObject* FindUIObjectByTag(std::string tag);
 
 };

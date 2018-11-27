@@ -85,20 +85,12 @@ public:
 
 
 private:
-	void WorldSpace(GameObject3D* pGameObject,vector<Polygon>& polys);
-	void BackfaceCulling(vector<Polygon>& polys, vector<reference_wrapper<Polygon>>& culledPolys);
-	void ViewSpace(vector<reference_wrapper<Polygon>>& culledPolys, vector<reference_wrapper<Polygon>>& cilpedPolys);
-	void Projection(vector<reference_wrapper<Polygon>>& polys);
-	void Viewport(vector<reference_wrapper<Polygon>>& polys);
-	void Texturing(GameObject3D* pGameObject, vector<reference_wrapper<Polygon>>& polys);
-
-	void WorldSpace(GameObject3D* pGameObject, vector<Polygon>& polys,int a);
+	void WorldSpace(GameObject3D* pGameObject, vector<Polygon>& polys);
 	void BackfaceCulling(GameObject3D* pGameObject, Polygon& poly);
 	void ViewSpace(GameObject3D* pGameObject,Polygon& poly);
 	void Projection(GameObject3D* pGameObject, Polygon& poly);
 	void Viewport(GameObject3D* pGameObject, Polygon& poly);
 	void Texturing(GameObject3D* pGameObject, Polygon& poly);
-
 
 	Uint32 GetPixel(SDL_Surface * surface, int x, int y);
 

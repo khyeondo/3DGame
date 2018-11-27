@@ -1,6 +1,6 @@
 #pragma once
 
-#include "GameObject.h"
+#include "GameObject3D.h"
 #include "Mesh.h"
 #include "Color.h"
 #include <vector>
@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class MapManager : public GameObject
+class MapManager : public GameObject3D
 {
 private:
 	vector<GameObject*> m_mapTiles;
@@ -27,7 +27,11 @@ private:
 
 public:
 	MapManager();
+	~MapManager() {
+		GameObject3D::~GameObject3D();
+	}
 	virtual void Init(GameState* pGameState);
 	virtual void Update();
 	virtual void Render();
+	virtual void Clean();
 };

@@ -5,7 +5,7 @@
 #include "Camera.h"
 #include "InputHandler.h"
 #include "GameStateMachine.h"
-#include "Stage1.h"
+#include "Menu.h"
 
 Game* Game::m_pinst = 0;
 
@@ -39,8 +39,8 @@ bool Game::init(const char * title, int xpos, int ypos, int width, int height, b
 
 	Renderer3D::Instance()->Init(m_pRenderer, m_pCamera, Vec3(0.f, -1.f, 1.f), Color(0,0,0),width, height);
 
-	m_pGameStateMachine = new GameStateMachine();
-	m_pGameStateMachine->changeState(new Stage1());
+	m_pGameStateMachine = GameStateMachine::Instance();
+	m_pGameStateMachine->changeState(new Menu());
 	return true;
 }
 
@@ -65,7 +65,6 @@ void Game::render()
 	SDL_RenderClear(m_pRenderer);
 
 	m_pGameStateMachine->Render();
-	Renderer3D::Instance()->Present();
 
 	SDL_RenderPresent(m_pRenderer);
 

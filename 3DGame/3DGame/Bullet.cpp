@@ -27,14 +27,14 @@ void Bullet::Update()
 	m_force.Update();
 	LookAt(Renderer3D::Instance()->GetCamera()->pos);
 	if ((m_firePos - m_pos).Length() > 200.f)
-		m_pGameState->DestroyGameObject(this);
+		m_pGameState->Destroy3DGameObject(this);
 }
 
 void Bullet::Collision(GameObject3D * other)
 {
 	if (other->GetTag() == "cube" || other->GetTag() == "monster")
 	{
-		m_pGameState->DestroyGameObject(this);
+		m_pGameState->Destroy3DGameObject(this);
 	}
 }
 

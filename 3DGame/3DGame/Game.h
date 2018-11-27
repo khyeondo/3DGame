@@ -58,6 +58,9 @@ public:
 	bool running() { return m_bRunning; }
 	void quit() { m_bRunning = false; }
 	
+	SDL_Renderer* GetSDLRenderer() {
+		return m_pRenderer;
+	}
 	int GetScreenWidth() {
 		return screenWidth;
 	}

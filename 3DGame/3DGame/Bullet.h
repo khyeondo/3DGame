@@ -18,7 +18,9 @@ private:
 	Vec3 m_firePos;
 public:
 	Bullet(SDL_Surface* surface, SDL_Surface* normalMap, Mesh* mesh);
-
+	~Bullet() {
+		GameObject3D::~GameObject3D();
+	}
 	virtual void Init(GameState* pGameState);
 	virtual void Update();
 	virtual void Collision(GameObject3D* other);

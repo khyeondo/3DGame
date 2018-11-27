@@ -30,7 +30,8 @@ void MapManager::SetTile(Vec3 pos, Vec3 angle, Color color)
 	m_mapTiles.push_back(tile);
 }
 
-MapManager::MapManager()
+MapManager::MapManager():
+	GameObject3D(NULL,NULL,NULL)
 {
 }
 
@@ -203,4 +204,14 @@ void MapManager::Render()
 	{
 		gameObject->Render();
 	}
+}
+
+void MapManager::Clean()
+{
+	for (GameObject* pGameObject : m_mapTiles)
+	{
+		pGameObject->Clean();
+		delete pGameObject;
+	}
+	m_mapTiles.clear();
 }

@@ -16,6 +16,9 @@ class Monster : public GameObject3D
 {
 public:
 	Monster(SDL_Surface* surface, SDL_Surface* normalMap, Mesh* mesh);
+	~Monster() {
+		GameObject3D::~GameObject3D();
+	}
 
 	virtual void Init(GameState* pGameState);
 	virtual void Update();
@@ -42,6 +45,7 @@ private:
 	int m_hp;
 	Uint32 m_dieCount = 0;
 	float m_stunCount = 0.f;
+	bool m_bIsAttack = false;
 
 	static int s_monsterCount; 
 

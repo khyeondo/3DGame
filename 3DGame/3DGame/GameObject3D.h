@@ -36,6 +36,7 @@ public:
 	virtual void Update();
 	virtual void Collision(GameObject3D *other);
 	virtual void Render();
+	virtual void Clean();
 
 	void SetMesh(Mesh* mesh) {
 		m_pMesh = mesh;

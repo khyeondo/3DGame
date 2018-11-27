@@ -10,7 +10,9 @@ private:
 
 public:
 	Fire(SDL_Surface* surface, SDL_Surface* normalMap, Mesh* mesh);
-
+	~Fire() {
+		GameObject3D::~GameObject3D();
+	}
 	virtual void Init(GameState* pGameState);
 	virtual void Update();
 	virtual void Render();

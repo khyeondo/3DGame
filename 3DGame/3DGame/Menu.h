@@ -15,6 +15,11 @@ public:
 			s_pInstance = new Menu;
 		return s_pInstance;
 	}
+
+private:
+	static void s_menuToPlay();
+	static void s_exitFromMenu();
+
 private:
 	static const std::string s_menuID;
 	static Menu* s_pInstance;

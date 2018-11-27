@@ -35,11 +35,11 @@ void ColliderManager::Update()
 	//list<Collider*>::iterator iter2;
 	//list<Collider*>::iterator iterEnd = m_colliders.end();
 
-	for (int i = 0; i < m_colliders.size() - 1; i++)
+	for (int i = 0; i < ((int)m_colliders.size() - 1); i++)
 	{
 		//iter2 = iter1;
 		//iter2++;
-		for (int j = i + 1; j < m_colliders.size(); j++)
+		for (int j = i + 1; j < (int)m_colliders.size(); j++)
 		{
 			if (CollisionCheck(m_colliders[i], m_colliders[j]))
 			{

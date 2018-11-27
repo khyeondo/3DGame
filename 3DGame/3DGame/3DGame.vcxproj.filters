@@ -109,30 +109,6 @@
     <Filter Include="15.InGame\02.InGameObjects\Player">
       <UniqueIdentifier>{35fcdbed-4899-41dd-b6a5-e236f3fe2f92}</UniqueIdentifier>
     </Filter>
-    <Filter Include="04.GameObject\05.Components">
-      <UniqueIdentifier>{3eb2eca0-c9f3-4e02-9125-1e87a1122198}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04.GameObject\05.Components\01.Force">
-      <UniqueIdentifier>{0b2a5393-8ff5-4a4f-8a15-6369b2dbc129}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04.GameObject\05.Components\02.Collision">
-      <UniqueIdentifier>{b0d9eb9f-7445-4cac-96d6-608e9e46ddf6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04.GameObject\05.Components\02.Collision\01.Collider">
-      <UniqueIdentifier>{631f700b-2bd3-4c1d-a17e-af574d51929a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04.GameObject\05.Components\02.Collision\02.CollideManger">
-      <UniqueIdentifier>{b84819db-c470-4845-8ab3-5a3463bb02c6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04.GameObject\05.Components\03.Light">
-      <UniqueIdentifier>{fe4561a8-25a0-4f37-980c-73347393af1b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04.GameObject\05.Components\03.Light\01.Light">
-      <UniqueIdentifier>{36110bc8-6c9d-4822-8726-b1daa5858742}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04.GameObject\05.Components\03.Light\02.LightManager">
-      <UniqueIdentifier>{b40c8f88-edfa-4ef1-bd5c-b063d98d3cb9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="02.Render3D\06.Color">
       <UniqueIdentifier>{6ec1f4c1-8e2c-46ab-9001-b59f5b51f5ba}</UniqueIdentifier>
     </Filter>
@@ -141,6 +117,36 @@
     </Filter>
     <Filter Include="15.InGame\02.InGameObjects\Monster">
       <UniqueIdentifier>{c942c102-67cc-4553-8f03-723010b353aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.GameObject\04.Components">
+      <UniqueIdentifier>{3eb2eca0-c9f3-4e02-9125-1e87a1122198}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.GameObject\04.Components\01.Force">
+      <UniqueIdentifier>{0b2a5393-8ff5-4a4f-8a15-6369b2dbc129}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.GameObject\04.Components\02.Collision">
+      <UniqueIdentifier>{b0d9eb9f-7445-4cac-96d6-608e9e46ddf6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.GameObject\04.Components\02.Collision\01.Collider">
+      <UniqueIdentifier>{631f700b-2bd3-4c1d-a17e-af574d51929a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.GameObject\04.Components\02.Collision\02.CollideManger">
+      <UniqueIdentifier>{b84819db-c470-4845-8ab3-5a3463bb02c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.GameObject\04.Components\03.Light">
+      <UniqueIdentifier>{fe4561a8-25a0-4f37-980c-73347393af1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.GameObject\04.Components\03.Light\01.Light">
+      <UniqueIdentifier>{36110bc8-6c9d-4822-8726-b1daa5858742}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.GameObject\04.Components\03.Light\02.LightManager">
+      <UniqueIdentifier>{b40c8f88-edfa-4ef1-bd5c-b063d98d3cb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="15.InGame\02.InGameObjects\PlayerUI">
+      <UniqueIdentifier>{04ddf435-6391-4038-8d52-62f274c79a5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="15.InGame\02.InGameObjects\Pause">
+      <UniqueIdentifier>{c9e0b3b6-882f-4ff5-a709-fa54afe1584c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -181,7 +187,7 @@
       <Filter>04.GameObject\02.GameObject2D</Filter>
     </ClCompile>
     <ClCompile Include="CollideManger.cpp">
-      <Filter>04.GameObject\05.Components\02.Collision\02.CollideManger</Filter>
+      <Filter>04.GameObject\04.Components\02.Collision\02.CollideManger</Filter>
     </ClCompile>
     <ClCompile Include="TextureManager.cpp">
       <Filter>08.TextureManager</Filter>
@@ -193,7 +199,7 @@
       <Filter>15.InGame\02.InGameObjects\Bullet</Filter>
     </ClCompile>
     <ClCompile Include="Force.cpp">
-      <Filter>04.GameObject\05.Components\01.Force</Filter>
+      <Filter>04.GameObject\04.Components\01.Force</Filter>
     </ClCompile>
     <ClCompile Include="Button.cpp">
       <Filter>15.InGame\02.InGameObjects\Button</Filter>
@@ -214,22 +220,28 @@
       <Filter>11.GameState\01.GameState</Filter>
     </ClCompile>
     <ClCompile Include="Collider.cpp">
-      <Filter>04.GameObject\05.Components\02.Collision\01.Collider</Filter>
+      <Filter>04.GameObject\04.Components\02.Collision\01.Collider</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>15.InGame\02.InGameObjects\Player</Filter>
     </ClCompile>
     <ClCompile Include="LightManger.cpp">
-      <Filter>04.GameObject\05.Components\03.Light\02.LightManager</Filter>
+      <Filter>04.GameObject\04.Components\03.Light\02.LightManager</Filter>
     </ClCompile>
     <ClCompile Include="Light.cpp">
-      <Filter>04.GameObject\05.Components\03.Light\01.Light</Filter>
+      <Filter>04.GameObject\04.Components\03.Light\01.Light</Filter>
     </ClCompile>
     <ClCompile Include="Fire.cpp">
       <Filter>15.InGame\02.InGameObjects\Fire</Filter>
     </ClCompile>
     <ClCompile Include="Monster.cpp">
       <Filter>15.InGame\02.InGameObjects\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerUI.cpp">
+      <Filter>15.InGame\02.InGameObjects\PlayerUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Pause.cpp">
+      <Filter>15.InGame\02.InGameObjects\Pause</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -291,7 +303,7 @@
       <Filter>04.GameObject\02.GameObject2D</Filter>
     </ClInclude>
     <ClInclude Include="CollideManger.h">
-      <Filter>04.GameObject\05.Components\02.Collision\02.CollideManger</Filter>
+      <Filter>04.GameObject\04.Components\02.Collision\02.CollideManger</Filter>
     </ClInclude>
     <ClInclude Include="TextureManager.h">
       <Filter>08.TextureManager</Filter>
@@ -303,7 +315,7 @@
       <Filter>15.InGame\02.InGameObjects\Bullet</Filter>
     </ClInclude>
     <ClInclude Include="Force.h">
-      <Filter>04.GameObject\05.Components\01.Force</Filter>
+      <Filter>04.GameObject\04.Components\01.Force</Filter>
     </ClInclude>
     <ClInclude Include="Button.h">
       <Filter>15.InGame\02.InGameObjects\Button</Filter>
@@ -324,16 +336,16 @@
       <Filter>10.MeshManager</Filter>
     </ClInclude>
     <ClInclude Include="Collider.h">
-      <Filter>04.GameObject\05.Components\02.Collision\01.Collider</Filter>
+      <Filter>04.GameObject\04.Components\02.Collision\01.Collider</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>15.InGame\02.InGameObjects\Player</Filter>
     </ClInclude>
     <ClInclude Include="Light.h">
-      <Filter>04.GameObject\05.Components\03.Light\01.Light</Filter>
+      <Filter>04.GameObject\04.Components\03.Light\01.Light</Filter>
     </ClInclude>
     <ClInclude Include="LightManger.h">
-      <Filter>04.GameObject\05.Components\03.Light\02.LightManager</Filter>
+      <Filter>04.GameObject\04.Components\03.Light\02.LightManager</Filter>
     </ClInclude>
     <ClInclude Include="Color.h">
       <Filter>02.Render3D\06.Color</Filter>
@@ -343,6 +355,12 @@
     </ClInclude>
     <ClInclude Include="Monster.h">
       <Filter>15.InGame\02.InGameObjects\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerUI.h">
+      <Filter>15.InGame\02.InGameObjects\PlayerUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Pause.h">
+      <Filter>15.InGame\02.InGameObjects\Pause</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

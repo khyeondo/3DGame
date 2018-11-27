@@ -1,6 +1,7 @@
 #include "Monster.h"
 #include "GameState.h"
 #include "SurfaceManager.h"
+#include "Player.h"
 
 int Monster::s_monsterCount = 0;
 
@@ -14,11 +15,11 @@ void Monster::Init(GameState * pGameState)
 	s_monsterCount++;
 	m_collider.SetCollsionRange(10.f, 100.f);
 	m_pGameState = pGameState;
-	m_pPlayer = pGameState->FindObjectByTag("player");
+	m_pPlayer = pGameState->Find3DObjectByTag("player");
 	m_moveSpeed = 10.f;
 	m_hp = 10;
 	m_tag = "monster";
-	m_scale = Vec3(35.f, 0.f, 50.f);
+	m_scale = Vec3(30.f, 0.f, 40.f);
 	m_angle = Vec3(M_PI / 2.f, M_PI, 0.f);
 }
 
@@ -83,6 +84,13 @@ void Monster::Attack()
 {
 	int i = SDL_GetTicks() / 100 % 3;
 	m_pSurface = SurfaceManager::Instance()->GetSurface("monster_attack")->at(i);
+	if (i == 2 && m_bIsAttack == false) {
+		((Player*)m_pPlayer)->Attacked();
+		m_bIsAttack = true;
+	}
+	else if(i != 2){
+		m_bIsAttack = false;
+	}
 }
 
 void Monster::Die()
@@ -94,7 +102,7 @@ void Monster::Die()
 	if(i < 5)
 		m_pSurface = SurfaceManager::Instance()->GetSurface("monster_die")->at(i);
 	else if (i > 11) {
-		m_pGameState->DestroyGameObject(this);
+		m_pGameState->Destroy3DGameObject(this);
 		s_monsterCount--;
 	}
 

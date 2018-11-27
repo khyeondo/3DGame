@@ -8,6 +8,8 @@
 #include "MapManager.h"
 #include "SurfaceManager.h"
 #include "MeshManager.h"
+#include "Menu.h"
+#include "GameStateMachine.h"
 
 Player::Player(Camera* pCamera):
 	GameObject3D(NULL,NULL,NULL), m_collision(this),m_light(this)
@@ -42,7 +44,7 @@ void Player::Update()
 {
 	handleInput();
 
-	if (mouseLock) 
+	if (m_mouseLock) 
 	{
 		RotateY(-(InputHandler::Instance()->getMousePosition()->x - Game::Instance()->GetScreenWidth() / 2) / 500.f);
 		SDL_WarpMouseInWindow(Game::Instance()->GetSDLWindow(),
@@ -52,6 +54,9 @@ void Player::Update()
 	m_pos = m_pCamera->pos;
 	m_lookDir = m_pCamera->lookAt - m_pCamera->pos;
 	m_lookDir.Normalize();
+
+	if (m_hp <= 0)
+		GameStateMachine::Instance()->changeState(new Menu());
 }
 
 void Player::Render()
@@ -60,6 +65,11 @@ void Player::Render()
 
 void Player::Collision(GameObject3D * other)
 {
+}
+
+void Player::Clean()
+{
+	SDL_ShowCursor(1);
 }
 
 void Player::handleInput()
@@ -106,31 +116,42 @@ void Player::handleInput()
 	}
 	if (TheInputHandler::Instance()->getMouseButtonState(LEFT))
 	{
-		Uint32 curTicks = SDL_GetTicks();
-		if (curTicks - (m_shootTimer) >= m_shootDeley*1000.f)
+		if (m_mouseLock == true)
 		{
-			m_shootTimer = curTicks;
-			Bullet* pBullet = new Bullet(
-				SurfaceManager::Instance()->GetSurface("bullet")->at(0), NULL,
-				MeshManager::Instance()->GetMesh("plane"));
-			pBullet->SetDir(m_lookDir*300.f);
-			Vec3 pos = m_pos;
-			pos.y -= 3.f;
-			m_pGameState->GameObject3DInstantiate(pBullet, pos,
-				Vec3(-M_PI / 2.f, 0.f, 0.f));
+			Uint32 curTicks = SDL_GetTicks();
+			if (curTicks - (m_shootTimer) >= m_shootDeley * 1000.f)
+			{
+				m_shootTimer = curTicks;
+				Bullet* pBullet = new Bullet(
+					SurfaceManager::Instance()->GetSurface("bullet")->at(0), NULL,
+					MeshManager::Instance()->GetMesh("plane"));
+				pBullet->SetDir(m_lookDir*300.f);
+				Vec3 pos = m_pos;
+				pos.y -= 3.f;
+				m_pGameState->GameObject3DInstantiate(pBullet, pos,
+					Vec3(-M_PI / 2.f, 0.f, 0.f));
+			}
 		}
 	}
 	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE))
 	{
-		if (mouseLock) {
-			mouseLock = false;
+		if (m_mouseLock) {
+			m_mouseLock = false;
 			SDL_ShowCursor(1);
+			DeltaTime::Instance()->SetGameSpeed(0.f);
 		}
 		else {
-			mouseLock = true;
+			m_mouseLock = true;
 			SDL_ShowCursor(0);
+			DeltaTime::Instance()->SetGameSpeed(1.f);
 		}
 	}
+}
+
+void Player::Attacked()
+{
+	if(m_mouseLock)
+		m_hp -= 1;
 }
 
 void Player::Move(Vec3 vec)

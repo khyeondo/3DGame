@@ -42,6 +42,10 @@ void GameObject3D::Render()
 	Renderer3D::Instance()->Rendering(this);
 }
 
+void GameObject3D::Clean()
+{
+}
+
 void GameObject3D::LookAt(Vec3 vec)
 {
 	Vec3 direction = m_pos - vec;

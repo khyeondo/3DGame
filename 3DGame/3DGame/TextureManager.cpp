@@ -1,8 +1,9 @@
 #include "TextureManager.h"
+#include "Game.h"
 
 TextureManager* TextureManager::s_pInstance = 0;
 
-bool TextureManager::load(string fileName, string id, SDL_Renderer * pRenderer)
+bool TextureManager::load(string fileName, string id)
 {
 	SDL_Surface* pTempSurface = IMG_Load(fileName.c_str());
 
@@ -10,7 +11,7 @@ bool TextureManager::load(string fileName, string id, SDL_Renderer * pRenderer)
 		return false;
 
 	SDL_Texture* pTexture =
-		SDL_CreateTextureFromSurface(pRenderer, pTempSurface);
+		SDL_CreateTextureFromSurface(Game::Instance()->GetSDLRenderer(), pTempSurface);
 	SDL_FreeSurface(pTempSurface);
 
 	if (pTexture != 0)
@@ -22,8 +23,8 @@ bool TextureManager::load(string fileName, string id, SDL_Renderer * pRenderer)
 }
 
 void TextureManager::draw(string id,
-	int x, int y, int width, int height,
-	SDL_Renderer * pRenderer, SDL_RendererFlip flip)
+	int x, int y, int width, int height
+	, SDL_RendererFlip flip)
 {
 	SDL_Rect srcRect;
 	SDL_Rect destRect;
@@ -35,13 +36,13 @@ void TextureManager::draw(string id,
 	destRect.x = x;
 	destRect.y = y;
 
-	SDL_RenderCopyEx(pRenderer, m_textureMap[id],
+	SDL_RenderCopyEx(Game::Instance()->GetSDLRenderer(), m_textureMap[id],
 		&srcRect, &destRect, 0, 0, flip);
 }
 
 void TextureManager::drawFrame(string id,
-	int x, int y, int width, int height, int currentRow, int currentFrame,
-	SDL_Renderer * pRenderer, SDL_RendererFlip flip)
+	int x, int y, int width, int height, int currentRow, int currentFrame
+	, SDL_RendererFlip flip)
 {
 	SDL_Rect srcRect;
 	SDL_Rect destRect;
@@ -52,7 +53,7 @@ void TextureManager::drawFrame(string id,
 	destRect.x = x;
 	destRect.y = y;
 
-	SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect,
+	SDL_RenderCopyEx(Game::Instance()->GetSDLRenderer(), m_textureMap[id], &srcRect,
 		&destRect, 0, 0, flip);
 }
 

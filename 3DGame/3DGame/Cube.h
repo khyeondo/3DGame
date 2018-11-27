@@ -10,7 +10,9 @@ private:
 	Collider m_collider;
 public:
 	Cube(SDL_Surface * surface, SDL_Surface * normalMap, Mesh * mesh);
-
+	~Cube() {
+		GameObject3D::~GameObject3D();
+	}
 	virtual void Init(GameState* pGameState);
 	virtual void Update();
 	virtual void Collision(GameObject3D* other);
