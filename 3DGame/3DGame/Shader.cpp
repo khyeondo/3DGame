@@ -34,6 +34,7 @@ void PixelShader::Shading(Vec3& brightness,SDL_Surface * pSurface,
 	Vec3 & normalVec, Matrix4X4* plookAtMat, 
 	int i, int j, int sx, int sy, Vec3 center, Light* light)
 {
+	//³ë¸»¸Ê ½¦ÀÌµù
 	//Uint32 normalMapColor = Renderer3D::Instance()->GetPixel(pSurface, sx, sy);
 	//Vec3 normalMapVec = { (float)((normalMapColor & 0x000000FF)),
 	//	(float)((normalMapColor & 0x0000FF00) >> 8),

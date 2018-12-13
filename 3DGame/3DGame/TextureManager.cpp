@@ -64,4 +64,6 @@ void TextureManager::Clear()
 
 	for (; iter != iterEnd; iter++)
 		SDL_DestroyTexture(iter->second);
+
+	m_textureMap.clear();
 }

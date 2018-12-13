@@ -6,7 +6,7 @@
 
 void PlayerUI::Init(GameState * pGameState)
 {
-	m_pPlayer = pGameState->Find3DObjectByTag("player");
+	m_pPlayer = pGameState->Find3DObjectWithTag("player");
 }
 
 void PlayerUI::Update()

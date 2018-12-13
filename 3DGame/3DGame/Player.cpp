@@ -46,7 +46,9 @@ void Player::Update()
 
 	if (m_mouseLock) 
 	{
+		//카메라 회전
 		RotateY(-(InputHandler::Instance()->getMousePosition()->x - Game::Instance()->GetScreenWidth() / 2) / 500.f);
+		//마우스 위치 고정
 		SDL_WarpMouseInWindow(Game::Instance()->GetSDLWindow(),
 			Game::Instance()->GetScreenWidth() / 2.f, Game::Instance()->GetScreenHeight() / 2.f);
 	}

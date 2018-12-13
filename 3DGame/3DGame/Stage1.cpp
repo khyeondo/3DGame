@@ -98,10 +98,10 @@ bool Stage1::onEnter()
 	TextureManager::Instance()->load("Assets/hp_bar.png", "hp_bar");
 	TextureManager::Instance()->load("Assets/pause.png", "pause");
 
-	Mesh* cube = new Mesh();
+	//Mesh* cube = new Mesh();
+	//cube->SetCube(Vec3(5.f, 5.f, 5.f), Vec3(10, 10, 10));
 	Mesh* plane = new Mesh();
 	plane->SetPlane(Vec3(1.f, 1.f, 1.f));
-	cube->SetCube(Vec3(5.f, 5.f, 5.f), Vec3(10, 10, 10));
 
 	MeshManager::Instance()->SetMesh(plane, "plane");
 

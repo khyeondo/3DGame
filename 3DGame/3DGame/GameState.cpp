@@ -34,8 +34,6 @@ void GameState::GameObject3DInstantiate(GameObject * pGameObject, Vec3 pos, Vec3
 
 void GameState::GameObject2DInstantiate(GameObject * pGameObject)
 {
-	((GameObejct2D*)pGameObject);
-
 	pGameObject->Init(this);
 	m_2DGameObjects.push_back(pGameObject);
 }
@@ -97,7 +95,7 @@ bool GameState::DestroyUIGameObject(GameObject * pGameObject)
 	return false;
 }
 
-GameObject * GameState::Find3DObjectByTag(std::string tag)
+GameObject * GameState::Find3DObjectWithTag(std::string tag)
 {
 	for (GameObject* gameObejct : m_3DGameObjects)
 	{
@@ -107,7 +105,7 @@ GameObject * GameState::Find3DObjectByTag(std::string tag)
 	return NULL;
 }
 
-GameObject * GameState::Find2DObjectByTag(std::string tag)
+GameObject * GameState::Find2DObjectWithTag(std::string tag)
 {
 	for (GameObject* gameObejct : m_2DGameObjects)
 	{
@@ -117,7 +115,7 @@ GameObject * GameState::Find2DObjectByTag(std::string tag)
 	return NULL;
 }
 
-GameObject * GameState::FindUIObjectByTag(std::string tag)
+GameObject * GameState::FindUIObjectWithTag(std::string tag)
 {
 	for (GameObject* gameObejct : m_UIGameObjects)
 	{

@@ -32,6 +32,9 @@ public:
 	static int GetMonsterCount() {
 		return s_monsterCount;
 	}
+	static void SetMonsterCount(int count) {
+		s_monsterCount = count;
+	}
 private:
 	Collider m_collider;
 	Force m_force;

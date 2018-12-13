@@ -33,8 +33,8 @@ public:
 	bool Destroy2DGameObject(GameObject* pGameObject);
 	bool DestroyUIGameObject(GameObject* pGameObject);
 
-	GameObject* Find3DObjectByTag(std::string tag);
-	GameObject* Find2DObjectByTag(std::string tag);
-	GameObject* FindUIObjectByTag(std::string tag);
+	GameObject* Find3DObjectWithTag(std::string tag);
+	GameObject* Find2DObjectWithTag(std::string tag);
+	GameObject* FindUIObjectWithTag(std::string tag);
 
 };

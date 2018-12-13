@@ -37,6 +37,8 @@ MapManager::MapManager():
 
 void MapManager::Init(GameState* pGameState)
 {
+	Monster::SetMonsterCount(0);
+
 	m_tag = "MapManager";
 	m_pGameState = pGameState;
 	/*
