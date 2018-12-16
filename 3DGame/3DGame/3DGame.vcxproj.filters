@@ -148,9 +148,6 @@
     <Filter Include="04.GameObject\04.Components\02.Collision\02.ColliderManger">
       <UniqueIdentifier>{b84819db-c470-4845-8ab3-5a3463bb02c6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="15.InGame\01.InGameStates\03.GameOverState">
-      <UniqueIdentifier>{63466f6c-d035-4404-8677-b66e3a39e666}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
