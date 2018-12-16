@@ -15,6 +15,7 @@ enum mouse_buttons
 class InputHandler
 {
 public:
+	~InputHandler() {}
 	static InputHandler* Instance()
 	{
 		if (s_pInstance == 0) {
@@ -45,7 +46,7 @@ private:
 
 private:
 	InputHandler();
-	~InputHandler() {}
+
 	static InputHandler* s_pInstance;
 
 	const Uint8* m_keystates;

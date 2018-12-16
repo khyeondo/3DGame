@@ -15,7 +15,7 @@ Player::Player(Camera* pCamera):
 	GameObject3D(NULL,NULL,NULL), m_collision(this),m_light(this)
 {
 	m_pCamera = pCamera;
-	m_collision.SetCollsionRange(5.f, 5.f);
+	m_collision.SetCollisionRange(5.f, 5.f);
 	m_light.color = { 255, 255, 255 };
 	m_light.brightness = 1.f;
 }
@@ -34,7 +34,7 @@ void Player::Init(GameState* pGameState)
 {
 	m_tag = "player";
 	m_pGameState = pGameState;
-	Matrix4X4::MakeRotationY(m_right, -M_PI / 2.f);
+	Matrix4X4::MakeRotationY(m_rotateRight, -M_PI / 2.f);
 	m_pCamera->pos = m_pos;
 	m_pCamera->lookAt = m_pos + Vec3(0.f, 0.f, 1.f);
 	SDL_ShowCursor(0);
@@ -102,7 +102,7 @@ void Player::handleInput()
 	if (TheInputHandler::Instance()->isKeyHolding(SDL_SCANCODE_A))
 	{
 		Vec3 moveDir;
-		moveDir = m_lookDir * m_right;
+		moveDir = m_lookDir * m_rotateRight;
 		moveDir = Vec3(0.f, 0.f, 0.f) - moveDir;
 		//m_pCamera->pos -= right * DELTATIME*20.f;
 		//m_pCamera->lookAt -= right * DELTATIME*20.f;;
@@ -111,7 +111,7 @@ void Player::handleInput()
 	if (TheInputHandler::Instance()->isKeyHolding(SDL_SCANCODE_D))
 	{
 		Vec3 moveDir;
-		moveDir = m_lookDir * m_right;
+		moveDir = m_lookDir * m_rotateRight;
 		//m_pCamera->pos += right * DELTATIME*20.f;
 		//m_pCamera->lookAt += right * DELTATIME*20.f;
 		Move(moveDir);
@@ -121,7 +121,7 @@ void Player::handleInput()
 		if (m_mouseLock == true)
 		{
 			Uint32 curTicks = SDL_GetTicks();
-			if (curTicks - (m_shootTimer) >= m_shootDeley * 1000.f)
+			if (curTicks - (m_shootTimer) >= m_shootDelay * 1000.f)
 			{
 				m_shootTimer = curTicks;
 				Bullet* pBullet = new Bullet(

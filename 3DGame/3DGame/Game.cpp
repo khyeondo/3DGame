@@ -37,7 +37,7 @@ bool Game::init(const char * title, int xpos, int ypos, int width, int height, b
 
 	m_pCamera = new Camera(Vec3(0.f, 0.f, 0.f), Vec3(0.f, 0.f, -1.f), 1.f, 500.f, 90.f);
 
-	Renderer3D::Instance()->Init(m_pRenderer, m_pCamera, Vec3(0.f, -1.f, 1.f), Color(0,0,0),width, height);
+	Renderer3D::Instance()->Init(m_pRenderer, m_pCamera,Color(0,0,0),width, height);
 
 	m_pGameStateMachine = GameStateMachine::Instance();
 	m_pGameStateMachine->changeState(new Menu());

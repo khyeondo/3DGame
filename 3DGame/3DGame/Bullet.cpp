@@ -13,7 +13,7 @@ Bullet::Bullet(SDL_Surface * surface, SDL_Surface * normalMap, Mesh * mesh) :
 	m_light.color = { 255,150,150 };
 	m_light.brightness = 0.5f;
 
-	m_colider.SetCollsionRange(1.f, 1.f);
+	m_colider.SetCollisionRange(1.f, 1.f);
 }
 
 void Bullet::Init(GameState* pGameState)

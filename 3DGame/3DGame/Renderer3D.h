@@ -33,12 +33,7 @@ public:
 			inst = new Renderer3D;
 		return inst;
 	}
-	static Renderer3D* DeleteInstance() {
-		if (inst != 0) {
-			delete inst;
-			inst = 0;
-		}
-	}
+
 #pragma endregion
 
 private:
@@ -58,7 +53,6 @@ private:
 	//ºäÆ÷Æ® Çà·Ä
 	Matrix4X4 m_matViewport;
 
-	Vec3 m_light;
 	Color m_background;
 
 public:
@@ -70,7 +64,7 @@ public:
 public:
 	~Renderer3D();
 
-	bool Init(SDL_Renderer* pRenderer, Camera* pCamera, Vec3 light,Color background, int screenW, int screenH);
+	bool Init(SDL_Renderer* pRenderer, Camera* pCamera, Color background, int screenW, int screenH);
 	void Rendering(GameObject3D* pGameObject3D);
 	
 	void Present();
@@ -78,11 +72,6 @@ public:
 	Camera* GetCamera() {
 		return m_pCamera;
 	}
-	Vec3& RefLight() {
-		return m_light;
-	}
-
-
 
 private:
 	void WorldSpace(GameObject3D* pGameObject, vector<Polygon>& polys);

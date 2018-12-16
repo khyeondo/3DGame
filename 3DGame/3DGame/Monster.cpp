@@ -13,7 +13,7 @@ Monster::Monster(SDL_Surface * surface, SDL_Surface * normalMap, Mesh * mesh) :
 void Monster::Init(GameState * pGameState)
 {
 	s_monsterCount++;
-	m_collider.SetCollsionRange(10.f, 100.f);
+	m_collider.SetCollisionRange(10.f, 100.f);
 	m_pGameState = pGameState;
 	m_pPlayer = pGameState->Find3DObjectWithTag("player");
 	m_moveSpeed = 10.f;

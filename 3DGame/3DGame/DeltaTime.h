@@ -10,11 +10,7 @@ public:
 			m_pInst = new DeltaTime();
 		return m_pInst;
 	}
-	static void DeleteSingle(){
-		if (m_pInst != 0)
-			delete m_pInst;
-		m_pInst = 0;
-	}
+
 private:
 	static DeltaTime * m_pInst;
 	DeltaTime() {

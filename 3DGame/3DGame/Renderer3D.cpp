@@ -14,7 +14,7 @@ Renderer3D::~Renderer3D()
 	delete[] m_pDepthBuffer;
 }
 
-bool Renderer3D::Init(SDL_Renderer * pRenderer, Camera * pCamera, Vec3 light, Color background, int screenW, int screenH)
+bool Renderer3D::Init(SDL_Renderer * pRenderer, Camera * pCamera, Color background, int screenW, int screenH)
 {
 	m_pRenderer = pRenderer;
 
@@ -22,9 +22,6 @@ bool Renderer3D::Init(SDL_Renderer * pRenderer, Camera * pCamera, Vec3 light, Co
 	m_screenH = screenH;
 
 	m_background = background;
-
-	m_light = light;
-	light.Normalize();
 
 	m_pCamera = pCamera;
 
@@ -49,8 +46,6 @@ bool Renderer3D::Init(SDL_Renderer * pRenderer, Camera * pCamera, Vec3 light, Co
 
 	for (int i = 0; i < screenH*screenW; i++)
 		m_pDepthBuffer[i] = 0;
-
-	light.Normalize();
 
 	return true;
 }

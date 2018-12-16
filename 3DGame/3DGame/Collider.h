@@ -17,7 +17,7 @@ public:
 
 	friend class ColliderManager;
 
-	void SetCollsionRange(float radius, float height) {
+	void SetCollisionRange(float radius, float height) {
 		m_radius = radius;
 		m_height = height;
 	}

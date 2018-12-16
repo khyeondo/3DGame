@@ -12,13 +12,12 @@ class Player : public GameObject3D
 private:
 	Camera* m_pCamera;
 	Matrix4X4 m_rotateRight;
-	Matrix4X4 m_right;
 	Vec3 m_lookDir;
 	GameState* m_pGameState;
 
 	bool m_mouseLock = true;
 
-	float m_shootDeley = 0.2f;
+	float m_shootDelay = 0.2f;
 	Uint32 m_shootTimer = 0.f;
 
 	Collider m_collision;

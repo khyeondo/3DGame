@@ -85,9 +85,6 @@
     <Filter Include="15.InGame\02.InGameObjects">
       <UniqueIdentifier>{c96abfa6-6614-4cea-8763-8b1563a93d60}</UniqueIdentifier>
     </Filter>
-    <Filter Include="15.InGame\02.InGameObjects\Cube">
-      <UniqueIdentifier>{5d6f7ad0-bdac-4856-99ce-62220f8caf10}</UniqueIdentifier>
-    </Filter>
     <Filter Include="15.InGame\02.InGameObjects\MapManager">
       <UniqueIdentifier>{6d588fc1-f4de-4d52-9c63-6f06d4b35696}</UniqueIdentifier>
     </Filter>
@@ -173,9 +170,6 @@
     </ClCompile>
     <ClCompile Include="InputHandler.cpp">
       <Filter>05.InputHandler</Filter>
-    </ClCompile>
-    <ClCompile Include="Cube.cpp">
-      <Filter>15.InGame\02.InGameObjects\Cube</Filter>
     </ClCompile>
     <ClCompile Include="DeltaTime.cpp">
       <Filter>06.DeltaTime</Filter>
@@ -289,9 +283,6 @@
     </ClInclude>
     <ClInclude Include="InputHandler.h">
       <Filter>05.InputHandler</Filter>
-    </ClInclude>
-    <ClInclude Include="Cube.h">
-      <Filter>15.InGame\02.InGameObjects\Cube</Filter>
     </ClInclude>
     <ClInclude Include="DeltaTime.h">
       <Filter>06.DeltaTime</Filter>

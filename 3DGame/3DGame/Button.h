@@ -2,8 +2,6 @@
 
 #include "GameObject2D.h"
 
-class LoaderParams;
-
 enum button_state
 {
 	MOUSE_OUT = 0,
@@ -25,6 +23,5 @@ public:
 
 private:
 	void(*m_callback)();
-
 	bool m_bReleased;
 };
