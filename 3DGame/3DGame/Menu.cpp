@@ -49,9 +49,9 @@ bool Menu::onEnter()
 	{
 		return false;
 	}
-	GameObject* button1 = new Button(Vec2(100, 100), Vec2(400, 100), "playbutton", s_menuToPlay);
+	GameObject* button1 = new Button(Vec2(200, 150), Vec2(400, 100), "playbutton", s_menuToPlay);
 
-	GameObject* button2 = new Button(Vec2(100, 300), Vec2(400, 100), "exitbutton", s_exitFromMenu);
+	GameObject* button2 = new Button(Vec2(200, 350), Vec2(400, 100), "exitbutton", s_exitFromMenu);
 
 	GameObjectUIInstantiate(button1);
 	GameObjectUIInstantiate(button2);
